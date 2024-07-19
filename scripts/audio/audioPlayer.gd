@@ -2,7 +2,7 @@ extends Node
 class_name AudioPlayer
 
 @onready var musicPlayer: AudioStreamPlayer = $MusicPlayer
-@onready var SFXPlayers: Array[AudioStreamPlayer2D] = [
+@onready var SFXPlayerPool: Array[AudioStreamPlayer2D] = [
 	$SFXPlayer1,
 	$SFXPlayer2,
 	$SFXPlayer3,
@@ -35,7 +35,7 @@ func on_fade():
 # select first valid SFX player and make it play the sound from target position.
 #takes into account current camera position
 func playSFX(sfx: AudioStream, position: Vector2):
-	var openSFXPlayers = SFXPlayers.filter(func(sfxPlayer: AudioStreamPlayer2D): return !sfxPlayer.playing)
+	var openSFXPlayers = SFXPlayerPool.filter(func(sfxPlayer: AudioStreamPlayer2D): return !sfxPlayer.playing)
 	if len(openSFXPlayers) == 0:
 		print("no open sfx players")
 		return
