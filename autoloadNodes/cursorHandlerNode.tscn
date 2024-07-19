@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bf1hxrw051lnm"]
+
+[ext_resource type="Script" path="res://scripts/utils/cursorHandler.gd" id="1_t1icr"]
+[ext_resource type="AudioStream" uid="uid://csvnm6xnfys5u" path="res://resources/sfx/click.wav" id="2_wc340"]
+
+[node name="CursorHandlerNode" type="Node"]
+script = ExtResource("1_t1icr")
+clickSound = ExtResource("2_wc340")
