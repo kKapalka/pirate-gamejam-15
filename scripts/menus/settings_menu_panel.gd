@@ -34,6 +34,10 @@ func _input(event):
 				focusedButtonIndex += len(focusable)
 			focusable[focusedButtonIndex].grab_focus()
 			get_viewport().set_input_as_handled()
+		
+		if Input.is_action_pressed("select"):
+			if focusedButtonIndex == 3:
+				focusable[focusedButtonIndex].pressed.emit()
 
 func _ready():
 	masterSlider.value = SaveHandler.settings.master

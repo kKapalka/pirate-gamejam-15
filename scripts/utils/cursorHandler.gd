@@ -5,6 +5,7 @@ extends Node
 #@export var defaultCursor: Texture2D
 @export var clickSound: AudioStream
 
+
 func _ready():
 	pass
 	#if defaultCursor != null:
@@ -12,5 +13,5 @@ func _ready():
 
 #play click sound at event's position on mouse click
 func _input(event):
-	if event is InputEventMouseButton and event.is_pressed() and !event.is_echo():
-		AudioManager.playSFX(clickSound, event.global_position)
+	if Input.is_action_just_pressed("select"):
+		AudioManager.playSFXAtMousePosition(clickSound)

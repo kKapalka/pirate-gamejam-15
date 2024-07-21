@@ -32,6 +32,10 @@ func on_fade():
 	$MusicPlayer.stream = nextTrack
 	$MusicPlayer.play()
 	
+	
+func playSFXAtMousePosition(sfx: AudioStream):
+	playSFX(sfx, centerPoint.get_viewport().get_mouse_position())
+	
 # select first valid SFX player and make it play the sound from target position.
 #takes into account current camera position
 func playSFX(sfx: AudioStream, position: Vector2):

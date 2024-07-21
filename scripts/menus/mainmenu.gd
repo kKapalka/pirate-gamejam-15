@@ -32,6 +32,9 @@ func _input(event):
 			buttons[focusedButtonIndex].grab_focus()
 			get_viewport().set_input_as_handled()
 		
+		if Input.is_action_pressed("select"):
+			buttons[focusedButtonIndex].pressed.emit()
+		
 
 func new_game():
 	focusedButtonIndex = 0
