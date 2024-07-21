@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvbhs20wk7pe7"]
+
+[ext_resource type="Script" path="res://scripts/test/test_save.gd" id="1_tb5so"]
+
+[node name="TestSave" type="Node"]
+script = ExtResource("1_tb5so")
+
+[node name="Autosave" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Autosave" to="." method="_on_autosave_timeout"]
