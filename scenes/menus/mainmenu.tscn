@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://n3xusws47tcp"]
+[gd_scene load_steps=4 format=3 uid="uid://n3xusws47tcp"]
 
 [ext_resource type="Script" path="res://scripts/menus/mainmenu.gd" id="1_1taa0"]
 [ext_resource type="Texture2D" uid="uid://dhuwsepdg2bl0" path="res://resources/menus/Logo placeholder.png" id="1_6hoxf"]
+[ext_resource type="PackedScene" uid="uid://daqlbvtppcfs" path="res://scenes/menus/settingsMenu.tscn" id="3_0tlnm"]
 
 [node name="Mainmenu" type="MarginContainer"]
 anchors_preset = 15
@@ -23,8 +24,16 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 8
 
-[node name="CreditsLabel" type="Label" parent="HBoxContainer/CreditsContainer"]
+[node name="Credits" type="Button" parent="HBoxContainer/CreditsContainer"]
+custom_minimum_size = Vector2(350, 30)
 layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/CreditsContainer/Credits"]
+layout_mode = 2
+offset_left = 140.0
+offset_top = 1.0
+offset_right = 209.0
+offset_bottom = 29.0
 theme_override_font_sizes/font_size = 20
 text = "Credits"
 horizontal_alignment = 1
@@ -42,8 +51,14 @@ texture = ExtResource("1_6hoxf")
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="NewGameLabel" type="Label" parent="HBoxContainer/VSplitContainer/VBoxContainer"]
+[node name="NewGame" type="Button" parent="HBoxContainer/VSplitContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 75)
 layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VSplitContainer/VBoxContainer/NewGame"]
+layout_mode = 2
+offset_right = 300.0
+offset_bottom = 75.0
 size_flags_horizontal = 4
 size_flags_vertical = 6
 theme_override_font_sizes/font_size = 50
@@ -51,8 +66,14 @@ text = "New Game"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ContinueLabel" type="Label" parent="HBoxContainer/VSplitContainer/VBoxContainer"]
+[node name="Continue" type="Button" parent="HBoxContainer/VSplitContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 75)
 layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VSplitContainer/VBoxContainer/Continue"]
+layout_mode = 2
+offset_right = 300.0
+offset_bottom = 75.0
 size_flags_horizontal = 4
 size_flags_vertical = 6
 theme_override_font_sizes/font_size = 50
@@ -61,8 +82,14 @@ text = "Continue
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="OptionsLabel" type="Label" parent="HBoxContainer/VSplitContainer/VBoxContainer"]
+[node name="Options" type="Button" parent="HBoxContainer/VSplitContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 75)
 layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VSplitContainer/VBoxContainer/Options"]
+layout_mode = 2
+offset_right = 300.0
+offset_bottom = 75.0
 size_flags_horizontal = 4
 size_flags_vertical = 6
 theme_override_font_sizes/font_size = 50
@@ -75,7 +102,25 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 8
 
-[node name="QuitLabel" type="Label" parent="HBoxContainer/QuitContainer"]
+[node name="Quit" type="Button" parent="HBoxContainer/QuitContainer"]
+custom_minimum_size = Vector2(350, 30)
 layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/QuitContainer/Quit"]
+layout_mode = 2
+offset_left = 154.0
+offset_top = 1.0
+offset_right = 196.0
+offset_bottom = 29.0
 theme_override_font_sizes/font_size = 20
 text = "Quit"
+
+[node name="Settings" parent="." instance=ExtResource("3_0tlnm")]
+visible = false
+layout_mode = 2
+
+[connection signal="button_up" from="HBoxContainer/CreditsContainer/Credits" to="." method="_on_credits_button_up"]
+[connection signal="button_up" from="HBoxContainer/VSplitContainer/VBoxContainer/NewGame" to="." method="_on_new_game_button_up"]
+[connection signal="button_up" from="HBoxContainer/VSplitContainer/VBoxContainer/Continue" to="." method="_on_continue_button_up"]
+[connection signal="button_up" from="HBoxContainer/VSplitContainer/VBoxContainer/Options" to="." method="_on_options_button_up"]
+[connection signal="button_up" from="HBoxContainer/QuitContainer/Quit" to="." method="_on_quit_button_up"]

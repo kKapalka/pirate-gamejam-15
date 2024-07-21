@@ -6,4 +6,4 @@ func _ready():
 
 func _on_autosave_timeout():
 	SaveHandler.player.name = "Robert"
-	SaveHandler.save()
+	SaveHandler.saveGame()

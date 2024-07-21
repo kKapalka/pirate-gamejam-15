@@ -1,0 +1,94 @@
+[gd_scene load_steps=2 format=3 uid="uid://daqlbvtppcfs"]
+
+[ext_resource type="Script" path="res://scripts/menus/settings_menu_panel.gd" id="1_g7iu3"]
+
+[node name="Settings" type="VBoxContainer"]
+size_flags_horizontal = 4
+size_flags_vertical = 6
+script = ExtResource("1_g7iu3")
+
+[node name="Master" type="Control" parent="."]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Slider" type="HSlider" parent="Master"]
+z_index = -1
+layout_mode = 2
+offset_top = 20.0
+offset_right = 300.0
+offset_bottom = 45.0
+max_value = 10.0
+
+[node name="Label" type="Label" parent="Master"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 25.0
+text = "Master Volume"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Music" type="Control" parent="."]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Slider" type="HSlider" parent="Music"]
+layout_mode = 2
+offset_top = 20.0
+offset_right = 300.0
+offset_bottom = 45.0
+max_value = 10.0
+
+[node name="Label" type="Label" parent="Music"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 25.0
+text = "Music Volume"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SFX" type="Control" parent="."]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Slider" type="HSlider" parent="SFX"]
+layout_mode = 2
+offset_top = 20.0
+offset_right = 300.0
+offset_bottom = 45.0
+max_value = 10.0
+
+[node name="Label" type="Label" parent="SFX"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 25.0
+text = "SFX Volume"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Space" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="Return" type="Button" parent="."]
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 2
+text = "Return"
+
+[connection signal="mouse_entered" from="Master" to="." method="_on_master_mouse_entered"]
+[connection signal="mouse_exited" from="Master" to="." method="_on_master_mouse_exited"]
+[connection signal="value_changed" from="Master/Slider" to="." method="_on_master_volume_slider_value_changed"]
+[connection signal="mouse_entered" from="Music" to="." method="_on_music_mouse_entered"]
+[connection signal="mouse_exited" from="Music" to="." method="_on_music_mouse_exited"]
+[connection signal="value_changed" from="Music/Slider" to="." method="_on_music_volume_slider_value_changed"]
+[connection signal="mouse_entered" from="SFX" to="." method="_on_sfx_mouse_entered"]
+[connection signal="mouse_exited" from="SFX" to="." method="_on_sfx_mouse_exited"]
+[connection signal="drag_ended" from="SFX/Slider" to="." method="_on_sfx_volume_slider_drag_ended"]
+[connection signal="drag_started" from="SFX/Slider" to="." method="_on_sfx_volume_slider_drag_started"]
+[connection signal="value_changed" from="SFX/Slider" to="." method="_on_sfx_volume_slider_value_changed"]
+[connection signal="button_up" from="Return" to="." method="_on_return_button_up"]
