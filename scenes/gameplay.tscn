@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0b3rjfuqloa1"]
+
+[ext_resource type="PackedScene" uid="uid://sfhlwrngrqs2" path="res://scenes/resourcecard.tscn" id="1_d48sr"]
+[ext_resource type="Script" path="res://scripts/gameplay.gd" id="1_yv17x"]
+[ext_resource type="Texture2D" uid="uid://b02ay7mvwgk2q" path="res://icon.svg" id="2_vrsh7"]
+
+[node name="Gameplay" type="Node3D"]
+script = ExtResource("1_yv17x")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+input_ray_pickable = false
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="StaticBody3D"]
+depth = 0.001
+polygon = PackedVector2Array(10, 10, 10, -10, -10, -10, -10, 10)
+
+[node name="Sprite3D" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 1, 0, 0, 0)
+flip_v = true
+texture = ExtResource("2_vrsh7")
+
+[node name="ResourceCard" parent="." instance=ExtResource("1_d48sr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.16269, 0.000499086, 3.7126)
+
+[node name="ResourceCard2" parent="." instance=ExtResource("1_d48sr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7351, 0.000499462, 6.03189)
+
+[node name="ResourceCard3" parent="." instance=ExtResource("1_d48sr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.29357, 0.000500101, 2.31846)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.945519, 0.325568, 0, -0.325568, 0.945519, 0, 2.77809, 11.7141)

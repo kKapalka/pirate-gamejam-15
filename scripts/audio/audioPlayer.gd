@@ -48,3 +48,4 @@ func playSFX(sfx: AudioStream, position: Vector2):
 	var cameraViewportOrigin = centerPoint.get_viewport_transform().get_origin()
 	selectedPlayer.position = position - cameraViewportOrigin
 	selectedPlayer.play()
+	print("play")

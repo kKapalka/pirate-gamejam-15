@@ -1,11 +1,11 @@
 [gd_scene load_steps=2 format=3 uid="uid://daqlbvtppcfs"]
 
-[ext_resource type="Script" path="res://scripts/menus/settings_menu_panel.gd" id="1_g7iu3"]
+[ext_resource type="Script" path="res://scripts/menus/settingsMenu.gd" id="1_pssox"]
 
 [node name="Settings" type="VBoxContainer"]
 size_flags_horizontal = 4
 size_flags_vertical = 6
-script = ExtResource("1_g7iu3")
+script = ExtResource("1_pssox")
 
 [node name="Master" type="Control" parent="."]
 custom_minimum_size = Vector2(300, 50)

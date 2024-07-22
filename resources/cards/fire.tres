@@ -1,0 +1,13 @@
+[gd_resource type="Texture2D" script_class="ResourceCard" load_steps=3 format=3 uid="uid://cbmgwnqw3rk33"]
+
+[ext_resource type="Script" path="res://scripts/card/cardResource.gd" id="1_06n4e"]
+[ext_resource type="Texture2D" uid="uid://cggp7faj383qd" path="res://resources/graphics/cards/resized/cropped/fire.png" id="2_bxv46"]
+
+[resource]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("1_06n4e")
+texture = ExtResource("2_bxv46")
+name = "Fire"
+id = "fire"
+textColor = Color(0.878431, 0, 0, 1)

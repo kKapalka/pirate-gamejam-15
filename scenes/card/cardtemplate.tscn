@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://c4i6s61ple66w"]
+
+[ext_resource type="Script" path="res://scripts/card/cardTemplate.gd" id="1_osbmr"]
+[ext_resource type="Texture2D" uid="uid://coatmbxd3ymgf" path="res://resources/graphics/cards/background.png" id="2_81s5o"]
+[ext_resource type="Texture2D" uid="uid://b45ec7alfu68a" path="res://resources/cards/copper.tres" id="2_pxe02"]
+[ext_resource type="Script" path="res://scripts/utils/autoResizeLabel.gd" id="4_lp4nn"]
+[ext_resource type="Texture2D" uid="uid://dmww4b3xa5pnw" path="res://resources/graphics/cards/resized/cropped/copper.png" id="5_144bn"]
+
+[node name="Cardtemplate" type="Control" node_paths=PackedStringArray("nameLabel", "artworkRect")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 360.0
+offset_bottom = 640.0
+script = ExtResource("1_osbmr")
+nameLabel = NodePath("Name")
+artworkRect = NodePath("Art")
+card = ExtResource("2_pxe02")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_81s5o")
+
+[node name="Name" type="Label" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 540.0
+offset_right = 350.0
+offset_bottom = 630.0
+theme_override_colors/font_color = Color(0.823529, 0.439216, 0, 1)
+theme_override_font_sizes/font_size = 56
+text = "Copper123"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+clip_text = true
+script = ExtResource("4_lp4nn")
+
+[node name="Art" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("5_144bn")
+
+[connection signal="property_list_changed" from="." to="." method="_on_property_list_changed"]

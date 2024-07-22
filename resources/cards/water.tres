@@ -1,0 +1,13 @@
+[gd_resource type="Texture2D" script_class="ResourceCard" load_steps=3 format=3 uid="uid://dwrccoe8ypv2d"]
+
+[ext_resource type="Script" path="res://scripts/card/cardResource.gd" id="1_u4bwu"]
+[ext_resource type="Texture2D" uid="uid://blreu4fy0drkl" path="res://resources/graphics/cards/resized/cropped/water.png" id="2_ihhm3"]
+
+[resource]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("1_u4bwu")
+texture = ExtResource("2_ihhm3")
+name = "Water"
+id = "water"
+textColor = Color(0.823529, 0.439216, 0, 1)
