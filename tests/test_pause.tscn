@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdru21dt05xvq"]
+
+[ext_resource type="Script" path="res://scripts/test/test_pause.gd" id="1_8t3c0"]
+[ext_resource type="PackedScene" uid="uid://3gw2jbnor51w" path="res://scenes/menus/pause_menu.tscn" id="2_qhtft"]
+
+[node name="TestPause" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8t3c0")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Button" type="Button" parent="PanelContainer"]
+layout_mode = 2
+text = "Pause"
+
+[node name="PauseMenu" parent="." instance=ExtResource("2_qhtft")]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[connection signal="button_up" from="PanelContainer/Button" to="." method="_on_button_button_up"]
