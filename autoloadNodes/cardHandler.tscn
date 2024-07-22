@@ -1,0 +1,17 @@
+[gd_scene load_steps=12 format=3 uid="uid://d0rxyrae0fxi6"]
+
+[ext_resource type="Script" path="res://scripts/utils/cardHandler.gd" id="1_stjpp"]
+[ext_resource type="Texture2D" uid="uid://b45ec7alfu68a" path="res://resources/cards/copper.tres" id="2_1dnqx"]
+[ext_resource type="Texture2D" uid="uid://ddqgu2u1lmcmq" path="res://resources/cards/earth.tres" id="3_lity1"]
+[ext_resource type="Texture2D" uid="uid://cbmgwnqw3rk33" path="res://resources/cards/fire.tres" id="4_dups5"]
+[ext_resource type="Texture2D" uid="uid://do6sewr44efcv" path="res://resources/cards/gold.tres" id="5_ekjj1"]
+[ext_resource type="Texture2D" uid="uid://be1gqnrlkupn1" path="res://resources/cards/iron.tres" id="6_l2rt7"]
+[ext_resource type="Texture2D" uid="uid://c18f54iunli4" path="res://resources/cards/lead.tres" id="7_l1067"]
+[ext_resource type="Texture2D" uid="uid://kt663ath8smx" path="res://resources/cards/mercury.tres" id="8_ecpi6"]
+[ext_resource type="Texture2D" uid="uid://qs8gj6o1jo6i" path="res://resources/cards/silver.tres" id="9_xnmb1"]
+[ext_resource type="Texture2D" uid="uid://vkl65mueehkt" path="res://resources/cards/tin.tres" id="10_dsdyx"]
+[ext_resource type="Texture2D" uid="uid://dwrccoe8ypv2d" path="res://resources/cards/water.tres" id="11_ly2f3"]
+
+[node name="CardHandlerNode" type="Node"]
+script = ExtResource("1_stjpp")
+resourceCardArray = Array[Resource("res://scripts/card/cardResource.gd")]([ExtResource("2_1dnqx"), ExtResource("3_lity1"), ExtResource("4_dups5"), ExtResource("5_ekjj1"), ExtResource("6_l2rt7"), ExtResource("7_l1067"), ExtResource("8_ecpi6"), ExtResource("9_xnmb1"), ExtResource("10_dsdyx"), ExtResource("11_ly2f3")])

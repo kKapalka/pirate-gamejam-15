@@ -18,8 +18,6 @@ func _ready():
 #play click sound at event's position on mouse click
 func _input(event):
 	if Input.is_action_just_pressed("select"):
-		print("select")
-		AudioManager.playSFXAtMousePosition(clickSound)
 		if camera != null:
 			if draggedCard == null:
 				if len(resourceCardsInArea) > 0:

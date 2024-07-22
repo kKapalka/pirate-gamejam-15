@@ -1,6 +1,8 @@
 @tool
 extends Node
 
+class_name CardTemplate
+
 
 @export var nameLabel: AutoResizeLabel
 @export var artworkRect: TextureRect
@@ -9,22 +11,21 @@ extends Node
 		return card
 	set(newValue):
 		card = newValue
-		if Engine.is_editor_hint():
-			updateCardContentsInEditor = true
+		updateCardContents = true
 
-var updateCardContentsInEditor = false
+var updateCardContents = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if updateCardContentsInEditor or card.modified:
-		updateCardContents()
+	if updateCardContents or card.modified:
+		onCardModified()
 
 
-func updateCardContents():
+func onCardModified():
 	nameLabel.text = card.name
 	nameLabel.remove_theme_color_override("font_color")
 	nameLabel.add_theme_color_override("font_color", card.textColor)
 	artworkRect.texture = card.texture
 	nameLabel.onTextChanged()
-	updateCardContentsInEditor = false
+	updateCardContents = false
 	card.modified = false
