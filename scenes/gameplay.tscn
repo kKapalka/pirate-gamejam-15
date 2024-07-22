@@ -25,7 +25,7 @@ flip_v = true
 texture = ExtResource("2_vrsh7")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.656059, 0.75471, 0, -0.75471, 0.656059, 0, 4.81, 9.759)
+transform = Transform3D(1, 0, 0, 0, 0.419452, 0.907778, 0, -0.907778, 0.419452, 0, 4.81, 7.464)
 environment = SubResource("Environment_vtgdd")
 
 [node name="Card" parent="." instance=ExtResource("3_0f5cq")]

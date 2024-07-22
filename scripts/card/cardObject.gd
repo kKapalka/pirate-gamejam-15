@@ -1,5 +1,10 @@
 extends Node
 
+class_name ResourceCardNode
+
+#Z-Index - helper variable to ensure that only topmost card gets picked up
+var zindex: int = 0
+
 var textureModified: bool = true
 @onready var front: MeshInstance3D = $Front2
 @onready var viewportHolder = $Front2/ViewportHolder
@@ -7,7 +12,7 @@ var textureModified: bool = true
 @onready var cardTemplate: CardTemplate = $Front2/ViewportHolder/SubViewport/Cardtemplate
 
 func _ready():
-	changePropertyCard("gold")
+	becomeRandom()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -29,6 +34,20 @@ func changePropertyCard(id: String):
 	textureModified = true
 	#viewportHolder.visible = true
 
+func becomeRandom():
+	cardTemplate.card = CardHandler.getRandomResourceCard()
+	textureModified = true
+	
 
 func _on_area_3d_mouse_entered():
-	print("mouse entered")
+	CursorHandler.resourceCardsInArea.append(self)
+
+func _on_area_3d_body_exited(body):
+	CursorHandler.resourceCardsInArea.remove_at(CursorHandler.resourceCardsInArea.find(self))
+
+
+func _on_area_3d_area_entered(area):
+	var areaParent = area.get_parent()
+	if areaParent != null and areaParent is ResourceCardNode:
+		areaParent.zindex -= 1
+

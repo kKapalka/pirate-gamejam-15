@@ -5,9 +5,10 @@ extends Node
 #@export var defaultCursor: Texture2D
 @export var clickSound: AudioStream
 
-var resourceCardsInArea: Array[ResourceCard] = []
+var resourceCardsInArea: Array[ResourceCardNode] = []
 
-var draggedCard: ResourceCard = null
+var draggedCard: ResourceCardNode = null
+var draggedCardOffset: Vector2 = Vector2.ZERO
 var camera: Camera3D
 
 func _ready():
@@ -21,7 +22,7 @@ func _input(event):
 		if camera != null:
 			if draggedCard == null:
 				if len(resourceCardsInArea) > 0:
-					resourceCardsInArea.sort_custom(func(a,b): return a.zIndex - b.zIndex )
+					resourceCardsInArea.sort_custom(func(a,b): return a.zindex - b.zindex )
 					draggedCard = resourceCardsInArea[0]
 					draggedCard.onPickUp()
 			else:
