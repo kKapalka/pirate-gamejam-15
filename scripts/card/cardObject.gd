@@ -6,6 +6,7 @@ var textureModified: bool = true
 @onready var front: MeshInstance3D = $Front2
 @onready var cardTemplate: CardTemplate = $Front2/ViewportHolder/SubViewport/Cardtemplate
 @onready var detectionArea: StaticBody3D = $Area3D
+var resourceCardDeckNode: ResourceCardDeckNode
 
 var mousePositionOffset: Vector3
 var basePosition: Vector3
@@ -13,7 +14,7 @@ var basePosition: Vector3
 var gameplayNode: GameplayNode
 
 func _ready():
-	becomeRandom()
+	resourceCardDeckNode = get_parent()
 		
 func changePropertyCard(id: String):
 	cardTemplate.card = CardHandler.loadResourceCard(id)
@@ -37,3 +38,4 @@ func onDrop():
 	detectionArea.visible = true
 	position.y = 0
 	mousePositionOffset = Vector3.ZERO
+	resourceCardDeckNode.updateTableCardPosition(get_instance_id(), global_position)

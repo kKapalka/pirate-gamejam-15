@@ -37,7 +37,6 @@ func onDraggingMouseMotion(position: Vector3):
 func detectCardByMouseRaycast() -> ResourceCardNode:
 	var mouse = get_viewport().get_mouse_position()
 	var from = camera.project_ray_origin(mouse)
-	var raycast = (camera.get_child(0) as RayCast3D)
 	var to = from + camera.project_ray_normal(mouse) * 100
 	var cast = camera.get_world_3d().direct_space_state.intersect_ray(PhysicsRayQueryParameters3D.create(from, to,
 	0b00000000_00000000_00000000_00000010)

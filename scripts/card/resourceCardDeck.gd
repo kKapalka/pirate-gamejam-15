@@ -1,4 +1,4 @@
-class_name ResourceCardDeck extends Resource
+class_name ResourceCardDeck
 
 # entire deck: draw, discard, table
 var fullContents: Array[String] = []
@@ -17,7 +17,7 @@ var cardsInBrewingSlots: Array[String] = []
 
 # draw N cards. stop if not enough cards in deck
 func draw(number: int) -> Array[String]:
-	var cards = []
+	var cards: Array[String] = []
 	for i in number:
 		cards.append(drawPile.pop_front())
 		if len(drawPile) == 0:
