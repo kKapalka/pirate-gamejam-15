@@ -15,6 +15,7 @@ var tableCards: Array[TableCard] = []
 #up to 3 cards, each index represents unique reagent brewing slot
 var cardsInBrewingSlots: Array[String] = []
 
+# draw N cards. stop if not enough cards in deck
 func draw(number: int) -> Array[String]:
 	var cards = []
 	for i in number:
@@ -23,13 +24,16 @@ func draw(number: int) -> Array[String]:
 			return cards
 	return cards
 
+# move all table cards into discard pile
 func discardTableCards():
 	discardPile.append_array(tableCards.map(func(x: TableCard): return x.resourceCardId))
 	
+#put discard pile in the draw pile, then shuffle it
 func shuffle():
 	drawPile.append_array(discardPile)
 	discardPile = []
 	drawPile.shuffle()
-	
+
+# update tableCards once cards have been placed on the table
 func place(_tableCards: Array[TableCard]):
 	self.tableCards = _tableCards
