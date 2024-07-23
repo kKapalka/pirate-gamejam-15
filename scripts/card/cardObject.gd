@@ -9,7 +9,6 @@ var textureModified: bool = true
 
 var mousePositionOffset: Vector3
 var basePosition: Vector3
-var storedLift: float
 
 var gameplayNode: GameplayNode
 
@@ -23,7 +22,6 @@ func becomeRandom():
 	cardTemplate.card = CardHandler.getRandomResourceCard()
 		
 func onPickUp(lift: float):
-	storedLift = global_position.y
 	position.y = lift
 	detectionArea.visible = false
 	front.sorting_offset = 99
