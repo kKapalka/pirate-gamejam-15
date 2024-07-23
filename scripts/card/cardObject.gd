@@ -10,11 +10,14 @@ var textureModified: bool = true
 @onready var viewportHolder = $Front2/ViewportHolder
 @onready var viewport = $Front2/ViewportHolder/SubViewport
 @onready var cardTemplate: CardTemplate = $Front2/ViewportHolder/SubViewport/Cardtemplate
-@onready var detectionArea: Area3D = $Area3D
+@onready var detectionArea: StaticBody3D = $Area3D
 
 var mousePositionOffset: Vector3
 var basePosition: Vector3
 var storedLift: float
+
+var gameplayNode: GameplayNode
+
 func _ready():
 	becomeRandom()
 
@@ -40,33 +43,29 @@ func changePropertyCard(id: String):
 
 func becomeRandom():
 	cardTemplate.card = CardHandler.getRandomResourceCard()
-	textureModified = true
-	
+	textureModified = true	
 
 func _on_area_3d_mouse_entered():
 	CursorHandler.resourceCardsInArea.append(self)
 
 func _on_area_3d_mouse_exited():
 	CursorHandler.resourceCardsInArea.remove_at(CursorHandler.resourceCardsInArea.find(self))
-
-func _on_area_3d_area_entered(area):
-	var areaParent = area.get_parent()
-	if areaParent != null and areaParent is ResourceCardNode:
-		areaParent.zindex -= 1
 		
 func onPickUp(lift: float):
 	storedLift = global_position.y
 	position.y = lift
 	detectionArea.visible = false
+	front.sorting_offset = 99
 	
 func onDraggingMouseMotion(_position: Vector3):
 	if mousePositionOffset == Vector3.ZERO:
 		mousePositionOffset = _position
 		basePosition = position
 	position = basePosition + _position - mousePositionOffset
-	print(position)
 	
 func onDrop():
-	position.y = storedLift
-	mousePositionOffset = Vector3.ZERO
+	gameplayNode.updateResourceCardPoolZIndices(self)
 	detectionArea.visible = true
+	position.y = 0
+	mousePositionOffset = Vector3.ZERO
+	#CursorHandler.resourceCardsInArea.append(self)

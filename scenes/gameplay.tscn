@@ -35,23 +35,29 @@ polygon = PackedVector2Array(10, 10, 10, -10, -10, -10, -10, 10)
 transform = Transform3D(1, 0, 0, 0, 0.419452, 0.907778, 0, -0.907778, 0.419452, 0, 4.81, 7.464)
 environment = SubResource("Environment_vtgdd")
 
-[node name="Card" parent="." instance=ExtResource("3_0f5cq")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -6.072, 0.05, 3.78)
+[node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
+collision_mask = 2
+collide_with_areas = true
 
-[node name="Card2" parent="." instance=ExtResource("3_0f5cq")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -3.30057, 0.00050043, 5.70779)
+[node name="ResourceCardPool" type="Node" parent="."]
 
-[node name="Card3" parent="." instance=ExtResource("3_0f5cq")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -3.1917, 0.000500604, 1.71058)
+[node name="Card" parent="ResourceCardPool" instance=ExtResource("3_0f5cq")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -6.072, 0, 3.78)
 
-[node name="Card4" parent="." instance=ExtResource("3_0f5cq")]
+[node name="Card2" parent="ResourceCardPool" instance=ExtResource("3_0f5cq")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -3.301, 0, 5.708)
+
+[node name="Card3" parent="ResourceCardPool" instance=ExtResource("3_0f5cq")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -3.192, 0, 1.711)
+
+[node name="Card4" parent="ResourceCardPool" instance=ExtResource("3_0f5cq")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.224307, 0.000499942, 5.96277)
 
-[node name="Card5" parent="." instance=ExtResource("3_0f5cq")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 2.95196, 0.000500052, 3.43038)
+[node name="Card5" parent="ResourceCardPool" instance=ExtResource("3_0f5cq")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 2.952, 0, 3.43)
 
-[node name="Card6" parent="." instance=ExtResource("3_0f5cq")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 4.82918, 0.000500413, 6.08094)
+[node name="Card6" parent="ResourceCardPool" instance=ExtResource("3_0f5cq")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 4.829, 0, 6.081)
 
 [connection signal="input_event" from="DraggingBoundsArea" to="." method="_on_dragging_bounds_area_input_event"]
 [connection signal="mouse_entered" from="DraggingBoundsArea" to="." method="_on_dragging_bounds_area_mouse_entered"]

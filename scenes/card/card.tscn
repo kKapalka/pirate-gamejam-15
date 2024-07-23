@@ -45,15 +45,11 @@ render_target_update_mode = 3
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 mesh = SubResource("PlaneMesh_1nm6i")
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Area3D" type="StaticBody3D" parent="."]
+disable_mode = 1
+collision_layer = 2
 
 [node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Area3D"]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 depth = 0.01
 polygon = PackedVector2Array(5, 8.9, 5, -8.9, -5, -8.9, -5, 8.9)
-
-[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
-[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
-[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
-[connection signal="mouse_entered" from="Area3D" to="." method="_on_area_3d_mouse_entered"]
-[connection signal="mouse_exited" from="Area3D" to="." method="_on_area_3d_mouse_exited"]
