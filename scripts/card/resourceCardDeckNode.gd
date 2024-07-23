@@ -12,7 +12,6 @@ func _ready():
 	if savedDeck == {}:
 		deck = initDeck()
 	else:
-		print(savedDeck)
 		var inst = dict_to_inst(savedDeck)
 		var tableCardsAsDicts = inst.tableCards as Array[Dictionary]
 		deck = inst as ResourceCardDeck
