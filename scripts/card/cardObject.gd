@@ -1,4 +1,4 @@
-extends Node
+extends Node3D
 
 class_name ResourceCardNode
 
@@ -10,7 +10,11 @@ var textureModified: bool = true
 @onready var viewportHolder = $Front2/ViewportHolder
 @onready var viewport = $Front2/ViewportHolder/SubViewport
 @onready var cardTemplate: CardTemplate = $Front2/ViewportHolder/SubViewport/Cardtemplate
+@onready var detectionArea: Area3D = $Area3D
 
+var mousePositionOffset: Vector3
+var basePosition: Vector3
+var storedLift: float
 func _ready():
 	becomeRandom()
 
@@ -42,12 +46,27 @@ func becomeRandom():
 func _on_area_3d_mouse_entered():
 	CursorHandler.resourceCardsInArea.append(self)
 
-func _on_area_3d_body_exited(body):
+func _on_area_3d_mouse_exited():
 	CursorHandler.resourceCardsInArea.remove_at(CursorHandler.resourceCardsInArea.find(self))
-
 
 func _on_area_3d_area_entered(area):
 	var areaParent = area.get_parent()
 	if areaParent != null and areaParent is ResourceCardNode:
 		areaParent.zindex -= 1
-
+		
+func onPickUp(lift: float):
+	storedLift = global_position.y
+	position.y = lift
+	detectionArea.visible = false
+	
+func onDraggingMouseMotion(_position: Vector3):
+	if mousePositionOffset == Vector3.ZERO:
+		mousePositionOffset = _position
+		basePosition = position
+	position = basePosition + _position - mousePositionOffset
+	print(position)
+	
+func onDrop():
+	position.y = storedLift
+	mousePositionOffset = Vector3.ZERO
+	detectionArea.visible = true

@@ -24,6 +24,13 @@ transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 1, 0, 0, 0)
 flip_v = true
 texture = ExtResource("2_vrsh7")
 
+[node name="DraggingBoundsArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.2, 0)
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="DraggingBoundsArea"]
+depth = 0.001
+polygon = PackedVector2Array(10, 10, 10, -10, -10, -10, -10, 10)
+
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.419452, 0.907778, 0, -0.907778, 0.419452, 0, 4.81, 7.464)
 environment = SubResource("Environment_vtgdd")
@@ -45,3 +52,6 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 2.9519
 
 [node name="Card6" parent="." instance=ExtResource("3_0f5cq")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 4.82918, 0.000500413, 6.08094)
+
+[connection signal="input_event" from="DraggingBoundsArea" to="." method="_on_dragging_bounds_area_input_event"]
+[connection signal="mouse_entered" from="DraggingBoundsArea" to="." method="_on_dragging_bounds_area_mouse_entered"]

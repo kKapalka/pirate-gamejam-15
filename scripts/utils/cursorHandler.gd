@@ -7,9 +7,11 @@ extends Node
 
 var resourceCardsInArea: Array[ResourceCardNode] = []
 
+var dragging: bool = false
 var draggedCard: ResourceCardNode = null
 var draggedCardOffset: Vector2 = Vector2.ZERO
 var camera: Camera3D
+var draggingBoundsArea: Area3D
 
 func _ready():
 	pass
@@ -22,26 +24,17 @@ func _input(event):
 		if camera != null:
 			if draggedCard == null:
 				if len(resourceCardsInArea) > 0:
+					draggingBoundsArea.visible = true
 					resourceCardsInArea.sort_custom(func(a,b): return a.zindex - b.zindex )
 					draggedCard = resourceCardsInArea[0]
-					draggedCard.onPickUp()
+					draggedCard.onPickUp(draggingBoundsArea.position.y)
+					dragging = true
 			else:
+				draggingBoundsArea.visible = false
 				draggedCard.onDrop()
 				draggedCard = null
-		test()
-	elif camera != null and event is InputEventMouseMotion and draggedCard != null:
-		var mouse = get_viewport().get_mouse_position()
-		var from = camera.project_ray_origin(mouse)
-		var to = from + camera.project_ray_normal(mouse) * 100
-		var cast = camera.get_world_3d().direct_space_state.intersect_ray(PhysicsRayQueryParameters3D.create(from, to))
-		if cast != null:
-			print(cast)
-			draggedCard.position = cast.position
-			
-func test():
-	var mouse = get_viewport().get_mouse_position()
-	var from = camera.project_ray_origin(mouse)
-	var to = from + camera.project_ray_normal(mouse) * 100
-	var cast = camera.get_world_3d().direct_space_state.intersect_ray(PhysicsRayQueryParameters3D.create(from, to))
-	print(cast)
+				dragging = false				
+
+func onDraggingMouseMotion(position: Vector3):
+	draggedCard.onDraggingMouseMotion(position)
 
