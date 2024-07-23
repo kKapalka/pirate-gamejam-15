@@ -44,12 +44,6 @@ func changePropertyCard(id: String):
 func becomeRandom():
 	cardTemplate.card = CardHandler.getRandomResourceCard()
 	textureModified = true	
-
-func _on_area_3d_mouse_entered():
-	CursorHandler.resourceCardsInArea.append(self)
-
-func _on_area_3d_mouse_exited():
-	CursorHandler.resourceCardsInArea.remove_at(CursorHandler.resourceCardsInArea.find(self))
 		
 func onPickUp(lift: float):
 	storedLift = global_position.y
@@ -68,4 +62,3 @@ func onDrop():
 	detectionArea.visible = true
 	position.y = 0
 	mousePositionOffset = Vector3.ZERO
-	#CursorHandler.resourceCardsInArea.append(self)

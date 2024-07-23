@@ -56,7 +56,6 @@ func detectCardByMouseRaycast() -> ResourceCardNode:
 		shapeParams.shape = shape
 		shapeParams.collision_mask = 0b00000000_00000000_00000000_00000010
 		shapeParams.collide_with_bodies = true
-		shapeParams.collide_with_areas = true
 		var intersectPoint = camera.get_world_3d().direct_space_state.intersect_shape(shapeParams)
 		var cards = intersectPoint.map(func(x): return x.collider.get_parent() as ResourceCardNode)
 		cards.sort_custom(func(a,b): return a.front.sorting_offset > b.front.sorting_offset)
