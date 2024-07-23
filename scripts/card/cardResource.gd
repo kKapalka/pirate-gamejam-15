@@ -18,4 +18,5 @@ var modified = false
 	set(value):
 		textColor = value
 		modified = true
+@export var consumable: bool = false
 		

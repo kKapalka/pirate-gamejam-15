@@ -33,7 +33,3 @@ func shuffle():
 	drawPile.append_array(discardPile)
 	discardPile = []
 	drawPile.shuffle()
-
-# update tableCards once cards have been placed on the table
-func place(_tableCards: Array[TableCard]):
-	self.tableCards = _tableCards

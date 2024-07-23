@@ -4,7 +4,9 @@ const FILE_NAME = "res://resources/game.save"
 const SETTINGS_FILE_NAME = "res://resources/settings.save"
 
 var player = {
-	"name": "Zippy"
+	"name": "Zippy",
+	"deck": {},
+	"cardsDrawnPerTurn": 4
 }
 var settings = {
 	"master": 10,
