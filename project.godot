@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Pirate Software Gamejam Game"
-run/main_scene="res://scenes/menus/mainmenu.tscn"
+run/main_scene="res://scenes/gameplay.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -24,6 +24,7 @@ buses/default_bus_layout="res://scripts/audio/audioBusLayout.tres"
 AudioManager="*res://autoloadNodes/audioPlayer.tscn"
 CursorHandler="*res://autoloadNodes/cursorHandlerNode.tscn"
 SaveHandler="*res://scripts/save/data.gd"
+CardHandler="*res://autoloadNodes/cardHandler.tscn"
 
 [input]
 

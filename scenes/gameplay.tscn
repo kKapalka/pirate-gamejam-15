@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://c0b3rjfuqloa1"]
+
+[ext_resource type="Script" path="res://scripts/gameplay.gd" id="1_yv17x"]
+[ext_resource type="Texture2D" uid="uid://b02ay7mvwgk2q" path="res://icon.svg" id="2_vrsh7"]
+[ext_resource type="PackedScene" uid="uid://ddc18p0pg4bh6" path="res://scenes/card/card.tscn" id="3_0f5cq"]
+
+[sub_resource type="Environment" id="Environment_vtgdd"]
+ambient_light_source = 3
+ambient_light_color = Color(1, 1, 1, 1)
+
+[node name="Gameplay" type="Node3D"]
+script = ExtResource("1_yv17x")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+input_ray_pickable = false
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="StaticBody3D"]
+depth = 0.001
+polygon = PackedVector2Array(10, 10, 10, -10, -10, -10, -10, 10)
+
+[node name="Sprite3D" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 1, 0, 0, 0)
+flip_v = true
+texture = ExtResource("2_vrsh7")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.419452, 0.907778, 0, -0.907778, 0.419452, 0, 4.81, 7.464)
+environment = SubResource("Environment_vtgdd")
+
+[node name="Card" parent="." instance=ExtResource("3_0f5cq")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -6.072, 0.05, 3.78)
+
+[node name="Card2" parent="." instance=ExtResource("3_0f5cq")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -3.30057, 0.00050043, 5.70779)
+
+[node name="Card3" parent="." instance=ExtResource("3_0f5cq")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -3.1917, 0.000500604, 1.71058)
+
+[node name="Card4" parent="." instance=ExtResource("3_0f5cq")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.224307, 0.000499942, 5.96277)
+
+[node name="Card5" parent="." instance=ExtResource("3_0f5cq")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 2.95196, 0.000500052, 3.43038)
+
+[node name="Card6" parent="." instance=ExtResource("3_0f5cq")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 4.82918, 0.000500413, 6.08094)

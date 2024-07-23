@@ -1,0 +1,13 @@
+[gd_resource type="Texture2D" script_class="ResourceCard" load_steps=3 format=3 uid="uid://qs8gj6o1jo6i"]
+
+[ext_resource type="Script" path="res://scripts/card/cardResource.gd" id="1_aegdp"]
+[ext_resource type="Texture2D" uid="uid://drbixtbnfm1v8" path="res://resources/graphics/cards/resized/cropped/silver.png" id="2_vxhwh"]
+
+[resource]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("1_aegdp")
+texture = ExtResource("2_vxhwh")
+name = "Silver"
+id = "silver"
+textColor = Color(0.780392, 0.780392, 0.780392, 1)

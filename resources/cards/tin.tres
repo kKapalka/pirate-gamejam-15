@@ -1,0 +1,13 @@
+[gd_resource type="Texture2D" script_class="ResourceCard" load_steps=3 format=3 uid="uid://vkl65mueehkt"]
+
+[ext_resource type="Script" path="res://scripts/card/cardResource.gd" id="1_7k72l"]
+[ext_resource type="Texture2D" uid="uid://1vb3vac66wmk" path="res://resources/graphics/cards/resized/cropped/tin.png" id="2_7ade8"]
+
+[resource]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("1_7k72l")
+texture = ExtResource("2_7ade8")
+name = "Tin"
+id = "tin"
+textColor = Color(0.811765, 0.592157, 0, 1)
