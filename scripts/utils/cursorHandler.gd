@@ -13,11 +13,6 @@ var draggedCardOffset: Vector2 = Vector2.ZERO
 var camera: Camera3D
 var draggingBoundsArea: Area3D
 
-func _ready():
-	pass
-	#if defaultCursor != null:
-	#	Input.set_custom_mouse_cursor(defaultCursor)
-
 
 #play click sound at event's position on mouse click
 func _input(event):
