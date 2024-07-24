@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://dclrlo4clsbhg"]
+
+[ext_resource type="Script" path="res://scripts/menus/credits.gd" id="1_5dg52"]
+[ext_resource type="Texture2D" uid="uid://cuximphfnnqpf" path="res://resources/credits/GameJamLogo.png" id="2_h4rf8"]
+
+[node name="Credits" type="MarginContainer"]
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_5dg52")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(1152, 648)
+layout_mode = 2
+color = Color(0, 0, 0, 0.784314)
+
+[node name="Control" type="Control" parent="."]
+custom_minimum_size = Vector2(1152, 648)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 2
+offset_top = 650.0
+offset_right = 1156.0
+offset_bottom = 695.0
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 32
+text = "Credits Line"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 436.0
+offset_top = 650.0
+offset_right = 1066.0
+offset_bottom = 1150.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_h4rf8")

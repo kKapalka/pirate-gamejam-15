@@ -54,8 +54,7 @@ func options():
 
 func credits():
 	focusedButtonIndex = 3
-	print("credits clicked!")
-	#TODO implement navigation and credits functionality
+	get_tree().change_scene_to_file("res://scenes/menus/credits.tscn")
 
 func quit():
 	focusedButtonIndex = 4
