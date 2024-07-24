@@ -3,6 +3,7 @@ class_name GameplayNode
 
 @onready var camera: Camera3D = $Camera3D
 @onready var draggingBoundsArea: Area3D = $DraggingBoundsArea
+@onready var cardDisappearTimer: Timer = $CardDisappearTimer
 
 var dragging: bool = false
 @onready var resourceCardPool: ResourceCardDeckNode = $ResourceCardPool
@@ -29,3 +30,15 @@ func updateResourceCardPoolZIndices(_card: ResourceCardNode):
 	for i in len(resourceCardPool.get_children()):
 		var card = (resourceCardPool.get_child(i) as ResourceCardNode)
 		card.front.sorting_offset = len(resourceCards) - i
+
+
+func _on_end_turn_button_button_up():
+	cardDisappearTimer.start()
+	for i in len(resourceCardPool.get_children()):
+		var card = (resourceCardPool.get_child(i) as ResourceCardNode)
+		card.disappear()
+
+
+func _on_card_disappear_timer_timeout():
+	resourceCardPool.discard()
+	resourceCardPool.draw()

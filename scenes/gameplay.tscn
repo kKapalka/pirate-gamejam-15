@@ -27,6 +27,8 @@ texture = ExtResource("2_vrsh7")
 
 [node name="DraggingBoundsArea" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.2, 0)
+collision_priority = 9.0
+priority = 9
 
 [node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="DraggingBoundsArea"]
 depth = 0.001
@@ -89,5 +91,26 @@ visible = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
 visible = false
 
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="EndTurnButton" type="Button" parent="Control"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "End Turn"
+
+[node name="CardDisappearTimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
 [connection signal="input_event" from="DraggingBoundsArea" to="." method="_on_dragging_bounds_area_input_event"]
 [connection signal="mouse_entered" from="DraggingBoundsArea" to="." method="_on_dragging_bounds_area_mouse_entered"]
+[connection signal="button_up" from="Control/EndTurnButton" to="." method="_on_end_turn_button_button_up"]
+[connection signal="timeout" from="CardDisappearTimer" to="." method="_on_card_disappear_timer_timeout"]

@@ -23,7 +23,7 @@ func _ready():
 	
 func initDeck() -> ResourceCardDeck:
 	var savedDeck = ResourceCardDeck.new()
-	savedDeck.fullContents.assign(["copper", "fire", "gold", "iron", "earth", "lead", "water", "air"])
+	savedDeck.fullContents.assign(["copper", "fire", "gold", "iron", "earth", "lead", "water", "tin"])
 	savedDeck.drawPile = savedDeck.fullContents.duplicate()
 	var cardsDrawn = savedDeck.draw(SaveHandler.player.cardsDrawnPerTurn)
 	var tableCards: Array[TableCard] = []
@@ -62,10 +62,13 @@ func draw():
 		card.global_position = tableCardInitialSlotPool.get_child(i).global_position
 		card.visible = true
 		tableCards.append(TableCard.new(cardsDrawn[i], card.global_position, card.get_instance_id()))
-	deck.tableCards = tableCards
+	deck.tableCards.assign(tableCards)
 	SaveHandler.player.deck = inst_to_dict(deck)
 	SaveHandler.player.deck.tableCards = deck.tableCards.map(func(x): return inst_to_dict(x))
 	SaveHandler.saveGame()
+	
+func discard():
+	deck.discardTableCards()
 	
 func updateTableCardPosition(instanceId: int, newPosition: Vector3):
 	deck.tableCards.filter(func(x): return x.instanceId == instanceId)[0].position = newPosition

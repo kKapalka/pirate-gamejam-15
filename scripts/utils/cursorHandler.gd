@@ -21,10 +21,10 @@ func _input(event):
 			if draggedCard == null:
 				var card = detectCardByMouseRaycast()
 				if card != null:
-					draggingBoundsArea.visible = true
 					draggedCard = card
 					draggedCard.onPickUp(draggingBoundsArea.position.y)
 					dragging = true
+					draggingBoundsArea.visible = true
 			else:
 				draggingBoundsArea.visible = false
 				draggedCard.onDrop()
