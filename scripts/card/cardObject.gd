@@ -42,18 +42,17 @@ func onDrop():
 	position.y = 0
 	mousePositionOffset = Vector3.ZERO
 	resourceCardDeckNode.updateTableCardPosition(get_instance_id(), global_position)
-	disappear()
 	
 func disappear():
-	print("disappering")
 	var tween = create_tween()
-	tween.tween_method(onDisappearing, 0.0, 1.0, 1.0)
+	tween.tween_method(gradualVisibility, 0.0, 1.0, 1.0)
 	tween.tween_callback(afterDisappearing)
 
-func onDisappearing(delta: float):
+func gradualVisibility(delta: float):
 	frontMaterial.emission = emissionColor * delta
 	frontMaterial.albedo_color.a = 1.0 - delta
 
 func afterDisappearing():
-	print("disappeared")
 	visible = false
+	frontMaterial.emission = Color(0.0,0.0,0.0,0.0)
+	frontMaterial.albedo_color.a = 1.0
