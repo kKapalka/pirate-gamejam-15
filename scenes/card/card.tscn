@@ -1,20 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://ddc18p0pg4bh6"]
+[gd_scene load_steps=8 format=3 uid="uid://ddc18p0pg4bh6"]
 
 [ext_resource type="Script" path="res://scripts/card/cardObject.gd" id="1_ild8q"]
 [ext_resource type="PackedScene" uid="uid://c4i6s61ple66w" path="res://scenes/card/cardtemplate.tscn" id="2_3ittu"]
+[ext_resource type="Material" uid="uid://bpmxd4s7f0evg" path="res://scenes/card/cardMaterial.tres" id="2_x7whl"]
 [ext_resource type="Texture2D" uid="uid://coatmbxd3ymgf" path="res://resources/graphics/cards/background.png" id="3_hotb8"]
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_0ldyb"]
-viewport_path = NodePath("Front2/ViewportHolder/SubViewport")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7h5bo"]
-resource_local_to_scene = true
-transparency = 1
-albedo_texture = SubResource("ViewportTexture_0ldyb")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_icjcr"]
 resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_7h5bo")
+material = ExtResource("2_x7whl")
 size = Vector2(1, 1.78)
 orientation = 2
 
@@ -29,6 +22,7 @@ orientation = 2
 
 [node name="Card" type="Node3D"]
 script = ExtResource("1_ild8q")
+emissionColor = Color(1, 0.823529, 0, 1)
 
 [node name="Front2" type="MeshInstance3D" parent="."]
 sorting_offset = 1.0

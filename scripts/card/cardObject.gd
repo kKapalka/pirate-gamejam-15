@@ -6,15 +6,18 @@ var textureModified: bool = true
 @onready var front: MeshInstance3D = $Front2
 @onready var cardTemplate: CardTemplate = $Front2/ViewportHolder/SubViewport/Cardtemplate
 @onready var detectionArea: StaticBody3D = $Area3D
+@export var emissionColor: Color
 var resourceCardDeckNode: ResourceCardDeckNode
 
 var mousePositionOffset: Vector3
 var basePosition: Vector3
+var frontMaterial: StandardMaterial3D
 
 var gameplayNode: GameplayNode
 
 func _ready():
 	resourceCardDeckNode = get_parent()
+	frontMaterial = front.get_active_material(0)
 		
 func changePropertyCard(id: String):
 	cardTemplate.card = CardHandler.loadResourceCard(id)
@@ -39,3 +42,18 @@ func onDrop():
 	position.y = 0
 	mousePositionOffset = Vector3.ZERO
 	resourceCardDeckNode.updateTableCardPosition(get_instance_id(), global_position)
+	disappear()
+	
+func disappear():
+	print("disappering")
+	var tween = create_tween()
+	tween.tween_method(onDisappearing, 0.0, 1.0, 1.0)
+	tween.tween_callback(afterDisappearing)
+
+func onDisappearing(delta: float):
+	frontMaterial.emission = emissionColor * delta
+	frontMaterial.albedo_color.a = 1.0 - delta
+
+func afterDisappearing():
+	print("disappeared")
+	visible = false
