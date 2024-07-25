@@ -7,38 +7,31 @@ class_name GameplayNode
 
 var dragging: bool = false
 @onready var resourceCardPool: ResourceCardDeckNode = $ResourceCardPool
-var resourceCards: Array[ResourceCardNode]
+@onready var endTurnButton: Button = $Control/EndTurnButton
+@onready var spawnCardButton: Button = $Control/SpawnRandomCard
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	CursorHandler.camera = camera
 	CursorHandler.draggingBoundsArea = draggingBoundsArea
 	draggingBoundsArea.visible = false
-	var children = resourceCardPool.get_children()
-	for i in len(children):
-		var child = children[i]
-		resourceCards.append(child)
-		child.gameplayNode = self
-		child.front.sorting_offset = len(children) - i
 
 func _on_dragging_bounds_area_input_event(_camera, event: InputEvent, position, normal, shape_idx):
 	if CursorHandler.dragging and event is InputEventMouseMotion:
 		CursorHandler.onDraggingMouseMotion(position)
 
-func updateResourceCardPoolZIndices(_card: ResourceCardNode):
-	resourceCardPool.move_child(_card, 0)	
-	for i in len(resourceCardPool.get_children()):
-		var card = (resourceCardPool.get_child(i) as ResourceCardNode)
-		card.front.sorting_offset = len(resourceCards) - i
-
-
 func _on_end_turn_button_button_up():
-	cardDisappearTimer.start()
-	for i in len(resourceCardPool.get_children()):
-		var card = (resourceCardPool.get_child(i) as ResourceCardNode)
+	var card = resourceCardPool.getRandomCard()
+	if card != null:
+		cardDisappearTimer.start()
+		resourceCardPool.markAsHidden(card.get_instance_id())
 		card.disappear()
-
+		endTurnButton.disabled = true
+		spawnCardButton.disabled = true
 
 func _on_card_disappear_timer_timeout():
-	resourceCardPool.discard()
-	resourceCardPool.draw()
+	endTurnButton.disabled = false
+	spawnCardButton.disabled = false
+
+func _on_spawn_random_card_button_up():
+	resourceCardPool.spawnRandomCard()

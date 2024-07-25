@@ -38,58 +38,11 @@ polygon = PackedVector2Array(10, 10, 10, -10, -10, -10, -10, 10)
 transform = Transform3D(1, 0, 0, 0, 0.419452, 0.907778, 0, -0.907778, 0.419452, 0, 4.81, 7.464)
 environment = SubResource("Environment_vtgdd")
 
-[node name="ResourceCardPool" type="Node" parent="." node_paths=PackedStringArray("tableCardInitialSlotPool")]
+[node name="ResourceCardPool" type="Node" parent="." node_paths=PackedStringArray("tableCardSpawnPoint")]
 script = ExtResource("3_bd85p")
-tableCardInitialSlotPool = NodePath("../InitialTableCardSlotPool")
-
-[node name="Card" parent="ResourceCardPool" instance=ExtResource("3_0f5cq")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -6.072, 0, 3.78)
-visible = false
-
-[node name="Card2" parent="ResourceCardPool" instance=ExtResource("3_0f5cq")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -3.301, 0, 5.708)
-visible = false
-
-[node name="Card3" parent="ResourceCardPool" instance=ExtResource("3_0f5cq")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -3.192, 0, 1.711)
-visible = false
-
-[node name="Card4" parent="ResourceCardPool" instance=ExtResource("3_0f5cq")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.224307, 0.000499942, 5.96277)
-visible = false
-
-[node name="Card5" parent="ResourceCardPool" instance=ExtResource("3_0f5cq")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 2.952, 0, 3.43)
-visible = false
-
-[node name="Card6" parent="ResourceCardPool" instance=ExtResource("3_0f5cq")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 4.829, 0, 6.081)
-visible = false
-
-[node name="InitialTableCardSlotPool" type="Node" parent="."]
-
-[node name="Node3D" type="Node3D" parent="InitialTableCardSlotPool"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0)
-visible = false
-
-[node name="Node3D2" type="Node3D" parent="InitialTableCardSlotPool"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
-visible = false
-
-[node name="Node3D3" type="Node3D" parent="InitialTableCardSlotPool"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
-visible = false
-
-[node name="Node3D4" type="Node3D" parent="InitialTableCardSlotPool"]
-visible = false
-
-[node name="Node3D5" type="Node3D" parent="InitialTableCardSlotPool"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
-visible = false
-
-[node name="Node3D6" type="Node3D" parent="InitialTableCardSlotPool"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
-visible = false
+tableCardSpawnPoint = NodePath("../TableCardSpawnPoint")
+tableCardSpawnOffset = Vector3(0.2, 0, 0.2)
+cardNode = ExtResource("3_0f5cq")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -104,13 +57,27 @@ mouse_filter = 1
 layout_mode = 0
 offset_right = 8.0
 offset_bottom = 8.0
-text = "End Turn"
+text = "Remove Random Card"
+
+[node name="SpawnRandomCard" type="Button" parent="Control"]
+layout_mode = 0
+offset_top = 40.0
+offset_right = 100.0
+offset_bottom = 71.0
+text = "Spawn Card"
 
 [node name="CardDisappearTimer" type="Timer" parent="."]
 wait_time = 1.5
 one_shot = true
 
+[node name="TableCardSpawnPoint" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 4, 0, 4)
+visible = false
+sorting_offset = 99.0
+texture = ExtResource("2_vrsh7")
+
 [connection signal="input_event" from="DraggingBoundsArea" to="." method="_on_dragging_bounds_area_input_event"]
 [connection signal="mouse_entered" from="DraggingBoundsArea" to="." method="_on_dragging_bounds_area_mouse_entered"]
 [connection signal="button_up" from="Control/EndTurnButton" to="." method="_on_end_turn_button_button_up"]
+[connection signal="button_up" from="Control/SpawnRandomCard" to="." method="_on_spawn_random_card_button_up"]
 [connection signal="timeout" from="CardDisappearTimer" to="." method="_on_card_disappear_timer_timeout"]
