@@ -7,8 +7,10 @@ var deck: ResourceCardDeck
 @export var tableCardSpawnOffset: Vector3
 @export var cardNode: PackedScene
 
-var activeCards: Array[ResourceCardNode]
-var inactiveCards: Array[ResourceCardNode]
+var activeCards: Array[ResourceCardNode] = []
+var inactiveCards: Array[ResourceCardNode] = []
+
+var cardsAtSpawn: Array[int] = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -116,10 +118,11 @@ func spawn(cards: Array[ResourceCard]):
 			card.global_rotation = tableCardSpawnPoint.global_rotation
 		card.visible = true
 		card.changePropertyCard(cards[i].id)
-		card.global_position = tableCardSpawnPoint.global_position + tableCardSpawnOffset * i
+		card.global_position = tableCardSpawnPoint.global_position + tableCardSpawnOffset * (i + len(cardsAtSpawn))
 		deck.fullContents.append(cards[i].id)
 		deck.tableCards.append(TableCard.new(cards[i].id, card.global_position, card.get_instance_id()))
 		activeCards.append(card)
+		cardsAtSpawn.append(card.get_instance_id())
 		finalCard = card
 	updateCardZIndices(finalCard)
 	SaveHandler.player.deck = inst_to_dict(deck)

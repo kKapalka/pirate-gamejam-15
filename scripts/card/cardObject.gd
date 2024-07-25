@@ -27,6 +27,10 @@ func onPickUp(lift: float):
 	position.y = lift
 	detectionArea.visible = false
 	front.sorting_offset = 99
+	var cardsAtSpawnIndex = resourceCardDeckNode.cardsAtSpawn.find(get_instance_id())
+	if cardsAtSpawnIndex != -1:
+		resourceCardDeckNode.cardsAtSpawn = []
+		
 	
 func onDraggingMouseMotion(_position: Vector3):
 	if mousePositionOffset == Vector3.ZERO:
