@@ -3,6 +3,7 @@ class_name GameplayNode
 
 @onready var camera: Camera3D = $Camera3D
 @onready var draggingBoundsArea: Area3D = $DraggingBoundsArea
+@onready var draggingPolygon: CollisionPolygon3D = $DraggingPolygon
 @onready var cardDisappearTimer: Timer = $CardDisappearTimer
 
 var dragging: bool = false
@@ -18,7 +19,10 @@ func _ready():
 
 func _on_dragging_bounds_area_input_event(_camera, event: InputEvent, position, normal, shape_idx):
 	if CursorHandler.dragging and event is InputEventMouseMotion:
-		CursorHandler.onDraggingMouseMotion(position)
+		var minV = draggingPolygon.polygon[3]
+		var maxV = draggingPolygon.polygon[1]
+		var dragPosition = Vector3(max(minV.x,min(maxV.x,position.x)), position.y, max(minV.y, min(maxV.y, position.z)))
+		CursorHandler.onDraggingMouseMotion(dragPosition)
 
 func _on_end_turn_button_button_up():
 	var card = resourceCardPool.getRandomCard()

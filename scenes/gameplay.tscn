@@ -76,6 +76,11 @@ visible = false
 sorting_offset = 99.0
 texture = ExtResource("2_vrsh7")
 
+[node name="DraggingPolygon" type="CollisionPolygon3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+depth = 0.001
+polygon = PackedVector2Array(7, 3, 7, 7, -5, 7, -5, 3)
+
 [connection signal="input_event" from="DraggingBoundsArea" to="." method="_on_dragging_bounds_area_input_event"]
 [connection signal="mouse_entered" from="DraggingBoundsArea" to="." method="_on_dragging_bounds_area_mouse_entered"]
 [connection signal="button_up" from="Control/EndTurnButton" to="." method="_on_end_turn_button_button_up"]
