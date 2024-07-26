@@ -5,8 +5,7 @@ const SETTINGS_FILE_NAME = "res://resources/settings.save"
 
 var player = {
 	"name": "Zippy",
-	"deck": {},
-	"cardsDrawnPerTurn": 4
+	"deck": {}
 }
 var settings = {
 	"master": 10,
@@ -26,6 +25,13 @@ func load():
 	loadGame()
 	loadSettings()
 	
+func clearGame():
+	player = {
+		"name": "Zippy",
+		"deck": {},
+	}
+	saveGame()
+
 func loadGame():
 	loadFile(FILE_NAME, "player")
 func loadSettings():

@@ -34,7 +34,8 @@ func initDeck() -> ResourceCardDeck:
 	var amount = len(savedDeck.fullContents)
 	for i in amount:
 		var card = cardNode.instantiate() as ResourceCardNode
-		add_child(card)
+		add_child(card)		
+		move_child(card, 0)	
 		card.global_rotation = tableCardSpawnPoint.global_rotation
 		card.visible = true
 		card.changePropertyCard(savedDeck.fullContents[amount - i - 1])

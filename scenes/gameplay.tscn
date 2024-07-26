@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://c0b3rjfuqloa1"]
+[gd_scene load_steps=12 format=3 uid="uid://c0b3rjfuqloa1"]
 
 [ext_resource type="Script" path="res://scripts/gameplay.gd" id="1_yv17x"]
 [ext_resource type="Texture2D" uid="uid://b02ay7mvwgk2q" path="res://icon.svg" id="2_vrsh7"]
 [ext_resource type="PackedScene" uid="uid://ddc18p0pg4bh6" path="res://scenes/card/card.tscn" id="3_0f5cq"]
 [ext_resource type="Script" path="res://scripts/card/resourceCardDeckNode.gd" id="3_bd85p"]
 [ext_resource type="PackedScene" uid="uid://b3g3wyw7qhoq6" path="res://resources/models/Alchemy Models/AlchemySetFiles/Alchemyset.glb" id="5_8exo6"]
+[ext_resource type="PackedScene" uid="uid://3gw2jbnor51w" path="res://scenes/menus/pause_menu.tscn" id="5_xpxku"]
 [ext_resource type="PackedScene" uid="uid://bd7m83mya10q3" path="res://resources/models/Alchemy Models/DeskFiles/Desk.glb" id="6_adcc6"]
 [ext_resource type="PackedScene" uid="uid://btgyfhlhfoe5x" path="res://resources/models/Alchemy Models/HolderFiles/Holder.gltf" id="7_i782a"]
 [ext_resource type="PackedScene" uid="uid://triwej8ik7hv" path="res://resources/models/Alchemy Models/ScrollFiles/Scroll.gltf" id="8_41w0w"]
@@ -60,13 +61,29 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="EndTurnButton" type="Button" parent="Control"]
+[node name="PauseMenu" parent="Control" instance=ExtResource("5_xpxku")]
+visible = false
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 1152.0
+offset_bottom = 648.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="ActiveMenu" type="Control" parent="Control"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="EndTurnButton" type="Button" parent="Control/ActiveMenu"]
+layout_mode = 0
+offset_right = 180.0
+offset_bottom = 31.0
 text = "Remove Random Card"
 
-[node name="SpawnRandomCard" type="Button" parent="Control"]
+[node name="SpawnRandomCard" type="Button" parent="Control/ActiveMenu"]
 layout_mode = 0
 offset_top = 40.0
 offset_right = 100.0
@@ -127,8 +144,8 @@ transform = Transform3D(0.700266, 0.406072, -0.58714, -0.233067, 0.907439, 0.349
 
 [connection signal="input_event" from="DraggingBoundsArea" to="." method="_on_dragging_bounds_area_input_event"]
 [connection signal="mouse_entered" from="DraggingBoundsArea" to="." method="_on_dragging_bounds_area_mouse_entered"]
-[connection signal="button_up" from="Control/EndTurnButton" to="." method="_on_end_turn_button_button_up"]
-[connection signal="button_up" from="Control/SpawnRandomCard" to="." method="_on_spawn_random_card_button_up"]
+[connection signal="button_up" from="Control/ActiveMenu/EndTurnButton" to="." method="_on_end_turn_button_button_up"]
+[connection signal="button_up" from="Control/ActiveMenu/SpawnRandomCard" to="." method="_on_spawn_random_card_button_up"]
 [connection signal="timeout" from="CardDisappearTimer" to="." method="_on_card_disappear_timer_timeout"]
 [connection signal="input_event" from="Scroll/ScrollCollider" to="." method="_on_scroll_collider_input_event"]
 [connection signal="input_event" from="BookAndHolder/NotebookCollider" to="." method="_on_notebook_collider_input_event"]

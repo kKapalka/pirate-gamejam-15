@@ -51,21 +51,6 @@ texture = ExtResource("1_6hoxf")
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="NewGame" type="Button" parent="HBoxContainer/VSplitContainer/VBoxContainer"]
-custom_minimum_size = Vector2(300, 75)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="HBoxContainer/VSplitContainer/VBoxContainer/NewGame"]
-layout_mode = 2
-offset_right = 300.0
-offset_bottom = 75.0
-size_flags_horizontal = 4
-size_flags_vertical = 6
-theme_override_font_sizes/font_size = 50
-text = "New Game"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Continue" type="Button" parent="HBoxContainer/VSplitContainer/VBoxContainer"]
 custom_minimum_size = Vector2(300, 75)
 layout_mode = 2
@@ -79,6 +64,21 @@ size_flags_vertical = 6
 theme_override_font_sizes/font_size = 50
 text = "Continue
 "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NewGame" type="Button" parent="HBoxContainer/VSplitContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 75)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VSplitContainer/VBoxContainer/NewGame"]
+layout_mode = 2
+offset_right = 300.0
+offset_bottom = 75.0
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 50
+text = "New Game"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -120,7 +120,7 @@ visible = false
 layout_mode = 2
 
 [connection signal="button_up" from="HBoxContainer/CreditsContainer/Credits" to="." method="_on_credits_button_up"]
-[connection signal="button_up" from="HBoxContainer/VSplitContainer/VBoxContainer/NewGame" to="." method="_on_new_game_button_up"]
 [connection signal="button_up" from="HBoxContainer/VSplitContainer/VBoxContainer/Continue" to="." method="_on_continue_button_up"]
+[connection signal="button_up" from="HBoxContainer/VSplitContainer/VBoxContainer/NewGame" to="." method="_on_new_game_button_up"]
 [connection signal="button_up" from="HBoxContainer/VSplitContainer/VBoxContainer/Options" to="." method="_on_options_button_up"]
 [connection signal="button_up" from="HBoxContainer/QuitContainer/Quit" to="." method="_on_quit_button_up"]

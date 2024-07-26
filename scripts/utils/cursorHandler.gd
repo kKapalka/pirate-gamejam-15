@@ -31,14 +31,16 @@ func _input(event):
 					cursorLagTimer.start()
 					canInteractWithBoard = false
 			else:
-				draggingBoundsArea.visible = false
-				draggedCard.onDrop()
-				draggedCard = null
-				dragging = false
-				cursorLagTimer.start()
-				canInteractWithBoard = true
-
-
+				onDropTriggered()
+				
+func onDropTriggered():
+	draggingBoundsArea.visible = false
+	draggedCard.onDrop()
+	draggedCard = null
+	dragging = false
+	cursorLagTimer.start()
+	canInteractWithBoard = true
+	
 func onDraggingMouseMotion(position: Vector3):
 	draggedCard.onDraggingMouseMotion(position)
 
