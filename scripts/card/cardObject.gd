@@ -51,7 +51,7 @@ func onDraggingMouseMotion(_position: Vector3):
 		basePosition = position
 	if (canMove):
 		basePosition.y = position.y
-		position = basePosition + _position - mousePositionOffset
+		position = lerp(position, basePosition + _position - mousePositionOffset, 0.8)
 	
 func onDrop():
 	resourceCardDeckNode.updateCardZIndices(self)

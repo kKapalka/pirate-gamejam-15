@@ -51,7 +51,6 @@ func loadDeck():
 	var amount = len(deck.tableCards)
 	for i in amount:
 		var position = deck.tableCards[amount - i - 1].position
-		print(position)
 		if typeof(position) == 4:
 			position = str_to_var("Vector3"+position)
 		var card = cardNode.instantiate() as ResourceCardNode
