@@ -1,4 +1,4 @@
-class_name ResourceRecipe extends Node
+class_name ResourceRecipe extends Resource
 
 var modified = false
 @export var id: String:

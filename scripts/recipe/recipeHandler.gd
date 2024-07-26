@@ -1,11 +1,22 @@
 extends Node
 
+@export var resourceRecipeArray: Array[ResourceRecipe] = []
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+func loadResourceRecipe(id: String) -> ResourceRecipe:
+	return resourceRecipeArray.filter(func(recipe: ResourceRecipe): return recipe.id == id)[0]
 
+func findCombination(ingredients : Array[String]) -> ResourceRecipe:
+	if ingredients.size() != 3:
+		return loadResourceRecipe('wasteRecipe')
+	var recipes = resourceRecipeArray
+	recipes = filterArrayByIngredient(recipes, ingredients[0])
+	recipes = filterArrayByIngredient(recipes, ingredients[1])
+	recipes = filterArrayByIngredient(recipes, ingredients[2])
+	if recipes.size() == 1:
+		return recipes[0]
+	return loadResourceRecipe('wasteRecipe')
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func filterArrayByIngredient(recipes : Array[ResourceRecipe],ingredientP : String) -> Array[ResourceRecipe]:
+	if recipes == []:
+		return []
+	return recipes.filter(func(recipe : ResourceRecipe): return recipe.ingredientsId.any(func(ingredient : String): return ingredient == ingredientP))
