@@ -39,3 +39,15 @@ func _on_card_disappear_timer_timeout():
 
 func _on_spawn_random_card_button_up():
 	resourceCardPool.spawnRandomCard()
+
+
+func _on_notebook_collider_input_event(camera, event, position, normal, shape_idx):
+	if Input.is_action_just_pressed("select") and CursorHandler.cursorLagTimer.is_stopped():
+		CursorHandler.cursorLagTimer.start()
+		print("Alchemist's Notebook Open")
+
+
+func _on_scroll_collider_input_event(camera, event, position, normal, shape_idx):
+	if Input.is_action_just_pressed("select") and CursorHandler.cursorLagTimer.is_stopped():
+		CursorHandler.cursorLagTimer.start()
+		print("Map Open")

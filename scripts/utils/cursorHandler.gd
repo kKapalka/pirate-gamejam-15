@@ -18,7 +18,7 @@ var draggingBoundsArea: Area3D
 #play click sound at event's position on mouse click
 func _input(event):
 	if Input.is_action_just_pressed("select") and cursorLagTimer.is_stopped():
-		cursorLagTimer.start()
+		
 		if camera != null:
 			if draggedCard == null:
 				var card = detectCardByMouseRaycast()
@@ -27,11 +27,14 @@ func _input(event):
 					draggedCard.onPickUp(draggingBoundsArea.position.y)
 					dragging = true
 					draggingBoundsArea.visible = true
+					cursorLagTimer.start()
 			else:
 				draggingBoundsArea.visible = false
 				draggedCard.onDrop()
 				draggedCard = null
-				dragging = false				
+				dragging = false
+				cursorLagTimer.start()
+
 
 func onDraggingMouseMotion(position: Vector3):
 	draggedCard.onDraggingMouseMotion(position)

@@ -27,6 +27,7 @@ func onPickUp(lift: float):
 	position.y = lift
 	detectionArea.visible = false
 	front.sorting_offset = 99
+	rotate_x(deg_to_rad(25))
 	var cardsAtSpawnIndex = resourceCardDeckNode.cardsAtSpawn.find(get_instance_id())
 	if cardsAtSpawnIndex != -1:
 		resourceCardDeckNode.cardsAtSpawn = []
@@ -42,6 +43,7 @@ func onDrop():
 	resourceCardDeckNode.updateCardZIndices(self)
 	detectionArea.visible = true
 	position.y = 0
+	rotate_x(deg_to_rad(-25))
 	mousePositionOffset = Vector3.ZERO
 	resourceCardDeckNode.updateTableCardPosition(get_instance_id(), global_position)
 	

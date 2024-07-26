@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c0b3rjfuqloa1"]
+[gd_scene load_steps=11 format=3 uid="uid://c0b3rjfuqloa1"]
 
 [ext_resource type="Script" path="res://scripts/gameplay.gd" id="1_yv17x"]
 [ext_resource type="Texture2D" uid="uid://b02ay7mvwgk2q" path="res://icon.svg" id="2_vrsh7"]
@@ -6,10 +6,14 @@
 [ext_resource type="Script" path="res://scripts/card/resourceCardDeckNode.gd" id="3_bd85p"]
 [ext_resource type="PackedScene" uid="uid://b3g3wyw7qhoq6" path="res://resources/models/Alchemy Models/AlchemySetFiles/Alchemyset.glb" id="5_8exo6"]
 [ext_resource type="PackedScene" uid="uid://bd7m83mya10q3" path="res://resources/models/Alchemy Models/DeskFiles/Desk.glb" id="6_adcc6"]
+[ext_resource type="PackedScene" uid="uid://btgyfhlhfoe5x" path="res://resources/models/Alchemy Models/HolderFiles/Holder.gltf" id="7_i782a"]
+[ext_resource type="PackedScene" uid="uid://triwej8ik7hv" path="res://resources/models/Alchemy Models/ScrollFiles/Scroll.gltf" id="8_41w0w"]
+[ext_resource type="PackedScene" uid="uid://de1lghsrvyx13" path="res://resources/models/Alchemy Models/BookFiles/BookAndHolder.gltf" id="9_rpieh"]
 
 [sub_resource type="Environment" id="Environment_vtgdd"]
 ambient_light_source = 3
 ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.2
 
 [node name="Gameplay" type="Node3D"]
 script = ExtResource("1_yv17x")
@@ -29,7 +33,7 @@ flip_v = true
 texture = ExtResource("2_vrsh7")
 
 [node name="DraggingBoundsArea" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.2, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.5, 0)
 collision_priority = 9.0
 priority = 9
 
@@ -38,7 +42,7 @@ depth = 0.001
 polygon = PackedVector2Array(10, 10, 10, -10, -10, -10, -10, 10)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.419452, 0.907778, 0, -0.907778, 0.419452, 0, 4.81, 7.464)
+transform = Transform3D(0.999391, 0.0152989, -0.0313675, 0, 0.898794, 0.438371, 0.0348995, -0.438104, 0.898247, 0, 4.8, 11)
 environment = SubResource("Environment_vtgdd")
 
 [node name="ResourceCardPool" type="Node" parent="." node_paths=PackedStringArray("tableCardSpawnPoint")]
@@ -74,7 +78,7 @@ wait_time = 1.5
 one_shot = true
 
 [node name="TableCardSpawnPoint" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 4, 0, 4)
+transform = Transform3D(0.999391, 0.0348995, 1.52551e-09, 0, -4.37114e-08, 1, 0.0348995, -0.999391, -4.36848e-08, 0.839737, 0, 4.18777)
 visible = false
 sorting_offset = 99.0
 texture = ExtResource("2_vrsh7")
@@ -82,16 +86,49 @@ texture = ExtResource("2_vrsh7")
 [node name="DraggingPolygon" type="CollisionPolygon3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 depth = 0.001
-polygon = PackedVector2Array(5, 4, 5, 8, -5, 8, -5, 4)
+polygon = PackedVector2Array(2.5, 4, 2.5, 8, -5, 8, -5, 4)
+
+[node name="Desk" parent="." instance=ExtResource("6_adcc6")]
+transform = Transform3D(-1.5299e-07, 0, 3.5, 0, 3.5, 0, -3.5, 0, -1.5299e-07, 0, -2.1, 5)
+
+[node name="Holder" parent="." instance=ExtResource("7_i782a")]
+transform = Transform3D(-1.5299e-07, 0, 3.5, 0, 3.5, 0, -3.5, 0, -1.5299e-07, 0.735, -1.875, 5.115)
+
+[node name="Scroll" parent="." instance=ExtResource("8_41w0w")]
+transform = Transform3D(-1.5299e-07, 0, 3.5, 0, 3.5, 0, -3.5, 0, -1.5299e-07, 0.705, -1.875, 5.015)
+
+[node name="ScrollCollider" type="StaticBody3D" parent="Scroll"]
+transform = Transform3D(0.941695, 0, -0.336471, 0, 1, 0, 0.336471, 0, 0.941695, -0.513962, 0.654548, -1.88274)
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Scroll/ScrollCollider"]
+transform = Transform3D(0.943373, 0, 0.331733, 0, 1, 0, -0.331733, 0, 0.943373, 0.0451975, 0, -0.0161492)
+depth = 0.2
+polygon = PackedVector2Array(0.55, 0.1, 0.55, -0.1, -0.55, -0.1, -0.55, 0.1)
 
 [node name="Alchemyset" parent="." instance=ExtResource("5_8exo6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7382, 6.7553, 13.5091)
+transform = Transform3D(-1.5299e-07, 0, 3.5, 0, 3.5, 0, -3.5, 0, -1.5299e-07, 0, -2.139, 5.365)
 
-[node name="Desk2" parent="." instance=ExtResource("6_adcc6")]
-transform = Transform3D(-1.5299e-07, 0, 3.5, 0, 3.5, 0, -3.5, 0, -1.5299e-07, 0, -2.1, 5)
+[node name="BookAndHolder" parent="." instance=ExtResource("9_rpieh")]
+transform = Transform3D(-1.5299e-07, 0, 3.5, 0, 3.5, 0, -3.5, 0, -1.5299e-07, 0.0838073, -2.08174, 5.29178)
+
+[node name="NotebookCollider" type="StaticBody3D" parent="BookAndHolder"]
+transform = Transform3D(0.91602, 0, 0.401133, 0, 1, 0, -0.401133, 0, 0.91602, -0.317435, 1.12572, 1.53111)
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="BookAndHolder/NotebookCollider"]
+transform = Transform3D(0.943373, 0, 0.331733, 0, 1, 0, -0.331733, 0, 0.943373, 0, 0, 0)
+depth = 0.5
+polygon = PackedVector2Array(0.5, 0.3, 0.5, -0.3, -0.5, -0.3, -0.5, 0.3)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.395095, -0.440338, 0.806227, -0.185839, 0.897797, 0.39928, -0.899647, 0.00792454, -0.436547, 5.97596, 6.70141, 6.22891)
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.700266, 0.406072, -0.58714, -0.233067, 0.907439, 0.349621, 0.674764, -0.107985, 0.730091, -7.38689, 5.93705, 6.22891)
 
 [connection signal="input_event" from="DraggingBoundsArea" to="." method="_on_dragging_bounds_area_input_event"]
 [connection signal="mouse_entered" from="DraggingBoundsArea" to="." method="_on_dragging_bounds_area_mouse_entered"]
 [connection signal="button_up" from="Control/EndTurnButton" to="." method="_on_end_turn_button_button_up"]
 [connection signal="button_up" from="Control/SpawnRandomCard" to="." method="_on_spawn_random_card_button_up"]
 [connection signal="timeout" from="CardDisappearTimer" to="." method="_on_card_disappear_timer_timeout"]
+[connection signal="input_event" from="Scroll/ScrollCollider" to="." method="_on_scroll_collider_input_event"]
+[connection signal="input_event" from="BookAndHolder/NotebookCollider" to="." method="_on_notebook_collider_input_event"]
