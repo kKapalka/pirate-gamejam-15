@@ -13,8 +13,6 @@ var mousePositionOffset: Vector3
 var basePosition: Vector3
 var frontMaterial: StandardMaterial3D
 
-var gameplayNode: GameplayNode
-
 func _ready():
 	resourceCardDeckNode = get_parent()
 	frontMaterial = front.get_active_material(0)
@@ -29,6 +27,10 @@ func onPickUp(lift: float):
 	position.y = lift
 	detectionArea.visible = false
 	front.sorting_offset = 99
+	var cardsAtSpawnIndex = resourceCardDeckNode.cardsAtSpawn.find(get_instance_id())
+	if cardsAtSpawnIndex != -1:
+		resourceCardDeckNode.cardsAtSpawn = []
+		
 	
 func onDraggingMouseMotion(_position: Vector3):
 	if mousePositionOffset == Vector3.ZERO:
@@ -37,7 +39,7 @@ func onDraggingMouseMotion(_position: Vector3):
 	position = basePosition + _position - mousePositionOffset
 	
 func onDrop():
-	gameplayNode.updateResourceCardPoolZIndices(self)
+	resourceCardDeckNode.updateCardZIndices(self)
 	detectionArea.visible = true
 	position.y = 0
 	mousePositionOffset = Vector3.ZERO

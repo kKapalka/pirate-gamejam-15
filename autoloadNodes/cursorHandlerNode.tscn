@@ -6,3 +6,7 @@
 [node name="CursorHandlerNode" type="Node"]
 script = ExtResource("1_t1icr")
 clickSound = ExtResource("2_wc340")
+
+[node name="CursorLagTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
