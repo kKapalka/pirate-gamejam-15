@@ -12,6 +12,7 @@ var draggedCard: ResourceCardNode = null
 var draggedCardOffset: Vector2 = Vector2.ZERO
 var camera: Camera3D
 var draggingBoundsArea: Area3D
+var canInteractWithBoard = true
 
 @onready var cursorLagTimer: Timer = $CursorLagTimer
 
@@ -22,18 +23,20 @@ func _input(event):
 		if camera != null:
 			if draggedCard == null:
 				var card = detectCardByMouseRaycast()
-				if card != null:
+				if card != null and canInteractWithBoard:
 					draggedCard = card
 					draggedCard.onPickUp(draggingBoundsArea.position.y)
 					dragging = true
 					draggingBoundsArea.visible = true
 					cursorLagTimer.start()
+					canInteractWithBoard = false
 			else:
 				draggingBoundsArea.visible = false
 				draggedCard.onDrop()
 				draggedCard = null
 				dragging = false
 				cursorLagTimer.start()
+				canInteractWithBoard = true
 
 
 func onDraggingMouseMotion(position: Vector3):

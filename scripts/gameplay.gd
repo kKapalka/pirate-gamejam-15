@@ -42,12 +42,14 @@ func _on_spawn_random_card_button_up():
 
 
 func _on_notebook_collider_input_event(camera, event, position, normal, shape_idx):
-	if Input.is_action_just_pressed("select") and CursorHandler.cursorLagTimer.is_stopped():
+	if Input.is_action_just_pressed("select") and CursorHandler.cursorLagTimer.is_stopped() and CursorHandler.canInteractWithBoard:
 		CursorHandler.cursorLagTimer.start()
+		CursorHandler.canInteractWithBoard = false
 		print("Alchemist's Notebook Open")
 
 
 func _on_scroll_collider_input_event(camera, event, position, normal, shape_idx):
-	if Input.is_action_just_pressed("select") and CursorHandler.cursorLagTimer.is_stopped():
+	if Input.is_action_just_pressed("select") and CursorHandler.cursorLagTimer.is_stopped() and CursorHandler.canInteractWithBoard:
+		CursorHandler.canInteractWithBoard = false
 		CursorHandler.cursorLagTimer.start()
 		print("Map Open")
