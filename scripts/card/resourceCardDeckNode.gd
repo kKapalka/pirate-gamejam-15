@@ -38,7 +38,7 @@ func initDeck() -> ResourceCardDeck:
 		card.global_rotation = tableCardSpawnPoint.global_rotation
 		card.visible = true
 		card.changePropertyCard(savedDeck.fullContents[amount - i - 1])
-		card.global_position = tableCardSpawnPoint.global_position + tableCardSpawnOffset * i
+		card.position = tableCardSpawnPoint.position + tableCardSpawnOffset * i
 		tableCards.append(TableCard.new(savedDeck.fullContents[amount - i - 1], card.global_position, card.get_instance_id()))
 		activeCards.append(card)
 	savedDeck.tableCards = tableCards
@@ -51,13 +51,14 @@ func loadDeck():
 	var amount = len(deck.tableCards)
 	for i in amount:
 		var position = deck.tableCards[amount - i - 1].position
+		print(position)
 		if typeof(position) == 4:
 			position = str_to_var("Vector3"+position)
 		var card = cardNode.instantiate() as ResourceCardNode
 		add_child(card)
 		card.global_rotation = tableCardSpawnPoint.global_rotation
 		card.changePropertyCard(deck.tableCards[amount - i - 1].resourceCardId)
-		card.global_position = position
+		card.position = position
 		card.front.sorting_offset = amount - i
 		deck.tableCards[amount - i - 1].instanceId = card.get_instance_id()
 		card.visible = true
@@ -118,7 +119,8 @@ func spawn(cards: Array[ResourceCard]):
 			card.global_rotation = tableCardSpawnPoint.global_rotation
 		card.visible = true
 		card.changePropertyCard(cards[i].id)
-		card.global_position = tableCardSpawnPoint.global_position + tableCardSpawnOffset * (i + len(cardsAtSpawn))
+		var pos = tableCardSpawnPoint.position + (tableCardSpawnOffset * (i + len(cardsAtSpawn)))
+		card.position = pos
 		deck.fullContents.append(cards[i].id)
 		deck.tableCards.append(TableCard.new(cards[i].id, card.global_position, card.get_instance_id()))
 		activeCards.append(card)
