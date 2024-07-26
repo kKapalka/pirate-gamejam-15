@@ -25,6 +25,7 @@ AudioManager="*res://autoloadNodes/audioPlayer.tscn"
 CursorHandler="*res://autoloadNodes/cursorHandlerNode.tscn"
 SaveHandler="*res://scripts/save/data.gd"
 CardHandler="*res://autoloadNodes/cardHandler.tscn"
+RecipeHandler="*res://autoloadNodes/recipeHandler.tscn"
 
 [input]
 
