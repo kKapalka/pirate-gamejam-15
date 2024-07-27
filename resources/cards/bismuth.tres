@@ -1,0 +1,14 @@
+[gd_resource type="Texture2D" script_class="ResourceCard" load_steps=3 format=3 uid="uid://b45ec7alfu68a"]
+
+[ext_resource type="Script" path="res://scripts/card/cardResource.gd" id="1_cxleq"]
+[ext_resource type="Texture2D" uid="uid://b70xd46h2h2di" path="res://resources/graphics/cards/resized/bismuth.png" id="2_khlxs"]
+
+[resource]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("1_cxleq")
+texture = ExtResource("2_khlxs")
+name = "Bismuth"
+id = "bismuth"
+textColor = Color(0.52549, 0.721569, 0.207843, 1)
+consumable = false

@@ -10,5 +10,4 @@ script = ExtResource("1_hpxgj")
 texture = ExtResource("2_rs8a3")
 name = "Lead"
 id = "lead"
-textColor = Color(0.301961, 0.423529, 0.588235, 1)
 consumable = false

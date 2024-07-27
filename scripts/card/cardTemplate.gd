@@ -23,8 +23,6 @@ func _process(_delta):
 
 func onCardModified():
 	nameLabel.text = card.name
-	nameLabel.remove_theme_color_override("font_color")
-	nameLabel.add_theme_color_override("font_color", card.textColor)
 	artworkRect.texture = card.texture
 	nameLabel.onTextChanged()
 	updateCardContents = false

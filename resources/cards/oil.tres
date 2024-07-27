@@ -1,0 +1,14 @@
+[gd_resource type="Texture2D" script_class="ResourceCard" load_steps=3 format=3 uid="uid://cyj3y1espq0pe"]
+
+[ext_resource type="Script" path="res://scripts/card/cardResource.gd" id="1_ndqgp"]
+[ext_resource type="Texture2D" uid="uid://cssabrupkrg3m" path="res://resources/graphics/cards/resized/nickel.png" id="2_wi3dn"]
+
+[resource]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("1_ndqgp")
+texture = ExtResource("2_wi3dn")
+name = "Nickel"
+id = "nickel"
+textColor = Color(0.627451, 0.392157, 0, 1)
+consumable = false
