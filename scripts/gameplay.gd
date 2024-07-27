@@ -22,6 +22,8 @@ func _ready():
 	pauseMenu.returnCallback = onReturn
 	pauseMenu.mainMenuCallback = onMainMenu
 	CursorHandler.canInteractWithBoard = true
+	loadRutine()
+	TimeHandler.connect("turnEnded", _on_turn_ended)
 
 func _input(_event):
 	if Input.is_action_just_pressed("ui_cancel"):
@@ -40,7 +42,20 @@ func onReturn():
 	CursorHandler.canInteractWithBoard = true
 	
 func onMainMenu():	
+	saveRoutine()
 	get_tree().change_scene_to_file("res://scenes/menus/mainmenu.tscn")
+
+func onQuit():
+	saveRoutine()
+	get_tree().quit()
+
+func loadRutine():
+	SaveHandler.loadGame()
+	TimeHandler.time = SaveHandler.player.time
+
+func saveRoutine():
+	SaveHandler.player.time = TimeHandler.time
+	SaveHandler.saveGame()
 
 func _on_dragging_bounds_area_input_event(_camera, event: InputEvent, position, _normal, _shape_idx):
 	if CursorHandler.dragging and event is InputEventMouseMotion:
@@ -78,3 +93,8 @@ func _on_scroll_collider_input_event(_camera, _event, _position, _normal, _shape
 		CursorHandler.canInteractWithBoard = false
 		CursorHandler.cursorLagTimer.start()
 		print("Map Open")
+
+func _on_turn_ended():
+	print("turn ended logic")
+
+
