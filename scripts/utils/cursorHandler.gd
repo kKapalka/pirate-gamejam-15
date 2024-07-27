@@ -12,27 +12,35 @@ var draggedCard: ResourceCardNode = null
 var draggedCardOffset: Vector2 = Vector2.ZERO
 var camera: Camera3D
 var draggingBoundsArea: Area3D
+var canInteractWithBoard = true
 
 @onready var cursorLagTimer: Timer = $CursorLagTimer
 
 #play click sound at event's position on mouse click
 func _input(event):
 	if Input.is_action_just_pressed("select") and cursorLagTimer.is_stopped():
-		cursorLagTimer.start()
+		
 		if camera != null:
 			if draggedCard == null:
 				var card = detectCardByMouseRaycast()
-				if card != null:
+				if card != null and canInteractWithBoard:
 					draggedCard = card
 					draggedCard.onPickUp(draggingBoundsArea.position.y)
 					dragging = true
 					draggingBoundsArea.visible = true
+					cursorLagTimer.start()
+					canInteractWithBoard = false
 			else:
-				draggingBoundsArea.visible = false
-				draggedCard.onDrop()
-				draggedCard = null
-				dragging = false				
-
+				onDropTriggered()
+				
+func onDropTriggered():
+	draggingBoundsArea.visible = false
+	draggedCard.onDrop()
+	draggedCard = null
+	dragging = false
+	cursorLagTimer.start()
+	canInteractWithBoard = true
+	
 func onDraggingMouseMotion(position: Vector3):
 	draggedCard.onDraggingMouseMotion(position)
 

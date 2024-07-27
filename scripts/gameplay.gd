@@ -6,16 +6,41 @@ class_name GameplayNode
 @onready var draggingPolygon: CollisionPolygon3D = $DraggingPolygon
 @onready var cardDisappearTimer: Timer = $CardDisappearTimer
 
+@onready var pauseMenu: PauseMenu = $Control/PauseMenu
+@onready var activeMenu: Control = $Control/ActiveMenu
+
 var dragging: bool = false
 @onready var resourceCardPool: ResourceCardDeckNode = $ResourceCardPool
-@onready var endTurnButton: Button = $Control/EndTurnButton
-@onready var spawnCardButton: Button = $Control/SpawnRandomCard
+@onready var endTurnButton: Button = $Control/ActiveMenu/EndTurnButton
+@onready var spawnCardButton: Button = $Control/ActiveMenu/SpawnRandomCard
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	CursorHandler.camera = camera
 	CursorHandler.draggingBoundsArea = draggingBoundsArea
 	draggingBoundsArea.visible = false
+	pauseMenu.returnCallback = onReturn
+	pauseMenu.mainMenuCallback = onMainMenu
+	CursorHandler.canInteractWithBoard = true
+
+func _input(event):
+	if Input.is_action_just_pressed("ui_cancel"):
+		if !pauseMenu.visible:
+			pauseMenu.visible = true
+			activeMenu.visible = false
+			get_viewport().set_input_as_handled()
+			if CursorHandler.dragging:
+				CursorHandler.onDropTriggered()
+			CursorHandler.canInteractWithBoard = false
+
+func onReturn():
+	pauseMenu.visible = false
+	activeMenu.visible = true
+	get_viewport().set_input_as_handled()
+	CursorHandler.canInteractWithBoard = true
+	
+func onMainMenu():	
+	get_tree().change_scene_to_file("res://scenes/menus/mainmenu.tscn")
 
 func _on_dragging_bounds_area_input_event(_camera, event: InputEvent, position, normal, shape_idx):
 	if CursorHandler.dragging and event is InputEventMouseMotion:
@@ -39,3 +64,17 @@ func _on_card_disappear_timer_timeout():
 
 func _on_spawn_random_card_button_up():
 	resourceCardPool.spawnRandomCard()
+
+
+func _on_notebook_collider_input_event(camera, event, position, normal, shape_idx):
+	if Input.is_action_just_pressed("select") and CursorHandler.cursorLagTimer.is_stopped() and CursorHandler.canInteractWithBoard:
+		CursorHandler.cursorLagTimer.start()
+		CursorHandler.canInteractWithBoard = false
+		print("Alchemist's Notebook Open")
+
+
+func _on_scroll_collider_input_event(camera, event, position, normal, shape_idx):
+	if Input.is_action_just_pressed("select") and CursorHandler.cursorLagTimer.is_stopped() and CursorHandler.canInteractWithBoard:
+		CursorHandler.canInteractWithBoard = false
+		CursorHandler.cursorLagTimer.start()
+		print("Map Open")

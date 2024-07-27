@@ -38,13 +38,12 @@ func _input(event):
 
 func new_game():
 	focusedButtonIndex = 0
-	print("new game clicked!")
-	#TODO implement navigation and new game functionality
+	SaveHandler.clearGame()
+	get_tree().change_scene_to_file("res://scenes/gameplay.tscn")
 
 func continue_():
 	focusedButtonIndex = 1
-	print("continue clicked!")
-	#TODO implement navigation and continue functionality
+	get_tree().change_scene_to_file("res://scenes/gameplay.tscn")
 
 func options():
 	focusedButtonIndex = 2

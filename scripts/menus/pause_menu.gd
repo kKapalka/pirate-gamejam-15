@@ -2,12 +2,12 @@ extends Control
 
 class_name PauseMenu
 
-@onready var pauseMenuContainer: VBoxContainer = $VBoxContainer
-@onready var settingsContainer: SettingsMenu = $Settings
-@onready var resumeButton: Button = $VBoxContainer/Resume
-@onready var settingsButton: Button = $VBoxContainer/Options
-@onready var mainMenuButton: Button = $VBoxContainer/MainMenu
-@onready var quitButton: Button = $VBoxContainer/Quit
+@onready var pauseMenuContainer: VBoxContainer = $MarginContainer/VBoxContainer
+@onready var settingsContainer: SettingsMenu = $MarginContainer/Settings
+@onready var resumeButton: Button = $MarginContainer/VBoxContainer/Resume
+@onready var settingsButton: Button = $MarginContainer/VBoxContainer/Options
+@onready var mainMenuButton: Button = $MarginContainer/VBoxContainer/MainMenu
+@onready var quitButton: Button = $MarginContainer/VBoxContainer/Quit
 
 @onready var focusable: Array[Control] = [
 	resumeButton, settingsButton, mainMenuButton, quitButton
@@ -27,8 +27,8 @@ func onShow():
 	focusable[focusedButtonIndex].grab_focus()
 
 func _input(event):
-	if pauseMenuContainer.visible:
-		if Input.is_action_pressed("ui_cancel"):
+	if visible and pauseMenuContainer.visible:
+		if Input.is_action_just_pressed("ui_cancel"):
 			_on_resume_button_up()
 			get_viewport().set_input_as_handled()
 		if Input.is_action_pressed("ui_down"):

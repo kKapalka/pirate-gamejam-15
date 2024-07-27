@@ -1,39 +1,56 @@
-[gd_scene load_steps=3 format=3 uid="uid://3gw2jbnor51w"]
+[gd_scene load_steps=4 format=3 uid="uid://3gw2jbnor51w"]
 
 [ext_resource type="Script" path="res://scripts/menus/pause_menu.gd" id="1_es3hb"]
 [ext_resource type="PackedScene" uid="uid://daqlbvtppcfs" path="res://scenes/menus/settingsMenu.tscn" id="2_istfq"]
 
+[sub_resource type="CanvasTexture" id="CanvasTexture_u2f0l"]
+
 [node name="PauseMenu" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_es3hb")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.0901961, 0.0901961, 0.0901961, 0.266667)
+layout_mode = 2
+texture = SubResource("CanvasTexture_u2f0l")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="Resume" type="Button" parent="VBoxContainer"]
+[node name="Resume" type="Button" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(300, 60)
 layout_mode = 2
 text = "Resume"
 
-[node name="Options" type="Button" parent="VBoxContainer"]
+[node name="Options" type="Button" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(300, 60)
 layout_mode = 2
 text = "Options"
 
-[node name="MainMenu" type="Button" parent="VBoxContainer"]
+[node name="MainMenu" type="Button" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(300, 60)
 layout_mode = 2
 text = "Main Menu"
 
-[node name="Quit" type="Button" parent="VBoxContainer"]
+[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(300, 60)
 layout_mode = 2
 text = "Quit"
 
-[node name="Settings" parent="." instance=ExtResource("2_istfq")]
+[node name="Settings" parent="MarginContainer" instance=ExtResource("2_istfq")]
 visible = false
 layout_mode = 2
 
-[connection signal="button_up" from="VBoxContainer/Resume" to="." method="_on_resume_button_up"]
-[connection signal="button_up" from="VBoxContainer/Options" to="." method="_on_settings_button_up"]
-[connection signal="button_up" from="VBoxContainer/MainMenu" to="." method="_on_main_menu_button_up"]
-[connection signal="button_up" from="VBoxContainer/Quit" to="." method="_on_quit_button_up"]
+[connection signal="button_up" from="MarginContainer/VBoxContainer/Resume" to="." method="_on_resume_button_up"]
+[connection signal="button_up" from="MarginContainer/VBoxContainer/Options" to="." method="_on_settings_button_up"]
+[connection signal="button_up" from="MarginContainer/VBoxContainer/MainMenu" to="." method="_on_main_menu_button_up"]
+[connection signal="button_up" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_button_up"]
