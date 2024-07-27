@@ -17,6 +17,7 @@ var focusedButtonIndex = 0
 
 var returnCallback: Callable
 var mainMenuCallback: Callable
+var quitCallback: Callable
 
 func _ready():
 	settingsContainer.returnCallback = onReturn
@@ -63,17 +64,18 @@ func _on_settings_button_up():
 
 func _on_main_menu_button_up():
 	focusedButtonIndex = 2
-	if returnCallback == null:
+	if mainMenuCallback == null:
 		print("Game does not set 'mainMenuCallback' parameter of PauseMenu node.")
 	else:
-		SaveHandler.saveGame()
 		mainMenuCallback.call()
 
 
 func _on_quit_button_up():
 	focusedButtonIndex = 3
-	SaveHandler.saveGame()
-	get_tree().quit()
+	if quitCallback == null:
+		print("Game does not set 'mainMenuCallback' parameter of PauseMenu node.")
+	else:
+		quitCallback.call()
 
 func onReturn():
 	settingsContainer.visible = false
