@@ -14,14 +14,21 @@ var dragging: bool = false
 @onready var endTurnButton: Button = $Control/ActiveMenu/EndTurnButton
 @onready var spawnCardButton: Button = $Control/ActiveMenu/SpawnRandomCard
 
+@onready var cardSlots: Array[CardSlot] = [$CardSlot, $CardSlot2, $CardSlot3]
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	CursorHandler.camera = camera
 	CursorHandler.draggingBoundsArea = draggingBoundsArea
+	CursorHandler.cardSlots = cardSlots
 	draggingBoundsArea.visible = false
 	pauseMenu.returnCallback = onReturn
 	pauseMenu.mainMenuCallback = onMainMenu
 	CursorHandler.canInteractWithBoard = true
+	call_deferred("afterReady")
+
+func afterReady():
+	resourceCardPool.triggerSlotDetection(cardSlots)
 
 func _input(event):
 	if Input.is_action_just_pressed("ui_cancel"):
@@ -78,7 +85,3 @@ func _on_scroll_collider_input_event(camera, event, position, normal, shape_idx)
 		CursorHandler.canInteractWithBoard = false
 		CursorHandler.cursorLagTimer.start()
 		print("Map Open")
-
-
-func _on_area_3d_body_entered(body):
-	print("something entered")

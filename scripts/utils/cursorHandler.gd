@@ -13,6 +13,7 @@ var draggedCardOffset: Vector2 = Vector2.ZERO
 var camera: Camera3D
 var draggingBoundsArea: Area3D
 var canInteractWithBoard = true
+var cardSlots: Array[CardSlot]
 
 @onready var cursorLagTimer: Timer = $CursorLagTimer
 
@@ -35,7 +36,7 @@ func _input(event):
 				
 func onDropTriggered():
 	draggingBoundsArea.visible = false
-	draggedCard.onDrop()
+	draggedCard.onDrop(cardSlots)
 	draggedCard = null
 	dragging = false
 	cursorLagTimer.start()

@@ -25,7 +25,7 @@ func _ready():
 		deck.tableCards = []
 		var tableCards = tableCardsAsDicts.map(func(x): return dict_to_inst(x))
 		deck.tableCards.assign(tableCards)
-		loadDeck()	
+		loadDeck()
 
 	
 func initDeck() -> ResourceCardDeck:
@@ -131,3 +131,6 @@ func spawn(cards: Array[ResourceCard]):
 	SaveHandler.player.deck.tableCards = deck.tableCards.map(func(x): return inst_to_dict(x))
 	SaveHandler.saveGame()
 
+func triggerSlotDetection(slots: Array[CardSlot]):
+	for card in activeCards:
+		card.tryDetectSlot(slots)
