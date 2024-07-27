@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://d0rxyrae0fxi6"]
+[gd_scene load_steps=46 format=3 uid="uid://d0rxyrae0fxi6"]
 
 [ext_resource type="Script" path="res://scripts/utils/cardHandler.gd" id="1_stjpp"]
 [ext_resource type="Texture2D" uid="uid://b45ec7alfu68a" path="res://resources/cards/bismuth.tres" id="2_dj1ep"]
@@ -42,7 +42,10 @@
 [ext_resource type="Texture2D" uid="uid://dwrccoe8ypv2d" path="res://resources/cards/water.tres" id="40_rq5o0"]
 [ext_resource type="Texture2D" uid="uid://21bj08cjjyjj" path="res://resources/cards/wood.tres" id="41_ok5xp"]
 [ext_resource type="Texture2D" uid="uid://ty4vaboyvjfw" path="res://resources/cards/zinc.tres" id="42_3y2la"]
+[ext_resource type="Texture2D" uid="uid://dwy4iednvocfl" path="res://resources/cards/albedo.tres" id="43_b7pu5"]
+[ext_resource type="Texture2D" uid="uid://dar0hkmotgk1" path="res://resources/cards/nigredo.tres" id="44_5cdeh"]
+[ext_resource type="Texture2D" uid="uid://iniapo46dya0" path="res://resources/cards/rubedo.tres" id="45_07uej"]
 
 [node name="CardHandlerNode" type="Node"]
 script = ExtResource("1_stjpp")
-resourceCardArray = Array[Resource("res://scripts/card/cardResource.gd")]([ExtResource("2_dj1ep"), ExtResource("3_dj4g7"), ExtResource("4_m11bk"), ExtResource("5_x64dk"), ExtResource("6_qyn26"), ExtResource("7_adyq8"), ExtResource("8_505s7"), ExtResource("9_34fx5"), ExtResource("10_3253r"), ExtResource("11_d1wep"), ExtResource("12_1mq2s"), ExtResource("13_fd65y"), ExtResource("14_wa47a"), ExtResource("15_wlncg"), ExtResource("16_rdtmr"), ExtResource("17_xu7wi"), ExtResource("18_kptgy"), ExtResource("19_cvgsq"), ExtResource("20_3lpu8"), ExtResource("21_fem3c"), ExtResource("22_e3w6m"), ExtResource("23_2ejba"), ExtResource("24_k75re"), ExtResource("25_2sj3n"), ExtResource("26_u51dl"), ExtResource("27_7yxdk"), ExtResource("28_vfs71"), ExtResource("29_xfd06"), ExtResource("30_w673g"), ExtResource("31_eugvd"), ExtResource("32_uwni0"), ExtResource("33_6r42b"), ExtResource("34_4euc5"), ExtResource("35_au0p6"), ExtResource("36_yja2p"), ExtResource("37_3w5l1"), ExtResource("38_32blm"), ExtResource("39_1iopa"), ExtResource("40_rq5o0"), ExtResource("41_ok5xp"), ExtResource("42_3y2la")])
+resourceCardArray = Array[Resource("res://scripts/card/cardResource.gd")]([ExtResource("2_dj1ep"), ExtResource("3_dj4g7"), ExtResource("4_m11bk"), ExtResource("5_x64dk"), ExtResource("6_qyn26"), ExtResource("7_adyq8"), ExtResource("8_505s7"), ExtResource("9_34fx5"), ExtResource("10_3253r"), ExtResource("11_d1wep"), ExtResource("12_1mq2s"), ExtResource("13_fd65y"), ExtResource("14_wa47a"), ExtResource("15_wlncg"), ExtResource("16_rdtmr"), ExtResource("17_xu7wi"), ExtResource("18_kptgy"), ExtResource("19_cvgsq"), ExtResource("20_3lpu8"), ExtResource("21_fem3c"), ExtResource("22_e3w6m"), ExtResource("23_2ejba"), ExtResource("24_k75re"), ExtResource("25_2sj3n"), ExtResource("26_u51dl"), ExtResource("27_7yxdk"), ExtResource("28_vfs71"), ExtResource("29_xfd06"), ExtResource("30_w673g"), ExtResource("31_eugvd"), ExtResource("32_uwni0"), ExtResource("33_6r42b"), ExtResource("34_4euc5"), ExtResource("35_au0p6"), ExtResource("36_yja2p"), ExtResource("37_3w5l1"), ExtResource("38_32blm"), ExtResource("39_1iopa"), ExtResource("40_rq5o0"), ExtResource("41_ok5xp"), ExtResource("42_3y2la"), ExtResource("43_b7pu5"), ExtResource("44_5cdeh"), ExtResource("45_07uej")])
