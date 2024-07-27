@@ -98,3 +98,6 @@ func _on_turn_ended():
 	print("turn ended logic")
 
 
+
+func _on_area_3d_body_entered(body):
+	print("something entered")
