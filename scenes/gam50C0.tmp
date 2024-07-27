@@ -99,8 +99,14 @@ offset_right = 100.0
 offset_bottom = 71.0
 text = "Spawn Card"
 
+[node name="EndTurnButton" type="Button" parent="Control"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "End Turn"
+
 [node name="CardDisappearTimer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 1.5
 one_shot = true
 
 [node name="TableCardSpawnPoint" type="Sprite3D" parent="."]
@@ -151,29 +157,24 @@ transform = Transform3D(-0.395095, -0.440338, 0.806227, -0.185839, 0.897797, 0.3
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.700266, 0.406072, -0.58714, -0.233067, 0.907439, 0.349621, 0.674764, -0.107985, 0.730091, -7.38689, 5.93705, 6.22891)
 
+[node name="Control2" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="CardDisappearTimer2" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
 [node name="CardSlot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -4.5, 0, 4.9)
 script = ExtResource("11_yctxp")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CardSlot"]
-transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 0, 0, 0.01)
-sorting_offset = -5.0
-mesh = SubResource("PlaneMesh_74yme")
-
-[node name="CardSlot2" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -3.06825, 0, 4.9)
-script = ExtResource("11_yctxp")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CardSlot2"]
-transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 0, 0, 0.01)
-sorting_offset = -5.0
-mesh = SubResource("PlaneMesh_74yme")
-
-[node name="CardSlot3" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -1.65418, 0, 4.9)
-script = ExtResource("11_yctxp")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CardSlot3"]
 transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 0, 0, 0.01)
 sorting_offset = -5.0
 mesh = SubResource("PlaneMesh_74yme")

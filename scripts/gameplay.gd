@@ -14,16 +14,23 @@ var dragging: bool = false
 @onready var endTurnButton: Button = $Control/ActiveMenu/EndTurnButton
 @onready var spawnCardButton: Button = $Control/ActiveMenu/SpawnRandomCard
 
+@onready var cardSlots: Array[CardSlot] = [$CardSlot, $CardSlot2, $CardSlot3]
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	CursorHandler.camera = camera
 	CursorHandler.draggingBoundsArea = draggingBoundsArea
+	CursorHandler.cardSlots = cardSlots
 	draggingBoundsArea.visible = false
 	pauseMenu.returnCallback = onReturn
 	pauseMenu.mainMenuCallback = onMainMenu
 	CursorHandler.canInteractWithBoard = true
 	loadRutine()
 	TimeHandler.connect("turnEnded", _on_turn_ended)
+	call_deferred("afterReady")
+
+func afterReady():
+	resourceCardPool.triggerSlotDetection(cardSlots)
 
 func _input(_event):
 	if Input.is_action_just_pressed("ui_cancel"):
