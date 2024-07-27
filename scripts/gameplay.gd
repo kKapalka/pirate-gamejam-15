@@ -23,7 +23,7 @@ func _ready():
 	pauseMenu.mainMenuCallback = onMainMenu
 	CursorHandler.canInteractWithBoard = true
 
-func _input(event):
+func _input(_event):
 	if Input.is_action_just_pressed("ui_cancel"):
 		if !pauseMenu.visible:
 			pauseMenu.visible = true
@@ -42,7 +42,7 @@ func onReturn():
 func onMainMenu():	
 	get_tree().change_scene_to_file("res://scenes/menus/mainmenu.tscn")
 
-func _on_dragging_bounds_area_input_event(_camera, event: InputEvent, position, normal, shape_idx):
+func _on_dragging_bounds_area_input_event(_camera, event: InputEvent, position, _normal, _shape_idx):
 	if CursorHandler.dragging and event is InputEventMouseMotion:
 		var minV = draggingPolygon.polygon[3]
 		var maxV = draggingPolygon.polygon[1]
@@ -66,14 +66,14 @@ func _on_spawn_random_card_button_up():
 	resourceCardPool.spawnRandomCard()
 
 
-func _on_notebook_collider_input_event(camera, event, position, normal, shape_idx):
+func _on_notebook_collider_input_event(_camera, _event, _position, _normal, _shape_idx):
 	if Input.is_action_just_pressed("select") and CursorHandler.cursorLagTimer.is_stopped() and CursorHandler.canInteractWithBoard:
 		CursorHandler.cursorLagTimer.start()
 		CursorHandler.canInteractWithBoard = false
 		print("Alchemist's Notebook Open")
 
 
-func _on_scroll_collider_input_event(camera, event, position, normal, shape_idx):
+func _on_scroll_collider_input_event(_camera, _event, _position, _normal, _shape_idx):
 	if Input.is_action_just_pressed("select") and CursorHandler.cursorLagTimer.is_stopped() and CursorHandler.canInteractWithBoard:
 		CursorHandler.canInteractWithBoard = false
 		CursorHandler.cursorLagTimer.start()

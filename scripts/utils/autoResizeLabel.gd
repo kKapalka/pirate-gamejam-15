@@ -1,9 +1,9 @@
 @tool
 class_name AutoResizeLabel extends Label
 
-@export var minFontSize = 24
+@export var minFontSize = 36
 @export var currentFontSize = 56
-@export var maxFontSize = 56
+@export var maxFontSize = 64
 
 # It works somewhat. Resizes on its own to accomodate longer card names.
 func onTextChanged():

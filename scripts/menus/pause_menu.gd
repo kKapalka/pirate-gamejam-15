@@ -26,7 +26,7 @@ func onShow():
 	focusedButtonIndex = 0
 	focusable[focusedButtonIndex].grab_focus()
 
-func _input(event):
+func _input(_event):
 	if visible and pauseMenuContainer.visible:
 		if Input.is_action_just_pressed("ui_cancel"):
 			_on_resume_button_up()

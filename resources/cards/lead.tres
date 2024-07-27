@@ -1,13 +1,13 @@
 [gd_resource type="Texture2D" script_class="ResourceCard" load_steps=3 format=3 uid="uid://c18f54iunli4"]
 
 [ext_resource type="Script" path="res://scripts/card/cardResource.gd" id="1_hpxgj"]
-[ext_resource type="Texture2D" uid="uid://c1awhk7wl7kvm" path="res://resources/graphics/cards/resized/cropped/lead.png" id="2_wjmy2"]
+[ext_resource type="Texture2D" uid="uid://ci886hacu1e60" path="res://resources/graphics/cards/resized/lead2.png" id="2_rs8a3"]
 
 [resource]
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("1_hpxgj")
-texture = ExtResource("2_wjmy2")
+texture = ExtResource("2_rs8a3")
 name = "Lead"
 id = "lead"
 textColor = Color(0.301961, 0.423529, 0.588235, 1)

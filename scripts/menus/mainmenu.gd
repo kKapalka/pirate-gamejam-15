@@ -16,7 +16,7 @@ func _ready():
 	settingsContainer.returnCallback = onReturn
 	buttons[focusedButtonIndex].grab_focus()
 
-func _input(event):
+func _input(_event):
 	if mainMenuContainer.visible:
 		if Input.is_action_pressed("ui_down"):
 			focusedButtonIndex += 1

@@ -16,7 +16,7 @@ var focusedButtonIndex = 0
 
 var returnCallback: Callable
 
-func _input(event):
+func _input(_event):
 	if self.visible:
 		if Input.is_action_pressed("ui_cancel"):
 			_on_return_button_up()
