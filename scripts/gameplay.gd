@@ -78,3 +78,7 @@ func _on_scroll_collider_input_event(camera, event, position, normal, shape_idx)
 		CursorHandler.canInteractWithBoard = false
 		CursorHandler.cursorLagTimer.start()
 		print("Map Open")
+
+
+func _on_area_3d_body_entered(body):
+	print("something entered")
