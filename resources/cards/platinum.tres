@@ -1,0 +1,14 @@
+[gd_resource type="Texture2D" script_class="ResourceCard" load_steps=3 format=3 uid="uid://bflcrasxunku3"]
+
+[ext_resource type="Script" path="res://scripts/card/cardResource.gd" id="1_otwac"]
+[ext_resource type="Texture2D" uid="uid://qef7voibj0nt" path="res://resources/graphics/cards/resized/plant.png" id="2_a60tn"]
+
+[resource]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("1_otwac")
+texture = ExtResource("2_a60tn")
+name = "Plant"
+id = "plant"
+textColor = Color(0.627451, 0.392157, 0, 1)
+consumable = false

@@ -18,7 +18,7 @@ var cardSlots: Array[CardSlot]
 @onready var cursorLagTimer: Timer = $CursorLagTimer
 
 #play click sound at event's position on mouse click
-func _input(event):
+func _input(_event):
 	if Input.is_action_just_pressed("select") and cursorLagTimer.is_stopped():
 		
 		if camera != null:

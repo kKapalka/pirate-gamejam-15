@@ -1,0 +1,14 @@
+[gd_resource type="Texture2D" script_class="ResourceCard" load_steps=3 format=3 uid="uid://bmlii4fcccxwe"]
+
+[ext_resource type="Script" path="res://scripts/card/cardResource.gd" id="1_howsp"]
+[ext_resource type="Texture2D" uid="uid://d2au87u8bhimg" path="res://resources/graphics/cards/resized/light.png" id="2_if6y3"]
+
+[resource]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("1_howsp")
+texture = ExtResource("2_if6y3")
+name = "Light"
+id = "light"
+textColor = Color(0.627451, 0.392157, 0, 1)
+consumable = false

@@ -96,7 +96,7 @@ func tryDetectSlot(cardSlots: Array[CardSlot]):
 
 func disappear():
 	var tween = create_tween()
-	tween.tween_method(gradualVisibility, 0.0, 1.0, 1.0)
+	tween.tween_method(gradualVisibility, 0.0, 1.0, 0.4)
 	tween.tween_callback(afterDisappearing)
 	
 

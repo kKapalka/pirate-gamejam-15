@@ -7,4 +7,4 @@ script = ExtResource("1_ddwp2")
 id = "wasteRecipe"
 ingredientsId = Array[String]([])
 resultId = "waste"
-resultCount = 3
+resultCount = 1

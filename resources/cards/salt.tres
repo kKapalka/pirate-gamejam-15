@@ -1,0 +1,13 @@
+[gd_resource type="Texture2D" script_class="ResourceCard" load_steps=3 format=3 uid="uid://ywms7lkc6uy1"]
+
+[ext_resource type="Script" path="res://scripts/card/cardResource.gd" id="1_negbm"]
+[ext_resource type="Texture2D" uid="uid://dvb32frgqj5v5" path="res://resources/graphics/cards/resized/rot.png" id="2_xatte"]
+
+[resource]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("1_negbm")
+texture = ExtResource("2_xatte")
+name = "Rot"
+id = "rot"
+consumable = false

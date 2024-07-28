@@ -1,0 +1,13 @@
+[gd_resource type="Texture2D" script_class="ResourceCard" load_steps=3 format=3 uid="uid://ddfykb5tl8y4r"]
+
+[ext_resource type="Script" path="res://scripts/card/cardResource.gd" id="1_1urdk"]
+[ext_resource type="Texture2D" uid="uid://b27akj37r4nfx" path="res://resources/graphics/cards/resized/sulfur.png" id="2_qwmb7"]
+
+[resource]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("1_1urdk")
+texture = ExtResource("2_qwmb7")
+name = "Sulfur"
+id = "sulfur"
+consumable = false

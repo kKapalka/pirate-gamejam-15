@@ -1,0 +1,14 @@
+[gd_resource type="Texture2D" script_class="ResourceCard" load_steps=3 format=3 uid="uid://damky2f0ef33g"]
+
+[ext_resource type="Script" path="res://scripts/card/cardResource.gd" id="1_nksh6"]
+[ext_resource type="Texture2D" uid="uid://cnosltid46gnk" path="res://resources/graphics/cards/resized/potassium.png" id="2_gxoxg"]
+
+[resource]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("1_nksh6")
+texture = ExtResource("2_gxoxg")
+name = "Potassium"
+id = "potassium"
+textColor = Color(0.627451, 0.392157, 0, 1)
+consumable = false

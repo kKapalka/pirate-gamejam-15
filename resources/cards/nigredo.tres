@@ -1,0 +1,13 @@
+[gd_resource type="Texture2D" script_class="ResourceCard" load_steps=3 format=3 uid="uid://dar0hkmotgk1"]
+
+[ext_resource type="Script" path="res://scripts/card/cardResource.gd" id="1_q2cct"]
+[ext_resource type="Texture2D" uid="uid://dl3j26gp1fy35" path="res://resources/graphics/cards/resized/nigredo.png" id="2_dx3ca"]
+
+[resource]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("1_q2cct")
+texture = ExtResource("2_dx3ca")
+name = "Nigredo"
+id = "nigredo"
+consumable = false

@@ -15,6 +15,8 @@ var dragging: bool = false
 @onready var spawnCardButton: Button = $Control/ActiveMenu/SpawnRandomCard
 
 @onready var cardSlots: Array[CardSlot] = [$CardSlot, $CardSlot2, $CardSlot3]
+@onready var resultSlot : Node3D = $ResultSlot
+const blankCardId : String = "blank"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -25,12 +27,14 @@ func _ready():
 	pauseMenu.returnCallback = onReturn
 	pauseMenu.mainMenuCallback = onMainMenu
 	CursorHandler.canInteractWithBoard = true
+	loadRutine()
+	TimeHandler.connect("turnEnded", _on_turn_ended)
 	call_deferred("afterReady")
 
 func afterReady():
 	resourceCardPool.triggerSlotDetection(cardSlots)
 
-func _input(event):
+func _input(_event):
 	if Input.is_action_just_pressed("ui_cancel"):
 		if !pauseMenu.visible:
 			pauseMenu.visible = true
@@ -47,9 +51,22 @@ func onReturn():
 	CursorHandler.canInteractWithBoard = true
 	
 func onMainMenu():	
+	saveRoutine()
 	get_tree().change_scene_to_file("res://scenes/menus/mainmenu.tscn")
 
-func _on_dragging_bounds_area_input_event(_camera, event: InputEvent, position, normal, shape_idx):
+func onQuit():
+	saveRoutine()
+	get_tree().quit()
+
+func loadRutine():
+	SaveHandler.loadGame()
+	TimeHandler.time = SaveHandler.player.time
+
+func saveRoutine():
+	SaveHandler.player.time = TimeHandler.time
+	SaveHandler.saveGame()
+
+func _on_dragging_bounds_area_input_event(_camera, event: InputEvent, position, _normal, _shape_idx):
 	if CursorHandler.dragging and event is InputEventMouseMotion:
 		var minV = draggingPolygon.polygon[3]
 		var maxV = draggingPolygon.polygon[1]
@@ -73,15 +90,48 @@ func _on_spawn_random_card_button_up():
 	resourceCardPool.spawnRandomCard()
 
 
-func _on_notebook_collider_input_event(camera, event, position, normal, shape_idx):
+func _on_notebook_collider_input_event(_camera, _event, _position, _normal, _shape_idx):
 	if Input.is_action_just_pressed("select") and CursorHandler.cursorLagTimer.is_stopped() and CursorHandler.canInteractWithBoard:
 		CursorHandler.cursorLagTimer.start()
 		CursorHandler.canInteractWithBoard = false
 		print("Alchemist's Notebook Open")
 
 
-func _on_scroll_collider_input_event(camera, event, position, normal, shape_idx):
+func _on_scroll_collider_input_event(_camera, _event, _position, _normal, _shape_idx):
 	if Input.is_action_just_pressed("select") and CursorHandler.cursorLagTimer.is_stopped() and CursorHandler.canInteractWithBoard:
 		CursorHandler.canInteractWithBoard = false
 		CursorHandler.cursorLagTimer.start()
 		print("Map Open")
+
+func _on_turn_ended():
+	print("turn ended logic")
+
+func start_brew():
+	# validate empty slots <= 1
+	var filteredCardSlots : Array[CardSlot] = cardSlots.filter(func(cardslot : CardSlot) : return cardslot.card != null)
+	if filteredCardSlots.size() < 2 :
+		return
+	#find recipe
+	var ingredientsId : Array[String]
+	ingredientsId.assign(cardSlots.map(func(cardslot : CardSlot) : return mapCardSlotToCardId(cardslot)))
+	var recipe : ResourceRecipe = RecipeHandler.findCombination(ingredientsId)
+	#delete all consumable cards
+	for cardSlot in filteredCardSlots:
+		var card = cardSlot.card
+		if card.cardTemplate.card.consumable :
+			resourceCardPool.markAsHidden(card.get_instance_id())
+			card.disappear()
+	#create cards
+	for i in recipe.resultCount:
+		resourceCardPool.spawnOneCard(CardHandler.loadResourceCard(recipe.resultId), resultSlot.global_position)
+	resourceCardPool.deckSaveRoutine()
+	#advance time
+	TimeHandler.advanceTime()
+
+func mapCardSlotToCardId(cardslot : CardSlot) -> String:
+	if cardslot.card != null:
+		return cardslot.card.cardTemplate.card.id
+	return blankCardId
+
+func _on_brew_button_button_up():
+	start_brew()

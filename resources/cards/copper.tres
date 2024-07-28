@@ -1,13 +1,14 @@
-[gd_resource type="Texture2D" script_class="ResourceCard" load_steps=3 format=3 uid="uid://b45ec7alfu68a"]
+[gd_resource type="Texture2D" script_class="ResourceCard" load_steps=3 format=3 uid="uid://cjrn4xfw8m075"]
 
-[ext_resource type="Script" path="res://scripts/card/cardResource.gd" id="1_cxleq"]
-[ext_resource type="Texture2D" uid="uid://dmww4b3xa5pnw" path="res://resources/graphics/cards/resized/cropped/copper.png" id="2_srayd"]
+[ext_resource type="Script" path="res://scripts/card/cardResource.gd" id="1_xkonn"]
+[ext_resource type="Texture2D" uid="uid://oeebxghvy2i5" path="res://resources/graphics/cards/resized/copper2.png" id="2_vqu5d"]
 
 [resource]
 resource_local_to_scene = false
 resource_name = ""
-script = ExtResource("1_cxleq")
-texture = ExtResource("2_srayd")
+script = ExtResource("1_xkonn")
+texture = ExtResource("2_vqu5d")
 name = "Copper"
 id = "copper"
 textColor = Color(0.823529, 0.439216, 0, 1)
+consumable = false

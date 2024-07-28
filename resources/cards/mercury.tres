@@ -1,13 +1,14 @@
 [gd_resource type="Texture2D" script_class="ResourceCard" load_steps=3 format=3 uid="uid://kt663ath8smx"]
 
 [ext_resource type="Script" path="res://scripts/card/cardResource.gd" id="1_e156c"]
-[ext_resource type="Texture2D" uid="uid://ikd6b5q3maw4" path="res://resources/graphics/cards/resized/cropped/mercury.png" id="2_fauma"]
+[ext_resource type="Texture2D" uid="uid://co3xlh8jl8384" path="res://resources/graphics/cards/resized/mercury2.png" id="2_n3rse"]
 
 [resource]
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("1_e156c")
-texture = ExtResource("2_fauma")
+texture = ExtResource("2_n3rse")
 name = "Mercury"
 id = "mercury"
 textColor = Color(0.2, 0, 0.741176, 1)
+consumable = false

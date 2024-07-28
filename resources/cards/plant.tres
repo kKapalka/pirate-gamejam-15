@@ -1,0 +1,14 @@
+[gd_resource type="Texture2D" script_class="ResourceCard" load_steps=3 format=3 uid="uid://doohnbu1drrjf"]
+
+[ext_resource type="Script" path="res://scripts/card/cardResource.gd" id="1_qggt7"]
+[ext_resource type="Texture2D" uid="uid://c0kpuair4yqs4" path="res://resources/graphics/cards/resized/oil.png" id="2_5ltyw"]
+
+[resource]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("1_qggt7")
+texture = ExtResource("2_5ltyw")
+name = "Oil"
+id = "oil"
+textColor = Color(0.627451, 0.392157, 0, 1)
+consumable = false

@@ -1,0 +1,13 @@
+[gd_resource type="Texture2D" script_class="ResourceCard" load_steps=3 format=3 uid="uid://21bj08cjjyjj"]
+
+[ext_resource type="Script" path="res://scripts/card/cardResource.gd" id="1_0da8o"]
+[ext_resource type="Texture2D" uid="uid://t6l6i5ek8668" path="res://resources/graphics/cards/resized/waste.png" id="2_d5hth"]
+
+[resource]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("1_0da8o")
+texture = ExtResource("2_d5hth")
+name = "Waste"
+id = "waste"
+consumable = false

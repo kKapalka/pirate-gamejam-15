@@ -14,9 +14,5 @@ var modified = false
 	set(value):
 		id = value
 		modified = true
-@export var textColor: Color:
-	set(value):
-		textColor = value
-		modified = true
 @export var consumable: bool = false
 		

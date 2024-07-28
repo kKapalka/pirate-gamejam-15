@@ -1,0 +1,14 @@
+[gd_resource type="Texture2D" script_class="ResourceCard" load_steps=3 format=3 uid="uid://brnlfrgkpip0g"]
+
+[ext_resource type="Script" path="res://scripts/card/cardResource.gd" id="1_u1b5f"]
+[ext_resource type="Texture2D" uid="uid://c0oanhndhrish" path="res://resources/graphics/cards/resized/darkness.png" id="2_vlbjy"]
+
+[resource]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("1_u1b5f")
+texture = ExtResource("2_vlbjy")
+name = "Darkness"
+id = "darkness"
+textColor = Color(0.627451, 0.392157, 0, 1)
+consumable = false

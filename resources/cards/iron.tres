@@ -1,13 +1,14 @@
 [gd_resource type="Texture2D" script_class="ResourceCard" load_steps=3 format=3 uid="uid://be1gqnrlkupn1"]
 
 [ext_resource type="Script" path="res://scripts/card/cardResource.gd" id="1_ihtux"]
-[ext_resource type="Texture2D" uid="uid://0lcs8niqdhb0" path="res://resources/graphics/cards/resized/cropped/iron.png" id="2_t4mmh"]
+[ext_resource type="Texture2D" uid="uid://dy7k0u3b302a8" path="res://resources/graphics/cards/resized/iron2.png" id="2_txm7y"]
 
 [resource]
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("1_ihtux")
-texture = ExtResource("2_t4mmh")
+texture = ExtResource("2_txm7y")
 name = "Iron"
 id = "iron"
 textColor = Color(0.647059, 0.0588235, 0.0588235, 1)
+consumable = false
