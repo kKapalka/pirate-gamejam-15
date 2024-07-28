@@ -3,6 +3,9 @@
 [ext_resource type="Script" path="res://scripts/menus/settingsMenu.gd" id="1_pssox"]
 
 [node name="Settings" type="VBoxContainer"]
+custom_minimum_size = Vector2(300, 252)
+offset_right = 300.0
+offset_bottom = 252.0
 size_flags_horizontal = 4
 size_flags_vertical = 6
 script = ExtResource("1_pssox")
@@ -13,7 +16,6 @@ layout_mode = 2
 mouse_filter = 1
 
 [node name="Slider" type="HSlider" parent="Master"]
-z_index = -1
 layout_mode = 2
 offset_top = 20.0
 offset_right = 300.0

@@ -11,8 +11,7 @@ class_name GameplayNode
 
 var dragging: bool = false
 @onready var resourceCardPool: ResourceCardDeckNode = $ResourceCardPool
-@onready var endTurnButton: Button = $Control/ActiveMenu/EndTurnButton
-@onready var spawnCardButton: Button = $Control/ActiveMenu/SpawnRandomCard
+@onready var broodButton: Button = $Control/ActiveMenu/Brood
 @onready var brewButton: Button = $Control/ActiveMenu/BrewButton
 
 @onready var cardSlots: Array[CardSlot] = [$CardSlot, $CardSlot2, $CardSlot3]
@@ -29,6 +28,7 @@ func _ready():
 	draggingBoundsArea.visible = false
 	pauseMenu.returnCallback = onReturn
 	pauseMenu.mainMenuCallback = onMainMenu
+	pauseMenu.quitCallback = onQuit
 	CursorHandler.canInteractWithBoard = true
 	loadRutine()
 	TimeHandler.connect("turnEnded", _on_turn_ended)
@@ -49,12 +49,12 @@ func _input(_event):
 			CursorHandler.canInteractWithBoard = false
 
 func onReturn():
+	get_viewport().set_input_as_handled()
 	pauseMenu.visible = false
 	activeMenu.visible = true
-	get_viewport().set_input_as_handled()
 	CursorHandler.canInteractWithBoard = true
 	
-func onMainMenu():	
+func onMainMenu():
 	saveRoutine()
 	get_tree().change_scene_to_file("res://scenes/menus/mainmenu.tscn")
 
@@ -83,13 +83,11 @@ func _on_end_turn_button_button_up():
 		cardDisappearTimer.start()
 		resourceCardPool.markAsHidden(card.get_instance_id())
 		card.disappear()
-		endTurnButton.disabled = true
-		spawnCardButton.disabled = true
+		broodButton.disabled = true
 		brewButton.disabled = true
 
 func _on_card_disappear_timer_timeout():
-	endTurnButton.disabled = false
-	spawnCardButton.disabled = false
+	broodButton.disabled = false
 	brewButton.disabled = false
 
 func _on_spawn_random_card_button_up():
@@ -142,8 +140,7 @@ func onRecipeFailure():
 	var tween = create_tween()
 	tween.tween_method(flashResultSlot, 0.0, 1.0, 0.5)
 	cardDisappearTimer.start()
-	endTurnButton.disabled = true
-	spawnCardButton.disabled = true
+	broodButton.disabled = true
 	brewButton.disabled = true
 
 func flashResultSlot(delta: float):
@@ -156,3 +153,7 @@ func mapCardSlotToCardId(cardslot : CardSlot) -> String:
 
 func _on_brew_button_button_up():
 	start_brew()
+
+
+func _on_brood_button_up():
+	pass # Replace with function body.

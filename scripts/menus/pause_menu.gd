@@ -2,12 +2,12 @@ extends Control
 
 class_name PauseMenu
 
-@onready var pauseMenuContainer: VBoxContainer = $MarginContainer/VBoxContainer
-@onready var settingsContainer: SettingsMenu = $MarginContainer/Settings
-@onready var resumeButton: Button = $MarginContainer/VBoxContainer/Resume
-@onready var settingsButton: Button = $MarginContainer/VBoxContainer/Options
-@onready var mainMenuButton: Button = $MarginContainer/VBoxContainer/MainMenu
-@onready var quitButton: Button = $MarginContainer/VBoxContainer/Quit
+@onready var pauseMenuContainer: VBoxContainer = $MarginContainer/VBoxContainer/VBoxContainer
+@onready var settingsContainer: SettingsMenu = $MarginContainer/VBoxContainer/Settings
+@onready var resumeButton: Button = $MarginContainer/VBoxContainer/VBoxContainer/Resume
+@onready var settingsButton: Button = $MarginContainer/VBoxContainer/VBoxContainer/Options
+@onready var mainMenuButton: Button = $MarginContainer/VBoxContainer/VBoxContainer/MainMenu
+@onready var quitButton: Button = $MarginContainer/VBoxContainer/VBoxContainer/Quit
 
 @onready var focusable: Array[Control] = [
 	resumeButton, settingsButton, mainMenuButton, quitButton

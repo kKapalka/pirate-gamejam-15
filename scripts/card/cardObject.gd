@@ -72,12 +72,14 @@ func onDrop(cardSlots: Array[CardSlot]):
 	resourceCardDeckNode.updateCardZIndices(self)
 	detectionArea.visible = true
 	mousePositionOffset = Vector3.ZERO
-	
+	var validSlot = null
 	cardSlotDetectionArea.position = Vector2(newPosition.x, newPosition.z) - (cardSlotDetectionArea.size / 2)
 	for slot in cardSlots.filter(func(x): return x.card == null):
 		if cardSlotDetectionArea.has_point(Vector2(slot.position.x, slot.position.z)):
-			oldPosition = slot.position	
-			slot.onFill(self)
+			validSlot = slot
+	if validSlot != null:		
+		oldPosition = validSlot.position	
+		validSlot.onFill(self)
 	
 	resourceCardDeckNode.updateTableCardPosition(get_instance_id(), oldPosition)
 	
@@ -88,7 +90,7 @@ func onDrop(cardSlots: Array[CardSlot]):
 
 func tryDetectSlot(cardSlots: Array[CardSlot]):
 	cardSlotDetectionArea.position = Vector2(position.x, position.z) - (cardSlotDetectionArea.size / 2)
-	for slot in cardSlots:
+	for slot in cardSlots.filter(func(x): return x.card == null):
 		if cardSlotDetectionArea.has_point(Vector2(slot.position.x, slot.position.z)):
 			position = Vector3(slot.position.x, position.y, slot.position.z)
 			slot.onFill(self)
