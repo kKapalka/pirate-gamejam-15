@@ -13,17 +13,30 @@ var dragging: bool = false
 @onready var resourceCardPool: ResourceCardDeckNode = $ResourceCardPool
 @onready var endTurnButton: Button = $Control/ActiveMenu/EndTurnButton
 @onready var spawnCardButton: Button = $Control/ActiveMenu/SpawnRandomCard
+@onready var brewButton: Button = $Control/ActiveMenu/BrewButton
+
+@onready var cardSlots: Array[CardSlot] = [$CardSlot, $CardSlot2, $CardSlot3]
+@onready var resultSlot : Node3D = $ResultSlot
+const blankCardId : String = "blank"
+
+var resultSlotMaterial: StandardMaterial3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	CursorHandler.camera = camera
 	CursorHandler.draggingBoundsArea = draggingBoundsArea
+	CursorHandler.cardSlots = cardSlots
 	draggingBoundsArea.visible = false
 	pauseMenu.returnCallback = onReturn
 	pauseMenu.mainMenuCallback = onMainMenu
 	CursorHandler.canInteractWithBoard = true
 	loadRutine()
 	TimeHandler.connect("turnEnded", _on_turn_ended)
+	call_deferred("afterReady")	
+	resultSlotMaterial = (resultSlot.get_child(0) as MeshInstance3D).get_active_material(0)
+
+func afterReady():
+	resourceCardPool.triggerSlotDetection(cardSlots)
 
 func _input(_event):
 	if Input.is_action_just_pressed("ui_cancel"):
@@ -72,10 +85,12 @@ func _on_end_turn_button_button_up():
 		card.disappear()
 		endTurnButton.disabled = true
 		spawnCardButton.disabled = true
+		brewButton.disabled = true
 
 func _on_card_disappear_timer_timeout():
 	endTurnButton.disabled = false
 	spawnCardButton.disabled = false
+	brewButton.disabled = false
 
 func _on_spawn_random_card_button_up():
 	resourceCardPool.spawnRandomCard()
@@ -97,4 +112,47 @@ func _on_scroll_collider_input_event(_camera, _event, _position, _normal, _shape
 func _on_turn_ended():
 	print("turn ended logic")
 
+func start_brew():
+	# validate empty slots <= 1
+	var filteredCardSlots : Array[CardSlot] = cardSlots.filter(func(cardslot : CardSlot) : return cardslot.card != null)
+	if filteredCardSlots.size() < 2 :
+		onRecipeFailure()
+		return
+	#find recipe
+	var ingredientsId : Array[String]
+	ingredientsId.assign(cardSlots.map(func(cardslot : CardSlot) : return mapCardSlotToCardId(cardslot)))
+	var recipe : ResourceRecipe = RecipeHandler.findCombination(ingredientsId)
+	if recipe != null:
+		#delete all consumable cards
+		for cardSlot in filteredCardSlots:
+			var card = cardSlot.card
+			if card.cardTemplate.card.consumable :
+				resourceCardPool.markAsHidden(card.get_instance_id())
+				card.disappear()
+		#create cards
+		for i in recipe.resultCount:
+			resourceCardPool.spawnOneCard(CardHandler.loadResourceCard(recipe.resultId), resultSlot.global_position)
+		resourceCardPool.deckSaveRoutine()
+		#advance time
+		TimeHandler.advanceTime()
+	else:
+		onRecipeFailure()
 
+func onRecipeFailure():	
+	var tween = create_tween()
+	tween.tween_method(flashResultSlot, 0.0, 1.0, 0.5)
+	cardDisappearTimer.start()
+	endTurnButton.disabled = true
+	spawnCardButton.disabled = true
+	brewButton.disabled = true
+
+func flashResultSlot(delta: float):
+	resultSlotMaterial.emission = Color(0.6,0.0,0.0) * sin(delta * PI)
+
+func mapCardSlotToCardId(cardslot : CardSlot) -> String:
+	if cardslot.card != null:
+		return cardslot.card.cardTemplate.card.id
+	return blankCardId
+
+func _on_brew_button_button_up():
+	start_brew()

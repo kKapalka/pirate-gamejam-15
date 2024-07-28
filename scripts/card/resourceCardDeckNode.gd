@@ -25,7 +25,7 @@ func _ready():
 		deck.tableCards = []
 		var tableCards = tableCardsAsDicts.map(func(x): return dict_to_inst(x))
 		deck.tableCards.assign(tableCards)
-		loadDeck()	
+		loadDeck()
 
 	
 func initDeck() -> ResourceCardDeck:
@@ -127,7 +127,26 @@ func spawn(cards: Array[ResourceCard]):
 		cardsAtSpawn.append(card.get_instance_id())
 		finalCard = card
 	updateCardZIndices(finalCard)
+	deckSaveRoutine()
+
+func spawnOneCard(cardP : ResourceCard, pos : Vector3):
+	var card = cardNode.instantiate() as ResourceCardNode
+	add_child(card)
+	card.global_rotation = tableCardSpawnPoint.global_rotation
+	card.visible = true
+	card.changePropertyCard(cardP.id)
+	card.global_position = pos
+	deck.fullContents.append(cardP.id)
+	deck.tableCards.append(TableCard.new(cardP.id, card.global_position, card.get_instance_id()))
+	activeCards.append(card)
+	cardsAtSpawn.append(card.get_instance_id())
+	updateCardZIndices(card)
+
+func deckSaveRoutine():
 	SaveHandler.player.deck = inst_to_dict(deck)
 	SaveHandler.player.deck.tableCards = deck.tableCards.map(func(x): return inst_to_dict(x))
 	SaveHandler.saveGame()
 
+func triggerSlotDetection(slots: Array[CardSlot]):
+	for card in activeCards:
+		card.tryDetectSlot(slots)

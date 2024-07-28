@@ -17,6 +17,13 @@ var baseY: float
 var lift: float
 var canMove = false
 
+var oldPosition: Vector3
+var newPosition: Vector3
+var onSlotEmpty
+
+
+var cardSlotDetectionArea = Rect2(Vector2(0,0), Vector2(1, 1.78) * Vector2(scale.x, scale.z) * 1.5)
+
 func _ready():
 	resourceCardDeckNode = get_parent()
 	frontMaterial = front.get_active_material(0)
@@ -28,8 +35,10 @@ func becomeRandom():
 	cardTemplate.card = CardHandler.getRandomResourceCard()
 		
 func onPickUp(_lift: float):
-	lift = _lift
-	baseY = position.y
+	newPosition = position
+	oldPosition = position	
+	newPosition.y = _lift
+	
 	rotationX = rotation_degrees.x
 	detectionArea.visible = false
 	front.sorting_offset = 99
@@ -43,6 +52,9 @@ func onPickUp(_lift: float):
 		func():
 			canMove = true
 	)
+	if onSlotEmpty != null:
+		onSlotEmpty.call()
+		onSlotEmpty = null
 	
 	
 func onDraggingMouseMotion(_position: Vector3):
@@ -53,18 +65,35 @@ func onDraggingMouseMotion(_position: Vector3):
 		basePosition.y = position.y
 		position = lerp(position, basePosition + _position - mousePositionOffset, 0.8)
 	
-func onDrop():
+func onDrop(cardSlots: Array[CardSlot]):
+	oldPosition = position
+	newPosition = position
+	oldPosition.y = 0
 	resourceCardDeckNode.updateCardZIndices(self)
 	detectionArea.visible = true
 	mousePositionOffset = Vector3.ZERO
-	var newPos = position
-	newPos.y = 0
-	resourceCardDeckNode.updateTableCardPosition(get_instance_id(), newPos)
+	
+	cardSlotDetectionArea.position = Vector2(newPosition.x, newPosition.z) - (cardSlotDetectionArea.size / 2)
+	for slot in cardSlots.filter(func(x): return x.card == null):
+		if cardSlotDetectionArea.has_point(Vector2(slot.position.x, slot.position.z)):
+			oldPosition = slot.position	
+			slot.onFill(self)
+	
+	resourceCardDeckNode.updateTableCardPosition(get_instance_id(), oldPosition)
 	
 	
 	var tween = create_tween()
 	tween.tween_method(gradualRotation, 1.0, 0.0, 0.1)
-	
+
+
+func tryDetectSlot(cardSlots: Array[CardSlot]):
+	cardSlotDetectionArea.position = Vector2(position.x, position.z) - (cardSlotDetectionArea.size / 2)
+	for slot in cardSlots:
+		if cardSlotDetectionArea.has_point(Vector2(slot.position.x, slot.position.z)):
+			position = Vector3(slot.position.x, position.y, slot.position.z)
+			slot.onFill(self)
+			
+
 func disappear():
 	var tween = create_tween()
 	tween.tween_method(gradualVisibility, 0.0, 1.0, 0.4)
@@ -73,7 +102,7 @@ func disappear():
 
 
 func gradualRotation(delta: float):
-	position.y = baseY + (lift * delta)
+	position = lerp(oldPosition, newPosition, delta)
 	rotation_degrees.x = rotationX + (25 * delta)
 
 func gradualVisibility(delta: float):

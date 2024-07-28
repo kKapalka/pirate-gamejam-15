@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ResourceRecipe" load_steps=2 format=3 uid="uid://jv1tr56cos8b"]
+
+[ext_resource type="Script" path="res://scripts/recipe/recipe.gd" id="1_7udab"]
+
+[resource]
+script = ExtResource("1_7udab")
+id = "albedo"
+ingredientsId = Array[String](["nigredo", "purify", "light"])
+resultId = "albedo"
+resultCount = 1

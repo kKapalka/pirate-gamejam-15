@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c0b3rjfuqloa1"]
+[gd_scene load_steps=16 format=3 uid="uid://c0b3rjfuqloa1"]
 
 [ext_resource type="Script" path="res://scripts/gameplay.gd" id="1_yv17x"]
 [ext_resource type="Texture2D" uid="uid://b02ay7mvwgk2q" path="res://icon.svg" id="2_vrsh7"]
@@ -10,21 +10,19 @@
 [ext_resource type="PackedScene" uid="uid://btgyfhlhfoe5x" path="res://resources/models/Alchemy Models/HolderFiles/Holder.gltf" id="7_i782a"]
 [ext_resource type="PackedScene" uid="uid://triwej8ik7hv" path="res://resources/models/Alchemy Models/ScrollFiles/Scroll.gltf" id="8_41w0w"]
 [ext_resource type="PackedScene" uid="uid://de1lghsrvyx13" path="res://resources/models/Alchemy Models/BookFiles/BookAndHolder.gltf" id="9_rpieh"]
+[ext_resource type="Texture2D" uid="uid://coatmbxd3ymgf" path="res://resources/graphics/cards/background.png" id="11_smeeg"]
 [ext_resource type="Script" path="res://scripts/cardSlot.gd" id="11_yctxp"]
-[ext_resource type="Material" uid="uid://4xvciyc8vanh" path="res://resources/graphics/cardSlotMaterial.tres" id="12_ij207"]
-[ext_resource type="Material" uid="uid://bg28v2iya6eeb" path="res://resources/graphics/resultSlotMaterial.tres" id="13_l5b3l"]
 
 [sub_resource type="Environment" id="Environment_vtgdd"]
 ambient_light_source = 3
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_energy = 0.2
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_74yme"]
-material = ExtResource("12_ij207")
-size = Vector2(1, 1.78)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eo613"]
+albedo_texture = ExtResource("11_smeeg")
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_uwddj"]
-material = ExtResource("13_l5b3l")
+[sub_resource type="PlaneMesh" id="PlaneMesh_74yme"]
+material = SubResource("StandardMaterial3D_eo613")
 size = Vector2(1, 1.78)
 
 [node name="Gameplay" type="Node3D"]
@@ -101,15 +99,14 @@ offset_right = 100.0
 offset_bottom = 71.0
 text = "Spawn Card"
 
-[node name="BrewButton" type="Button" parent="Control/ActiveMenu"]
+[node name="EndTurnButton" type="Button" parent="Control"]
 layout_mode = 0
-offset_top = 80.0
-offset_right = 48.0
-offset_bottom = 111.0
-text = "Brew"
+offset_right = 8.0
+offset_bottom = 8.0
+text = "End Turn"
 
 [node name="CardDisappearTimer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 1.5
 one_shot = true
 
 [node name="TableCardSpawnPoint" type="Sprite3D" parent="."]
@@ -160,6 +157,19 @@ transform = Transform3D(-0.395095, -0.440338, 0.806227, -0.185839, 0.897797, 0.3
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.700266, 0.406072, -0.58714, -0.233067, 0.907439, 0.349621, 0.674764, -0.107985, 0.730091, -7.38689, 5.93705, 6.22891)
 
+[node name="Control2" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="CardDisappearTimer2" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
 [node name="CardSlot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -4.5, 0, 4.9)
 script = ExtResource("11_yctxp")
@@ -169,37 +179,10 @@ transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74
 sorting_offset = -5.0
 mesh = SubResource("PlaneMesh_74yme")
 
-[node name="CardSlot2" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -3.06825, 0, 4.9)
-script = ExtResource("11_yctxp")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CardSlot2"]
-transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 0, 0, 0.01)
-sorting_offset = -5.0
-mesh = SubResource("PlaneMesh_74yme")
-
-[node name="CardSlot3" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -1.65418, 0, 4.9)
-script = ExtResource("11_yctxp")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CardSlot3"]
-transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 0, 0, 0.01)
-sorting_offset = -5.0
-mesh = SubResource("PlaneMesh_74yme")
-
-[node name="ResultSlot" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.154, 0, 4.9)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="ResultSlot"]
-transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 0, 0, 0.01)
-sorting_offset = -5.0
-mesh = SubResource("PlaneMesh_uwddj")
-
 [connection signal="input_event" from="DraggingBoundsArea" to="." method="_on_dragging_bounds_area_input_event"]
 [connection signal="mouse_entered" from="DraggingBoundsArea" to="." method="_on_dragging_bounds_area_mouse_entered"]
 [connection signal="button_up" from="Control/ActiveMenu/EndTurnButton" to="." method="_on_end_turn_button_button_up"]
 [connection signal="button_up" from="Control/ActiveMenu/SpawnRandomCard" to="." method="_on_spawn_random_card_button_up"]
-[connection signal="button_up" from="Control/ActiveMenu/BrewButton" to="." method="_on_brew_button_button_up"]
 [connection signal="timeout" from="CardDisappearTimer" to="." method="_on_card_disappear_timer_timeout"]
 [connection signal="input_event" from="Scroll/ScrollCollider" to="." method="_on_scroll_collider_input_event"]
 [connection signal="input_event" from="BookAndHolder/NotebookCollider" to="." method="_on_notebook_collider_input_event"]

@@ -7,16 +7,20 @@ func loadResourceRecipe(id: String) -> ResourceRecipe:
 
 func findCombination(ingredients : Array[String]) -> ResourceRecipe:
 	if ingredients.size() != 3:
-		return loadResourceRecipe('wasteRecipe')
-	var recipes = resourceRecipeArray
+		return null
+	var recipes = resourceRecipeArray.duplicate()
+	print(recipes.map(func(x): return x.ingredientsId))
 	recipes = filterArrayByIngredient(recipes, ingredients[0])
 	recipes = filterArrayByIngredient(recipes, ingredients[1])
 	recipes = filterArrayByIngredient(recipes, ingredients[2])
 	if recipes.size() == 1:
 		return recipes[0]
-	return loadResourceRecipe('wasteRecipe')
+	return null
 
 func filterArrayByIngredient(recipes : Array[ResourceRecipe],ingredientP : String) -> Array[ResourceRecipe]:
+
 	if recipes == []:
 		return []
-	return recipes.filter(func(recipe : ResourceRecipe): return recipe.ingredientsId.any(func(ingredient : String): return ingredient == ingredientP))
+	if ingredientP == "blank":
+		return recipes
+	return recipes.filter(func(recipe : ResourceRecipe): return ingredientP in recipe.ingredientsId)
