@@ -125,6 +125,8 @@ func start_brew():
 	for i in recipe.resultCount:
 		resourceCardPool.spawnOneCard(CardHandler.loadResourceCard(recipe.resultId), resultSlot.global_position)
 	resourceCardPool.deckSaveRoutine()
+	#advance time
+	TimeHandler.advanceTime()
 
 func mapCardSlotToCardId(cardslot : CardSlot) -> String:
 	if cardslot.card != null:
