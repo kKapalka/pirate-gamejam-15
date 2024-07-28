@@ -10,5 +10,4 @@ script = ExtResource("1_gvxmk")
 texture = ExtResource("2_rmp4m")
 name = "Earth"
 id = "earth"
-textColor = Color(0, 0.580392, 0.0862745, 1)
 consumable = false

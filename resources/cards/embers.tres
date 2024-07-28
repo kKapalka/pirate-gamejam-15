@@ -1,14 +1,13 @@
 [gd_resource type="Texture2D" script_class="ResourceCard" load_steps=3 format=3 uid="uid://dg1ffpuo7bcdo"]
 
 [ext_resource type="Script" path="res://scripts/card/cardResource.gd" id="1_vdmj0"]
-[ext_resource type="Texture2D" uid="uid://c6ut2e8exkyrj" path="res://resources/graphics/cards/resized/ego.png" id="2_f8gni"]
+[ext_resource type="Texture2D" uid="uid://bqvdbrvdxavsl" path="res://resources/graphics/cards/resized/embers.png" id="2_s4652"]
 
 [resource]
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("1_vdmj0")
-texture = ExtResource("2_f8gni")
-name = "Ego"
-id = "ego"
-textColor = Color(0.627451, 0.392157, 0, 1)
-consumable = false
+texture = ExtResource("2_s4652")
+name = "Embers"
+id = "embers"
+consumable = true

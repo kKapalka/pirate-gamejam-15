@@ -1,14 +1,13 @@
 [gd_resource type="Texture2D" script_class="ResourceCard" load_steps=3 format=3 uid="uid://cvw4qr7irrf3k"]
 
 [ext_resource type="Script" path="res://scripts/card/cardResource.gd" id="1_4etcg"]
-[ext_resource type="Texture2D" uid="uid://do3gb56i8nf56" path="res://resources/graphics/cards/resized/brass.png" id="2_c6blj"]
+[ext_resource type="Texture2D" uid="uid://djuirirnajur3" path="res://resources/graphics/cards/resized/clay.png" id="2_42tea"]
 
 [resource]
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("1_4etcg")
-texture = ExtResource("2_c6blj")
-name = "Brass"
-id = "brass"
-textColor = Color(0.627451, 0.392157, 0, 1)
-consumable = false
+texture = ExtResource("2_42tea")
+name = "Clay"
+id = "clay"
+consumable = true

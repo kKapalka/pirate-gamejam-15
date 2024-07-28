@@ -1,13 +1,13 @@
 [gd_resource type="Texture2D" script_class="ResourceCard" load_steps=3 format=3 uid="uid://c4mc43664oq73"]
 
-[ext_resource type="Script" path="res://scripts/card/cardResource.gd" id="1_khv5u"]
-[ext_resource type="Texture2D" uid="uid://cah5tcfqpniuf" path="res://resources/graphics/cards/resized/stone.png" id="2_78m8l"]
+[ext_resource type="Script" path="res://scripts/card/cardResource.gd" id="1_1urdk"]
+[ext_resource type="Texture2D" uid="uid://b27akj37r4nfx" path="res://resources/graphics/cards/resized/sulfur.png" id="2_qwmb7"]
 
 [resource]
 resource_local_to_scene = false
 resource_name = ""
-script = ExtResource("1_khv5u")
-texture = ExtResource("2_78m8l")
-name = "Stone"
-id = "stone"
-consumable = false
+script = ExtResource("1_1urdk")
+texture = ExtResource("2_qwmb7")
+name = "Sulfur"
+id = "sulfur"
+consumable = true

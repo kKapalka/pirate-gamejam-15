@@ -1,6 +1,17 @@
 extends Node
 
-@export var resourceRecipeArray: Array[ResourceRecipe] = []
+var resourceRecipeArray: Array[ResourceRecipe]
+
+func _ready():
+	var path = "res://resources/recipe"
+	var dir = DirAccess.open(path)
+	if dir:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		while file_name != "":
+			var recipe = ResourceLoader.load(path+"/"+file_name) as ResourceRecipe
+			resourceRecipeArray.append(recipe)
+			file_name = dir.get_next()
 
 func loadResourceRecipe(id: String) -> ResourceRecipe:
 	return resourceRecipeArray.filter(func(recipe: ResourceRecipe): return recipe.id == id)[0]

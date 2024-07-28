@@ -10,5 +10,4 @@ script = ExtResource("1_06n4e")
 texture = ExtResource("2_gkxt4")
 name = "Fire"
 id = "fire"
-textColor = Color(0.878431, 0, 0, 1)
 consumable = false

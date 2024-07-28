@@ -10,4 +10,4 @@ script = ExtResource("1_q2cct")
 texture = ExtResource("2_dx3ca")
 name = "Nigredo"
 id = "nigredo"
-consumable = false
+consumable = true

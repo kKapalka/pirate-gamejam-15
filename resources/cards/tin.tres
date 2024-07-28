@@ -10,5 +10,4 @@ script = ExtResource("1_7k72l")
 texture = ExtResource("2_4wifc")
 name = "Tin"
 id = "tin"
-textColor = Color(0.811765, 0.592157, 0, 1)
-consumable = false
+consumable = true

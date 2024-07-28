@@ -10,5 +10,4 @@ script = ExtResource("1_42b76")
 texture = ExtResource("2_dfh3b")
 name = "Darkness"
 id = "darkness"
-textColor = Color(0.627451, 0.392157, 0, 1)
-consumable = false
+consumable = true

@@ -10,5 +10,4 @@ script = ExtResource("1_ihtux")
 texture = ExtResource("2_txm7y")
 name = "Iron"
 id = "iron"
-textColor = Color(0.647059, 0.0588235, 0.0588235, 1)
-consumable = false
+consumable = true

@@ -1,14 +1,13 @@
-[gd_resource type="Texture2D" script_class="ResourceCard" load_steps=3 format=3 uid="uid://bflcrasxunku3"]
+[gd_resource type="Texture2D" script_class="ResourceCard" load_steps=3 format=3 uid="uid://dijeuanmwrg4k"]
 
-[ext_resource type="Script" path="res://scripts/card/cardResource.gd" id="1_otwac"]
-[ext_resource type="Texture2D" uid="uid://qef7voibj0nt" path="res://resources/graphics/cards/resized/plant.png" id="2_a60tn"]
+[ext_resource type="Script" path="res://scripts/card/cardResource.gd" id="1_m20pw"]
+[ext_resource type="Texture2D" uid="uid://clryf5ui0o6qu" path="res://resources/graphics/cards/resized/platinum.png" id="2_5unwl"]
 
 [resource]
 resource_local_to_scene = false
 resource_name = ""
-script = ExtResource("1_otwac")
-texture = ExtResource("2_a60tn")
-name = "Plant"
-id = "plant"
-textColor = Color(0.627451, 0.392157, 0, 1)
-consumable = false
+script = ExtResource("1_m20pw")
+texture = ExtResource("2_5unwl")
+name = "Platinum"
+id = "platinum"
+consumable = true

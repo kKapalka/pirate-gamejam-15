@@ -10,5 +10,4 @@ script = ExtResource("1_xkonn")
 texture = ExtResource("2_vqu5d")
 name = "Copper"
 id = "copper"
-textColor = Color(0.823529, 0.439216, 0, 1)
-consumable = false
+consumable = true

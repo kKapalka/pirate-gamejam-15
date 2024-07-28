@@ -1,13 +1,13 @@
-[gd_resource type="Texture2D" script_class="ResourceCard" load_steps=3 format=3 uid="uid://ddfykb5tl8y4r"]
+[gd_resource type="Texture2D" script_class="ResourceCard" load_steps=3 format=3 uid="uid://50jy46x5ti0t"]
 
-[ext_resource type="Script" path="res://scripts/card/cardResource.gd" id="1_1urdk"]
-[ext_resource type="Texture2D" uid="uid://b27akj37r4nfx" path="res://resources/graphics/cards/resized/sulfur.png" id="2_qwmb7"]
+[ext_resource type="Script" path="res://scripts/card/cardResource.gd" id="1_uancw"]
+[ext_resource type="Texture2D" uid="uid://08t8foad4pla" path="res://resources/graphics/cards/resized/verdigris.png" id="2_31h1b"]
 
 [resource]
 resource_local_to_scene = false
 resource_name = ""
-script = ExtResource("1_1urdk")
-texture = ExtResource("2_qwmb7")
-name = "Sulfur"
-id = "sulfur"
-consumable = false
+script = ExtResource("1_uancw")
+texture = ExtResource("2_31h1b")
+name = "Verdigris"
+id = "verdigris"
+consumable = true

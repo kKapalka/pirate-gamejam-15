@@ -1,13 +1,13 @@
 [gd_resource type="Texture2D" script_class="ResourceCard" load_steps=3 format=3 uid="uid://cj61i5fm3pb5n"]
 
-[ext_resource type="Script" path="res://scripts/card/cardResource.gd" id="1_qceam"]
-[ext_resource type="Texture2D" uid="uid://d4dj173ya8tyx" path="res://resources/graphics/cards/resized/quicklime.png" id="2_8g7du"]
+[ext_resource type="Script" path="res://scripts/card/cardResource.gd" id="1_soasw"]
+[ext_resource type="Texture2D" uid="uid://bbgwjo14q16e7" path="res://resources/graphics/cards/resized/rain.png" id="2_yp3v8"]
 
 [resource]
 resource_local_to_scene = false
 resource_name = ""
-script = ExtResource("1_qceam")
-texture = ExtResource("2_8g7du")
-name = "Quicklime"
-id = "quicklime"
-consumable = false
+script = ExtResource("1_soasw")
+texture = ExtResource("2_yp3v8")
+name = "Rain"
+id = "rain"
+consumable = true

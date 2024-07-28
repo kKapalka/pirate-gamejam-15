@@ -1,0 +1,13 @@
+[gd_resource type="Texture2D" script_class="ResourceCard" load_steps=3 format=3 uid="uid://bp0js5ignbkq1"]
+
+[ext_resource type="Script" path="res://scripts/card/cardResource.gd" id="1_u41ag"]
+[ext_resource type="Texture2D" uid="uid://c7nqwmp611ma0" path="res://resources/graphics/cards/resized/air.png" id="2_ugwkq"]
+
+[resource]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("1_u41ag")
+texture = ExtResource("2_ugwkq")
+name = "Air"
+id = "air"
+consumable = false

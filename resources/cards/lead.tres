@@ -10,4 +10,4 @@ script = ExtResource("1_hpxgj")
 texture = ExtResource("2_rs8a3")
 name = "Lead"
 id = "lead"
-consumable = false
+consumable = true

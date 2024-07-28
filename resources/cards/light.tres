@@ -1,14 +1,13 @@
 [gd_resource type="Texture2D" script_class="ResourceCard" load_steps=3 format=3 uid="uid://dwc5xwokf48e5"]
 
-[ext_resource type="Script" path="res://scripts/card/cardResource.gd" id="1_7opkc"]
-[ext_resource type="Texture2D" uid="uid://cfx1cdjytwrq5" path="res://resources/graphics/cards/resized/lava.png" id="2_6awjd"]
+[ext_resource type="Script" path="res://scripts/card/cardResource.gd" id="1_howsp"]
+[ext_resource type="Texture2D" uid="uid://d2au87u8bhimg" path="res://resources/graphics/cards/resized/light.png" id="2_if6y3"]
 
 [resource]
 resource_local_to_scene = false
 resource_name = ""
-script = ExtResource("1_7opkc")
-texture = ExtResource("2_6awjd")
-name = "Lava"
-id = "lava"
-textColor = Color(0.627451, 0.392157, 0, 1)
-consumable = false
+script = ExtResource("1_howsp")
+texture = ExtResource("2_if6y3")
+name = "Light"
+id = "light"
+consumable = true

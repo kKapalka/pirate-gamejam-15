@@ -9,5 +9,5 @@ resource_name = ""
 script = ExtResource("1_6anvh")
 texture = ExtResource("2_txpw6")
 name = "Steel"
-id = "sand"
-consumable = false
+id = "steel"
+consumable = true

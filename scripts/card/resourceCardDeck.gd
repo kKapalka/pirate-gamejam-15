@@ -9,5 +9,5 @@ var tableCards: Array[TableCard] = []
 #initial deck content
 func _init():
 	self.fullContents.append_array(
-		["copper", "fire", "gold", "iron", "earth", "lead", "water", "tin"]
+		["water", "air", "earth", "fire"]
 	)

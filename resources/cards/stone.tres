@@ -1,13 +1,13 @@
-[gd_resource type="Texture2D" script_class="ResourceCard" load_steps=3 format=3 uid="uid://dxc7xbmo23oo1"]
+[gd_resource type="Texture2D" script_class="ResourceCard" load_steps=3 format=3 uid="uid://c4mc43664oq73"]
 
-[ext_resource type="Script" path="res://scripts/card/cardResource.gd" id="1_sp2x5"]
-[ext_resource type="Texture2D" uid="uid://cjave7sj83etg" path="res://resources/graphics/cards/resized/steel.png" id="2_13mgu"]
+[ext_resource type="Script" path="res://scripts/card/cardResource.gd" id="1_khv5u"]
+[ext_resource type="Texture2D" uid="uid://cah5tcfqpniuf" path="res://resources/graphics/cards/resized/stone.png" id="2_78m8l"]
 
 [resource]
 resource_local_to_scene = false
 resource_name = ""
-script = ExtResource("1_sp2x5")
-texture = ExtResource("2_13mgu")
-name = "Steel"
-id = "steel"
-consumable = false
+script = ExtResource("1_khv5u")
+texture = ExtResource("2_78m8l")
+name = "Stone"
+id = "stone"
+consumable = true

@@ -1,13 +1,13 @@
 [gd_resource type="Texture2D" script_class="ResourceCard" load_steps=3 format=3 uid="uid://iniapo46dya0"]
 
 [ext_resource type="Script" path="res://scripts/card/cardResource.gd" id="1_8jpj2"]
-[ext_resource type="Texture2D" uid="uid://gxutfia7ss1t" path="res://resources/graphics/cards/resized/albedo.png" id="2_vuf6g"]
+[ext_resource type="Texture2D" uid="uid://ky7310fwuq7h" path="res://resources/graphics/cards/resized/rubedo.png" id="2_mr3pi"]
 
 [resource]
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("1_8jpj2")
-texture = ExtResource("2_vuf6g")
-name = "Albedo"
-id = "albedo"
-consumable = false
+texture = ExtResource("2_mr3pi")
+name = "Rubedo"
+id = "rubedo"
+consumable = true

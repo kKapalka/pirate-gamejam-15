@@ -10,5 +10,4 @@ script = ExtResource("1_w76s5")
 texture = ExtResource("2_ly7ee")
 name = "Quicklime"
 id = "quicklime"
-textColor = Color(0.627451, 0.392157, 0, 1)
-consumable = false
+consumable = true

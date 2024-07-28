@@ -10,5 +10,4 @@ script = ExtResource("1_3004m")
 texture = ExtResource("2_kwbo3")
 name = "Gold"
 id = "gold"
-textColor = Color(0.92549, 0.784314, 0, 1)
-consumable = false
+consumable = true
