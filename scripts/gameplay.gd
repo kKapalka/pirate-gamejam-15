@@ -15,6 +15,8 @@ var dragging: bool = false
 @onready var spawnCardButton: Button = $Control/ActiveMenu/SpawnRandomCard
 
 @onready var cardSlots: Array[CardSlot] = [$CardSlot, $CardSlot2, $CardSlot3]
+@onready var resultSlot : Node3D = $ResultSlot
+const blankCardId : String = "blank"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -104,7 +106,30 @@ func _on_scroll_collider_input_event(_camera, _event, _position, _normal, _shape
 func _on_turn_ended():
 	print("turn ended logic")
 
+func start_brew():
+	# validate empty slots <= 1
+	var filteredCardSlots : Array[CardSlot] = cardSlots.filter(func(cardslot : CardSlot) : return cardslot.card != null)
+	if filteredCardSlots.size() < 2 :
+		return
+	#find recipe
+	var ingredientsId : Array[String]
+	ingredientsId.assign(cardSlots.map(func(cardslot : CardSlot) : return mapCardSlotToCardId(cardslot)))
+	var recipe : ResourceRecipe = RecipeHandler.findCombination(ingredientsId)
+	#delete all consumable cards
+	for cardSlot in filteredCardSlots:
+		var card = cardSlot.card
+		if card.cardTemplate.card.consumable :
+			resourceCardPool.markAsHidden(card.get_instance_id())
+			card.disappear()
+	#create cards
+	for i in recipe.resultCount:
+		resourceCardPool.spawnOneCard(CardHandler.loadResourceCard(recipe.resultId), resultSlot.global_position)
+	resourceCardPool.deckSaveRoutine()
 
+func mapCardSlotToCardId(cardslot : CardSlot) -> String:
+	if cardslot.card != null:
+		return cardslot.card.cardTemplate.card.id
+	return blankCardId
 
-func _on_area_3d_body_entered(body):
-	print("something entered")
+func _on_brew_button_button_up():
+	start_brew()

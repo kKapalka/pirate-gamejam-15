@@ -99,6 +99,13 @@ offset_right = 100.0
 offset_bottom = 71.0
 text = "Spawn Card"
 
+[node name="BrewButton" type="Button" parent="Control/ActiveMenu"]
+layout_mode = 0
+offset_top = 80.0
+offset_right = 48.0
+offset_bottom = 111.0
+text = "Brew"
+
 [node name="CardDisappearTimer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
@@ -178,10 +185,19 @@ transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74
 sorting_offset = -5.0
 mesh = SubResource("PlaneMesh_74yme")
 
+[node name="ResultSlot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.154, 0, 4.9)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ResultSlot"]
+transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 0, 0, 0.01)
+sorting_offset = -5.0
+mesh = SubResource("PlaneMesh_74yme")
+
 [connection signal="input_event" from="DraggingBoundsArea" to="." method="_on_dragging_bounds_area_input_event"]
 [connection signal="mouse_entered" from="DraggingBoundsArea" to="." method="_on_dragging_bounds_area_mouse_entered"]
 [connection signal="button_up" from="Control/ActiveMenu/EndTurnButton" to="." method="_on_end_turn_button_button_up"]
 [connection signal="button_up" from="Control/ActiveMenu/SpawnRandomCard" to="." method="_on_spawn_random_card_button_up"]
+[connection signal="button_up" from="Control/ActiveMenu/BrewButton" to="." method="_on_brew_button_button_up"]
 [connection signal="timeout" from="CardDisappearTimer" to="." method="_on_card_disappear_timer_timeout"]
 [connection signal="input_event" from="Scroll/ScrollCollider" to="." method="_on_scroll_collider_input_event"]
 [connection signal="input_event" from="BookAndHolder/NotebookCollider" to="." method="_on_notebook_collider_input_event"]
