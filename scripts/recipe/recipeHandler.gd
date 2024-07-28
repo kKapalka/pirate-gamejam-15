@@ -9,7 +9,6 @@ func findCombination(ingredients : Array[String]) -> ResourceRecipe:
 	if ingredients.size() != 3:
 		return null
 	var recipes = resourceRecipeArray.duplicate()
-	print(recipes.map(func(x): return x.ingredientsId))
 	recipes = filterArrayByIngredient(recipes, ingredients[0])
 	recipes = filterArrayByIngredient(recipes, ingredients[1])
 	recipes = filterArrayByIngredient(recipes, ingredients[2])
