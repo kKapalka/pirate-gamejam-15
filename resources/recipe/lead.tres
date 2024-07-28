@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ResourceRecipe" load_steps=2 format=3 uid="uid://bbc3b2bjvro3r"]
+
+[ext_resource type="Script" path="res://scripts/recipe/recipe.gd" id="1_o44if"]
+
+[resource]
+script = ExtResource("1_o44if")
+id = "lead"
+ingredientsId = Array[String](["tin", "salt"])
+resultId = "lead"
+resultCount = 1

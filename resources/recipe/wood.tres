@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ResourceRecipe" load_steps=2 format=3 uid="uid://cyfi4i33bh3c3"]
+
+[ext_resource type="Script" path="res://scripts/recipe/recipe.gd" id="1_lqwcf"]
+
+[resource]
+script = ExtResource("1_lqwcf")
+id = "wood"
+ingredientsId = Array[String](["plant", "earth"])
+resultId = "wood"
+resultCount = 1

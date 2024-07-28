@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ResourceRecipe" load_steps=2 format=3 uid="uid://dsru1ln5hfbwi"]
+
+[ext_resource type="Script" path="res://scripts/recipe/recipe.gd" id="1_xpg5v"]
+
+[resource]
+script = ExtResource("1_xpg5v")
+id = "waste1"
+ingredientsId = Array[String](["sand", "water"])
+resultId = "waste"
+resultCount = 1

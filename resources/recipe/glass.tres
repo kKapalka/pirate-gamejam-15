@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ResourceRecipe" load_steps=2 format=3 uid="uid://3c8q0ido6fsm"]
+
+[ext_resource type="Script" path="res://scripts/recipe/recipe.gd" id="1_f5fxu"]
+
+[resource]
+script = ExtResource("1_f5fxu")
+id = "glass"
+ingredientsId = Array[String](["sand", "fire"])
+resultId = "glass"
+resultCount = 1

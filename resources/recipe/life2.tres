@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ResourceRecipe" load_steps=2 format=3 uid="uid://0hiwsp2sfubr"]
+
+[ext_resource type="Script" path="res://scripts/recipe/recipe.gd" id="1_dxdha"]
+
+[resource]
+script = ExtResource("1_dxdha")
+id = "life2"
+ingredientsId = Array[String](["plant", "air"])
+resultId = "life"
+resultCount = 1

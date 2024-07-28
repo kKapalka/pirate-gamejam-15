@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ResourceRecipe" load_steps=2 format=3 uid="uid://b02i6q2u8n3bk"]
+
+[ext_resource type="Script" path="res://scripts/recipe/recipe.gd" id="1_vxjsr"]
+
+[resource]
+script = ExtResource("1_vxjsr")
+id = "nigredo"
+ingredientsId = Array[String](["rot", "death", "darkness"])
+resultId = "nigredo"
+resultCount = 1
