@@ -32,6 +32,7 @@ func initDeck() -> ResourceCardDeck:
 	var savedDeck = ResourceCardDeck.new()
 	var tableCards: Array[TableCard] = []
 	var amount = len(savedDeck.fullContents)
+	var finalCard = null
 	for i in amount:
 		var card = cardNode.instantiate() as ResourceCardNode
 		add_child(card)		
@@ -42,10 +43,12 @@ func initDeck() -> ResourceCardDeck:
 		card.position = tableCardSpawnPoint.position + tableCardSpawnOffset * i
 		tableCards.append(TableCard.new(savedDeck.fullContents[amount - i - 1], card.global_position, card.get_instance_id()))
 		activeCards.append(card)
+		finalCard = card
 	savedDeck.tableCards = tableCards
 	SaveHandler.player.deck = inst_to_dict(savedDeck)
 	SaveHandler.player.deck.tableCards = savedDeck.tableCards.map(func(x): return inst_to_dict(x))
 	SaveHandler.saveGame()
+	updateCardZIndices(finalCard)
 	return savedDeck
 
 func loadDeck():
