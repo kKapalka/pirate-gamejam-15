@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://4a12dybvv4nc"]
+[gd_scene load_steps=4 format=3 uid="uid://4a12dybvv4nc"]
 
 [ext_resource type="Script" path="res://scripts/recipe/recipeHandler.gd" id="1_g8yty"]
+[ext_resource type="Resource" uid="uid://du4hve7cf6d2n" path="res://resources/recipe/brass.tres" id="2_w677t"]
+[ext_resource type="Resource" uid="uid://ck1mn8rvk1wv5" path="res://resources/recipe/waste.tres" id="3_rne4m"]
 
 [node name="RecipeHandler" type="Node"]
 script = ExtResource("1_g8yty")
+resourceRecipeArray = Array[Resource("res://scripts/recipe/recipe.gd")]([ExtResource("2_w677t"), ExtResource("3_rne4m")])
