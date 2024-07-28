@@ -8,6 +8,8 @@ class_name GameplayNode
 
 @onready var pauseMenu: PauseMenu = $Control/PauseMenu
 @onready var activeMenu: Control = $Control/ActiveMenu
+@onready var mapMenu: Control = $Control/MapMenu
+@onready var eventCard: EventCardTemplate = $Control/EventCard
 
 var dragging: bool = false
 @onready var resourceCardPool: ResourceCardDeckNode = $ResourceCardPool
@@ -34,6 +36,10 @@ func _ready():
 	TimeHandler.connect("turnEnded", _on_turn_ended)
 	call_deferred("afterReady")	
 	resultSlotMaterial = (resultSlot.get_child(0) as MeshInstance3D).get_active_material(0)
+	eventCard.gameplayNode = self
+	if SaveHandler.player.currentEvent != null and SaveHandler.player.currentEvent != '':
+		CursorHandler.canInteractWithBoard = false
+		openEventCardById(SaveHandler.player.currentEvent)
 
 func afterReady():
 	resourceCardPool.triggerSlotDetection(cardSlots)
@@ -43,6 +49,7 @@ func _input(_event):
 		if !pauseMenu.visible:
 			pauseMenu.visible = true
 			activeMenu.visible = false
+			mapMenu.visible = false
 			get_viewport().set_input_as_handled()
 			if CursorHandler.dragging:
 				CursorHandler.onDropTriggered()
@@ -105,7 +112,8 @@ func _on_scroll_collider_input_event(_camera, _event, _position, _normal, _shape
 	if Input.is_action_just_pressed("select") and CursorHandler.cursorLagTimer.is_stopped() and CursorHandler.canInteractWithBoard:
 		CursorHandler.canInteractWithBoard = false
 		CursorHandler.cursorLagTimer.start()
-		print("Map Open")
+		activeMenu.visible = false
+		mapMenu.visible = true
 
 func _on_turn_ended():
 	print("turn ended logic")
@@ -117,7 +125,7 @@ func start_brew():
 		onRecipeFailure()
 		return
 	#find recipe
-	var ingredientsId : Array[String]
+	var ingredientsId : Array[String] = []
 	ingredientsId.assign(cardSlots.map(func(cardslot : CardSlot) : return mapCardSlotToCardId(cardslot)))
 	var recipe : ResourceRecipe = RecipeHandler.findCombination(ingredientsId)
 	if recipe != null:
@@ -157,3 +165,43 @@ func _on_brew_button_button_up():
 
 func _on_brood_button_up():
 	pass # Replace with function body.
+
+
+func _on_close_map_button_up():
+	activeMenu.visible = true
+	mapMenu.visible = false
+	CursorHandler.canInteractWithBoard = true
+
+
+func _on_forest_button_button_up():
+	openEventCard(CardHandler.getRandomEventCardFromPool("forest"))
+
+
+func _on_city_button_button_up():
+	openEventCard(CardHandler.getRandomEventCardFromPool("city"))
+
+
+func _on_mountains_button_button_up():
+	openEventCard(CardHandler.getRandomEventCardFromPool("mountains"))
+
+
+func _on_marsh_button_button_up():
+	openEventCard(CardHandler.getRandomEventCardFromPool("marsh"))
+
+func openEventCardById(id: String):
+	openEventCard(CardHandler.getEventCard(id))
+
+func openEventCard(card: EventCardResource):
+	SaveHandler.player.currentEvent = card.id
+	SaveHandler.saveGame()
+	mapMenu.visible = false
+	activeMenu.visible = false
+	eventCard.visible = true
+	eventCard.card = card
+	
+func hideEventCard():
+	eventCard.visible = false
+	activeMenu.visible = true
+	CursorHandler.canInteractWithBoard = true
+	SaveHandler.player.currentEvent = ''
+	SaveHandler.saveGame()

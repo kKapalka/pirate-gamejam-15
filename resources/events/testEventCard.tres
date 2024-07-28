@@ -1,0 +1,38 @@
+[gd_resource type="Texture2D" script_class="EventCardResource" load_steps=6 format=3 uid="uid://mpvfkjrk7uy2"]
+
+[ext_resource type="Script" path="res://scripts/card/eventCardOption.gd" id="1_3oce1"]
+[ext_resource type="Script" path="res://scripts/card/eventCardResource.gd" id="1_scfvw"]
+[ext_resource type="Texture2D" uid="uid://51jxdg4vyhfu" path="res://resources/graphics/image.jpg" id="2_ik6n5"]
+
+[sub_resource type="Resource" id="Resource_60642"]
+script = ExtResource("1_3oce1")
+text = "Here we have option 1"
+eventCardOpenedId = ""
+cardsGranted = Array[String]([])
+gameOver = false
+
+[sub_resource type="Resource" id="Resource_bmid8"]
+script = ExtResource("1_3oce1")
+text = "Here we have option 2"
+eventCardOpenedId = ""
+cardsGranted = Array[String]([])
+gameOver = false
+
+[resource]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("1_scfvw")
+texture = ExtResource("2_ik6n5")
+title = "Test card"
+description = "Test
+of
+multiple=
+line
+it
+appears
+to
+be
+working"
+options = Array[ExtResource("1_3oce1")]([SubResource("Resource_60642"), SubResource("Resource_bmid8")])
+id = "test"
+consumable = false

@@ -4,3 +4,7 @@
 
 [node name="CardHandlerNode" type="Node"]
 script = ExtResource("1_stjpp")
+cityEventPool = Array[String](["test"])
+forestEventPool = Array[String](["test"])
+marshEventPool = Array[String](["test"])
+mountainEventPool = Array[String](["test"])

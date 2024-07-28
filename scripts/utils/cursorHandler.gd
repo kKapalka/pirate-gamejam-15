@@ -17,6 +17,9 @@ var cardSlots: Array[CardSlot]
 
 @onready var cursorLagTimer: Timer = $CursorLagTimer
 
+func _ready():
+	SaveHandler.loadGame()
+
 #play click sound at event's position on mouse click
 func _input(_event):
 	if Input.is_action_just_pressed("select") and cursorLagTimer.is_stopped():

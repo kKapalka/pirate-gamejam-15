@@ -4,16 +4,26 @@ extends MarginContainer
 @onready var settingsContainer: SettingsMenu = $Settings
 
 @onready var buttons: Array[Button] = [
-	$HBoxContainer/VSplitContainer/VBoxContainer/NewGame,
 	$HBoxContainer/VSplitContainer/VBoxContainer/Continue,
+	$HBoxContainer/VSplitContainer/VBoxContainer/NewGame,
 	$HBoxContainer/VSplitContainer/VBoxContainer/Options,
 	$HBoxContainer/CreditsContainer/Credits,
 	$HBoxContainer/QuitContainer/Quit
 ]
 var focusedButtonIndex = 0
+var minFocusedButtonIndex = 0
 
 func _ready():
 	settingsContainer.returnCallback = onReturn
+	if SaveHandler.player == {
+		"deck": {},
+		"currentEvent": '',
+		"time": 1
+	}:
+		buttons[0].visible = false
+		focusedButtonIndex = 1
+		minFocusedButtonIndex = 1
+	
 	buttons[focusedButtonIndex].grab_focus()
 
 func _input(_event):
@@ -21,14 +31,14 @@ func _input(_event):
 		if Input.is_action_pressed("ui_down"):
 			focusedButtonIndex += 1
 			if focusedButtonIndex >= len(buttons):
-				focusedButtonIndex -= len(buttons)
+				focusedButtonIndex -= len(buttons) - minFocusedButtonIndex
 			buttons[focusedButtonIndex].grab_focus()
 			get_viewport().set_input_as_handled()
 		
 		if Input.is_action_pressed("ui_up"):
 			focusedButtonIndex -= 1
-			if focusedButtonIndex < 0:
-				focusedButtonIndex += len(buttons)
+			if focusedButtonIndex < minFocusedButtonIndex:
+				focusedButtonIndex += len(buttons) - minFocusedButtonIndex
 			buttons[focusedButtonIndex].grab_focus()
 			get_viewport().set_input_as_handled()
 		
@@ -37,12 +47,12 @@ func _input(_event):
 		
 
 func new_game():
-	focusedButtonIndex = 0
+	focusedButtonIndex = 1
 	SaveHandler.clearGame()
 	get_tree().change_scene_to_file("res://scenes/gameplay.tscn")
 
 func continue_():
-	focusedButtonIndex = 1
+	focusedButtonIndex = 0
 	get_tree().change_scene_to_file("res://scenes/gameplay.tscn")
 
 func options():

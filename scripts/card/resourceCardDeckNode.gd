@@ -105,6 +105,9 @@ func getRandomCard():
 func spawnRandomCard():
 	var cards: Array[ResourceCard] = [CardHandler.getRandomResourceCard()]
 	spawn(cards)
+
+func spawnCardsByIds(ids: Array[String]):
+	spawn(ids.map(func(x): return CardHandler.loadResourceCard(x)))
 	
 func spawn(cards: Array[ResourceCard]):
 	var finalCard = null

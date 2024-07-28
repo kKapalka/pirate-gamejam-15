@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c0b3rjfuqloa1"]
+[gd_scene load_steps=20 format=3 uid="uid://c0b3rjfuqloa1"]
 
 [ext_resource type="Script" path="res://scripts/gameplay.gd" id="1_yv17x"]
 [ext_resource type="Texture2D" uid="uid://b02ay7mvwgk2q" path="res://icon.svg" id="2_vrsh7"]
@@ -7,7 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://b3g3wyw7qhoq6" path="res://resources/models/Alchemy Models/AlchemySetFiles/Alchemyset.glb" id="5_8exo6"]
 [ext_resource type="PackedScene" uid="uid://3gw2jbnor51w" path="res://scenes/menus/pause_menu.tscn" id="5_xpxku"]
 [ext_resource type="PackedScene" uid="uid://bd7m83mya10q3" path="res://resources/models/Alchemy Models/DeskFiles/Desk.glb" id="6_adcc6"]
+[ext_resource type="Texture2D" uid="uid://vj4wbsvb1c2j" path="res://resources/graphics/map.jpg" id="6_v3p2l"]
 [ext_resource type="PackedScene" uid="uid://btgyfhlhfoe5x" path="res://resources/models/Alchemy Models/HolderFiles/Holder.gltf" id="7_i782a"]
+[ext_resource type="Texture2D" uid="uid://d05u6a3fk4pc4" path="res://resources/graphics/cards/mapCardButton.png" id="7_ihuqv"]
+[ext_resource type="PackedScene" uid="uid://p2wed88y6i20" path="res://scenes/card/eventCardTemplate.tscn" id="7_mt5a5"]
 [ext_resource type="PackedScene" uid="uid://triwej8ik7hv" path="res://resources/models/Alchemy Models/ScrollFiles/Scroll.gltf" id="8_41w0w"]
 [ext_resource type="PackedScene" uid="uid://de1lghsrvyx13" path="res://resources/models/Alchemy Models/BookFiles/BookAndHolder.gltf" id="9_rpieh"]
 [ext_resource type="Script" path="res://scripts/cardSlot.gd" id="11_yctxp"]
@@ -72,18 +75,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="PauseMenu" parent="Control" instance=ExtResource("5_xpxku")]
-visible = false
-z_index = 2
-layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_right = 1152.0
-offset_bottom = 648.0
-grow_horizontal = 1
-grow_vertical = 1
-
 [node name="ActiveMenu" type="Control" parent="Control"]
 anchors_preset = 0
 offset_right = 40.0
@@ -106,6 +97,98 @@ offset_top = 160.0
 offset_right = 500.0
 offset_bottom = 240.0
 text = "Brew"
+
+[node name="MapMenu" type="MarginContainer" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MapContainer" type="Control" parent="Control/MapMenu"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/MapMenu/MapContainer"]
+layout_mode = 0
+offset_left = 126.0
+offset_top = 247.0
+offset_right = 1026.0
+offset_bottom = 647.0
+texture = ExtResource("6_v3p2l")
+expand_mode = 2
+
+[node name="CloseMap" type="Button" parent="Control/MapMenu/MapContainer/TextureRect"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -100.0
+offset_top = -40.0
+grow_horizontal = 0
+text = "Close Map"
+
+[node name="ForestButton" type="TextureButton" parent="Control/MapMenu/MapContainer/TextureRect"]
+layout_mode = 0
+offset_left = 723.0
+offset_top = 218.0
+offset_right = 795.0
+offset_bottom = 346.0
+texture_normal = ExtResource("7_ihuqv")
+
+[node name="CityButton" type="TextureButton" parent="Control/MapMenu/MapContainer/TextureRect"]
+layout_mode = 0
+offset_left = 522.0
+offset_top = 10.0
+offset_right = 594.0
+offset_bottom = 138.0
+texture_normal = ExtResource("7_ihuqv")
+
+[node name="MountainsButton" type="TextureButton" parent="Control/MapMenu/MapContainer/TextureRect"]
+layout_mode = 0
+offset_left = 74.0
+offset_top = 257.0
+offset_right = 146.0
+offset_bottom = 385.0
+texture_normal = ExtResource("7_ihuqv")
+
+[node name="MarshButton" type="TextureButton" parent="Control/MapMenu/MapContainer/TextureRect"]
+layout_mode = 0
+offset_left = 210.0
+offset_top = 76.0
+offset_right = 282.0
+offset_bottom = 204.0
+texture_normal = ExtResource("7_ihuqv")
+
+[node name="EventCard" parent="Control" node_paths=PackedStringArray("options") instance=ExtResource("7_mt5a5")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -316.0
+offset_right = -400.0
+offset_bottom = -316.0
+grow_horizontal = 2
+grow_vertical = 2
+options = []
+
+[node name="PauseMenu" parent="Control" instance=ExtResource("5_xpxku")]
+visible = false
+z_index = 2
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 1152.0
+offset_bottom = 648.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="CardDisappearTimer" type="Timer" parent="."]
 wait_time = 0.5
@@ -198,6 +281,11 @@ mesh = SubResource("PlaneMesh_uwddj")
 [connection signal="mouse_entered" from="DraggingBoundsArea" to="." method="_on_dragging_bounds_area_mouse_entered"]
 [connection signal="button_up" from="Control/ActiveMenu/Brood" to="." method="_on_brood_button_up"]
 [connection signal="button_up" from="Control/ActiveMenu/BrewButton" to="." method="_on_brew_button_button_up"]
+[connection signal="button_up" from="Control/MapMenu/MapContainer/TextureRect/CloseMap" to="." method="_on_close_map_button_up"]
+[connection signal="button_up" from="Control/MapMenu/MapContainer/TextureRect/ForestButton" to="." method="_on_forest_button_button_up"]
+[connection signal="button_up" from="Control/MapMenu/MapContainer/TextureRect/CityButton" to="." method="_on_city_button_button_up"]
+[connection signal="button_up" from="Control/MapMenu/MapContainer/TextureRect/MountainsButton" to="." method="_on_mountains_button_button_up"]
+[connection signal="button_up" from="Control/MapMenu/MapContainer/TextureRect/MarshButton" to="." method="_on_marsh_button_button_up"]
 [connection signal="timeout" from="CardDisappearTimer" to="." method="_on_card_disappear_timer_timeout"]
 [connection signal="input_event" from="Scroll/ScrollCollider" to="." method="_on_scroll_collider_input_event"]
 [connection signal="input_event" from="BookAndHolder/NotebookCollider" to="." method="_on_notebook_collider_input_event"]

@@ -1,0 +1,133 @@
+[gd_scene load_steps=6 format=3 uid="uid://p2wed88y6i20"]
+
+[ext_resource type="Script" path="res://scripts/card/eventCardTemplate.gd" id="1_7nebk"]
+[ext_resource type="Texture2D" uid="uid://mpvfkjrk7uy2" path="res://resources/events/testEventCard.tres" id="2_2pldd"]
+[ext_resource type="Texture2D" uid="uid://blqsw43fi455v" path="res://resources/graphics/cards/eventCardBackground.png" id="3_8npka"]
+[ext_resource type="Script" path="res://scripts/utils/autoResizeLabel.gd" id="4_0fio1"]
+[ext_resource type="Texture2D" uid="uid://51jxdg4vyhfu" path="res://resources/graphics/image.jpg" id="4_h070b"]
+
+[node name="Cardtemplate" type="Control" node_paths=PackedStringArray("nameLabel", "descriptionLabel", "options", "artworkRect")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 800.0
+offset_bottom = 640.0
+script = ExtResource("1_7nebk")
+nameLabel = NodePath("Art/Name")
+descriptionLabel = NodePath("Description")
+options = [NodePath("Art/VBoxContainer/Option1"), NodePath("Art/VBoxContainer/Option2"), NodePath("Art/VBoxContainer/Option3")]
+artworkRect = NodePath("Art")
+card = ExtResource("2_2pldd")
+
+[node name="Background" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(800, 640)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_8npka")
+
+[node name="Art" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 290.0
+offset_bottom = 620.0
+texture = ExtResource("4_h070b")
+expand_mode = 4
+stretch_mode = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Art"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -180.0
+offset_right = 260.0
+offset_bottom = -20.0
+grow_vertical = 0
+alignment = 1
+
+[node name="Option1" type="Button" parent="Art/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Art/VBoxContainer/Option1"]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 0
+offset_right = 250.0
+offset_bottom = 50.0
+text = "Here we have option 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Option2" type="Button" parent="Art/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Art/VBoxContainer/Option2"]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 0
+offset_right = 250.0
+offset_bottom = 50.0
+text = "Here we have option 2"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Option3" type="Button" parent="Art/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Art/VBoxContainer/Option3"]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 0
+offset_right = 250.0
+offset_bottom = 50.0
+text = "i think i have an idea for how event cards should look"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Name" type="Label" parent="Art"]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 0
+offset_left = 10.0
+offset_top = 2.0
+offset_right = 260.0
+offset_bottom = 52.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/font_size = 32
+text = "Test card"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+script = ExtResource("4_0fio1")
+minFontSize = 12
+currentFontSize = 32
+maxFontSize = 32
+
+[node name="Description" type="Label" parent="."]
+custom_minimum_size = Vector2(400, 300)
+layout_mode = 0
+offset_left = 350.0
+offset_top = 100.0
+offset_right = 750.0
+offset_bottom = 400.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Test
+of
+multiple=
+line
+it
+appears
+to
+be
+working"
+autowrap_mode = 2
+
+[connection signal="button_up" from="Art/VBoxContainer/Option1" to="." method="_on_option_1_button_up"]
+[connection signal="button_up" from="Art/VBoxContainer/Option2" to="." method="_on_option_2_button_up"]
+[connection signal="button_up" from="Art/VBoxContainer/Option3" to="." method="_on_option_3_button_up"]

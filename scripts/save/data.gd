@@ -4,8 +4,8 @@ const FILE_NAME = "res://resources/game.save"
 const SETTINGS_FILE_NAME = "res://resources/settings.save"
 
 var player = {
-	"name": "Zippy",
 	"deck": {},
+	"currentEvent": '',
 	"time": 1
 }
 var settings = {
@@ -28,8 +28,8 @@ func load():
 	
 func clearGame():
 	player = {
-		"name": "Zippy",
 		"deck": {},
+		"currentEvent": '',
 		"time": 1
 	}
 	saveGame()
