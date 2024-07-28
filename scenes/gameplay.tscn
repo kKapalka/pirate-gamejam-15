@@ -24,11 +24,11 @@ ambient_light_energy = 0.2
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_74yme"]
 material = ExtResource("12_ij207")
-size = Vector2(1, 1.78)
+size = Vector2(0.8, 1.424)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_uwddj"]
 material = ExtResource("13_l5b3l")
-size = Vector2(1, 1.78)
+size = Vector2(0.9, 1.6)
 
 [node name="Gameplay" type="Node3D"]
 script = ExtResource("1_yv17x")
@@ -243,7 +243,7 @@ transform = Transform3D(-0.395095, -0.440338, 0.806227, -0.185839, 0.897797, 0.3
 transform = Transform3D(0.700266, 0.406072, -0.58714, -0.233067, 0.907439, 0.349621, 0.674764, -0.107985, 0.730091, -7.38689, 5.93705, 6.22891)
 
 [node name="CardSlot" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -4.5, 0, 4.9)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -4.40241, 0, 4.76744)
 script = ExtResource("11_yctxp")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CardSlot"]
@@ -252,7 +252,7 @@ sorting_offset = -5.0
 mesh = SubResource("PlaneMesh_74yme")
 
 [node name="CardSlot2" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -3.06825, 0, 4.9)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -3.29185, 0, 4.78359)
 script = ExtResource("11_yctxp")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CardSlot2"]
@@ -261,7 +261,7 @@ sorting_offset = -5.0
 mesh = SubResource("PlaneMesh_74yme")
 
 [node name="CardSlot3" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -1.65418, 0, 4.9)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -2.1306, 0, 4.79077)
 script = ExtResource("11_yctxp")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CardSlot3"]
@@ -270,7 +270,7 @@ sorting_offset = -5.0
 mesh = SubResource("PlaneMesh_74yme")
 
 [node name="ResultSlot" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.154, 0, 4.9)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.685978, 0, 4.80469)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="ResultSlot"]
 transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 0, 0, 0.01)

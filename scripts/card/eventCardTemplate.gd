@@ -18,7 +18,6 @@ var updateCardContents = false
 var gameplayNode: GameplayNode
 
 func ready():
-	print(options)
 	if len(options) == 0:
 		options = [
 			$Art/VBoxContainer/Option1, $Art/VBoxContainer/Option2, $Art/VBoxContainer/Option3

@@ -34,10 +34,9 @@ func changePropertyCard(id: String):
 func becomeRandom():
 	cardTemplate.card = CardHandler.getRandomResourceCard()
 		
-func onPickUp(_lift: float):
-	newPosition = position
-	oldPosition = position	
-	newPosition.y = _lift
+func onPickUp(cardDragAreaCollisionPoint: Vector3):
+	newPosition = cardDragAreaCollisionPoint
+	oldPosition = position
 	
 	rotationX = rotation_degrees.x
 	detectionArea.visible = false
@@ -58,12 +57,7 @@ func onPickUp(_lift: float):
 	
 	
 func onDraggingMouseMotion(_position: Vector3):
-	if mousePositionOffset == Vector3.ZERO:
-		mousePositionOffset = _position
-		basePosition = position
-	if (canMove):
-		basePosition.y = position.y
-		position = lerp(position, basePosition + _position - mousePositionOffset, 0.8)
+	position = lerp(position, _position, 0.8)
 	
 func onDrop(cardSlots: Array[CardSlot]):
 	oldPosition = position

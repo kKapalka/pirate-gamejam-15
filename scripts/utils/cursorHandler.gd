@@ -29,8 +29,6 @@ func _input(_event):
 				var card = detectCardByMouseRaycast()
 				if card != null and canInteractWithBoard:
 					draggedCard = card
-					draggedCard.onPickUp(draggingBoundsArea.position.y)
-					dragging = true
 					draggingBoundsArea.visible = true
 					cursorLagTimer.start()
 					canInteractWithBoard = false
@@ -46,6 +44,9 @@ func onDropTriggered():
 	canInteractWithBoard = true
 	
 func onDraggingMouseMotion(position: Vector3):
+	if !dragging:
+		draggedCard.onPickUp(position)
+		dragging = true
 	draggedCard.onDraggingMouseMotion(position)
 
 func detectCardByMouseRaycast() -> ResourceCardNode:

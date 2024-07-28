@@ -78,7 +78,7 @@ func saveRoutine():
 	SaveHandler.saveGame()
 
 func _on_dragging_bounds_area_input_event(_camera, event: InputEvent, position, _normal, _shape_idx):
-	if CursorHandler.dragging and event is InputEventMouseMotion:
+	if (CursorHandler.draggedCard != null and !CursorHandler.dragging) or (CursorHandler.dragging and event is InputEventMouseMotion):
 		var minV = draggingPolygon.polygon[3]
 		var maxV = draggingPolygon.polygon[1]
 		var dragPosition = Vector3(max(minV.x,min(maxV.x,position.x)), position.y, max(minV.y, min(maxV.y, position.z)))
