@@ -98,6 +98,22 @@ offset_right = 500.0
 offset_bottom = 240.0
 text = "Brew"
 
+[node name="CandleStrength" type="Label" parent="Control/ActiveMenu"]
+layout_mode = 0
+offset_left = 776.0
+offset_top = 119.0
+offset_right = 909.0
+offset_bottom = 142.0
+text = "Candle Strength: 5"
+
+[node name="TurnsLeft" type="Label" parent="Control/ActiveMenu"]
+layout_mode = 0
+offset_left = 735.0
+offset_top = 86.0
+offset_right = 972.0
+offset_bottom = 109.0
+text = "Turns until darkness attacks: 6"
+
 [node name="MapMenu" type="MarginContainer" parent="Control"]
 visible = false
 layout_mode = 1
@@ -189,22 +205,6 @@ offset_right = 1152.0
 offset_bottom = 648.0
 grow_horizontal = 1
 grow_vertical = 1
-
-[node name="CandleStrength" type="Label" parent="Control/ActiveMenu"]
-layout_mode = 0
-offset_left = 776.0
-offset_top = 119.0
-offset_right = 909.0
-offset_bottom = 142.0
-text = "Candle Strength: 5"
-
-[node name="TurnsLeft" type="Label" parent="Control/ActiveMenu"]
-layout_mode = 0
-offset_left = 735.0
-offset_top = 86.0
-offset_right = 972.0
-offset_bottom = 109.0
-text = "Turns until darkness attacks: 6"
 
 [node name="CardDisappearTimer" type="Timer" parent="."]
 wait_time = 0.5
