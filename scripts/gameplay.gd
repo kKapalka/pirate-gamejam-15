@@ -22,6 +22,9 @@ const blankCardId : String = "blank"
 
 var resultSlotMaterial: StandardMaterial3D
 
+@onready var labelCardStrength = $"Control/ActiveMenu/CandleStrength"
+@onready var labelTurnsLeft = $"Control/ActiveMenu/TurnsLeft"
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	CursorHandler.camera = camera
@@ -34,6 +37,9 @@ func _ready():
 	CursorHandler.canInteractWithBoard = true
 	loadRutine()
 	TimeHandler.connect("turnEnded", _on_turn_ended)
+	TimeHandler.connect("timeChanged", _on_time_value_changed)
+	CandleHandler.connect("candleValueChanged", _on_candle_value_changed)
+	CandleHandler.connect("candleReachedLimit", _on_candle_reached_limit)
 	call_deferred("afterReady")	
 	resultSlotMaterial = (resultSlot.get_child(0) as MeshInstance3D).get_active_material(0)
 	eventCard.gameplayNode = self
@@ -72,9 +78,13 @@ func onQuit():
 func loadRutine():
 	SaveHandler.loadGame()
 	TimeHandler.time = SaveHandler.player.time
+	CandleHandler.candleStrength = SaveHandler.player.candle
+	update_candle_label()
+	update_time_label()
 
 func saveRoutine():
 	SaveHandler.player.time = TimeHandler.time
+	SaveHandler.player.candle = CandleHandler.candleStrength
 	SaveHandler.saveGame()
 
 func _on_dragging_bounds_area_input_event(_camera, event: InputEvent, position, _normal, _shape_idx):
@@ -116,7 +126,7 @@ func _on_scroll_collider_input_event(_camera, _event, _position, _normal, _shape
 		mapMenu.visible = true
 
 func _on_turn_ended():
-	print("turn ended logic")
+	CandleHandler.reduceStrengthBy(1)
 
 func start_brew():
 	# validate empty slots <= 1
@@ -162,9 +172,8 @@ func mapCardSlotToCardId(cardslot : CardSlot) -> String:
 func _on_brew_button_button_up():
 	start_brew()
 
-
 func _on_brood_button_up():
-	pass # Replace with function body.
+	TimeHandler.advanceTime()
 
 
 func _on_close_map_button_up():
@@ -205,3 +214,19 @@ func hideEventCard():
 	CursorHandler.canInteractWithBoard = true
 	SaveHandler.player.currentEvent = ''
 	SaveHandler.saveGame()
+
+func _on_candle_reached_limit():
+	update_candle_label()
+	print("player lost") #TODO game over
+
+func _on_candle_value_changed():
+	update_candle_label()
+
+func update_candle_label():
+	labelCardStrength.text = "Candle Strength: " + str(CandleHandler.candleStrengthInInt())
+
+func _on_time_value_changed():
+	update_time_label()
+
+func update_time_label():
+	labelTurnsLeft.text = "Turns until darkness attacks: " + str(7 - TimeHandler.time)
