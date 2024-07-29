@@ -11,3 +11,4 @@ texture = ExtResource("2_ugwkq")
 name = "Air"
 id = "air"
 consumable = false
+discardStrength = 0.25

@@ -27,6 +27,7 @@ SaveHandler="*res://scripts/save/data.gd"
 CardHandler="*res://autoloadNodes/cardHandler.tscn"
 RecipeHandler="*res://autoloadNodes/recipeHandler.tscn"
 TimeHandler="*res://autoloadNodes/timeHandler.tscn"
+CandleHandler="*res://autoloadNodes/candleHandler.tscn"
 
 [input]
 

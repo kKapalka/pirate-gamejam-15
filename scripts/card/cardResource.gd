@@ -15,4 +15,7 @@ var modified = false
 		id = value
 		modified = true
 @export var consumable: bool = false
-		
+@export var discardStrength : float = 0.25:
+	set(value):
+		discardStrength = value
+		modified = true

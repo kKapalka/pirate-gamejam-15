@@ -10,4 +10,5 @@ script = ExtResource("1_wweph")
 texture = ExtResource("2_jwuqk")
 name = "Zinc"
 id = "zinc"
-consumable = false
+consumable = true
+discardStrength = 0.25
