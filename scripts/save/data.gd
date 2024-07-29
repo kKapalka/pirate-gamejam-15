@@ -1,7 +1,7 @@
 extends Node
 
-const FILE_NAME = "res://resources/game.save"
-const SETTINGS_FILE_NAME = "res://resources/settings.save"
+const FILE_NAME = "user://game.save"
+const SETTINGS_FILE_NAME = "user://settings.save"
 
 var player = {
 	"deck": {},

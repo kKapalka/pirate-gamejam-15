@@ -16,11 +16,7 @@ var minFocusedButtonIndex = 0
 func _ready():
 	AudioManager.setMusicTrack(0)
 	settingsContainer.returnCallback = onReturn
-	if SaveHandler.player == {
-		"deck": {},
-		"currentEvent": '',
-		"time": 1
-	}:
+	if SaveHandler.player.deck == {}:
 		buttons[0].visible = false
 		focusedButtonIndex = 1
 		minFocusedButtonIndex = 1

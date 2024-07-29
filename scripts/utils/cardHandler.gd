@@ -19,7 +19,9 @@ func loadResourcesFromCatalog(path: String) -> Array[Resource]:
 	if dir:
 		dir.list_dir_begin()
 		var file_name = dir.get_next()
-		while file_name != "":
+		while file_name != "":			
+			if '.tres.remap' in file_name:
+				file_name = file_name.trim_suffix('.remap')
 			var card = ResourceLoader.load(path+"/"+file_name)
 			resources.append(card)
 			file_name = dir.get_next()
