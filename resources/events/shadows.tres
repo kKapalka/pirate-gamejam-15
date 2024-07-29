@@ -1,0 +1,26 @@
+[gd_resource type="Texture2D" script_class="EventCardResource" load_steps=5 format=3 uid="uid://cv0w3r7icnn5f"]
+
+[ext_resource type="Script" path="res://scripts/card/eventCardOption.gd" id="1_7fqqp"]
+[ext_resource type="Script" path="res://scripts/card/eventCardResource.gd" id="2_d7q4s"]
+[ext_resource type="Texture2D" uid="uid://c7ofru6y3y34l" path="res://resources/graphics/cards/shadows.jpg" id="3_d4ans"]
+
+[sub_resource type="Resource" id="Resource_f5l6m"]
+script = ExtResource("1_7fqqp")
+text = "Succumb, and start anew"
+eventCardOpenedId = ""
+cardsGranted = Array[String]([])
+gameOver = true
+
+[resource]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("2_d7q4s")
+texture = ExtResource("3_d4ans")
+title = "Engulfing Shadows"
+description = "The faintest flicker - the momentary lapse in concentration - was all it took. The lifegiving spark, the source of your safety and protection, is no more.
+A foreign presence spills into your abode, through the cracks in your windows, through the holes in your walls, through the keyholes and chimneys. It engulfs your belongings and constricts your senses.
+You reach out towards your workstation, but your hands find no purchase. The items were snuffed out from existence. And you will soon follow.
+Mayhaps you could have avoided this fate if your circumstances were different..."
+options = Array[ExtResource("1_7fqqp")]([SubResource("Resource_f5l6m")])
+id = "ending_shadows"
+consumable = false

@@ -1,17 +1,24 @@
-[gd_scene load_steps=20 format=3 uid="uid://c0b3rjfuqloa1"]
+[gd_scene load_steps=29 format=3 uid="uid://c0b3rjfuqloa1"]
 
 [ext_resource type="Script" path="res://scripts/gameplay.gd" id="1_yv17x"]
+[ext_resource type="AudioStream" uid="uid://csvnm6xnfys5u" path="res://resources/sound/click.wav" id="2_unxqf"]
 [ext_resource type="Texture2D" uid="uid://b02ay7mvwgk2q" path="res://icon.svg" id="2_vrsh7"]
 [ext_resource type="PackedScene" uid="uid://ddc18p0pg4bh6" path="res://scenes/card/card.tscn" id="3_0f5cq"]
+[ext_resource type="AudioStream" uid="uid://d1nmyiopdgceg" path="res://resources/sound/map-open.wav" id="3_5soud"]
 [ext_resource type="Script" path="res://scripts/card/resourceCardDeckNode.gd" id="3_bd85p"]
+[ext_resource type="AudioStream" uid="uid://ddg3dmy7b73fp" path="res://resources/sound/furnace-click.wav" id="4_6d27q"]
+[ext_resource type="AudioStream" uid="uid://tjevqy88l3la" path="res://resources/sound/glass-click.wav" id="5_3wk6w"]
 [ext_resource type="PackedScene" uid="uid://b3g3wyw7qhoq6" path="res://resources/models/Alchemy Models/AlchemySetFiles/Alchemyset.glb" id="5_8exo6"]
 [ext_resource type="PackedScene" uid="uid://3gw2jbnor51w" path="res://scenes/menus/pause_menu.tscn" id="5_xpxku"]
 [ext_resource type="PackedScene" uid="uid://bd7m83mya10q3" path="res://resources/models/Alchemy Models/DeskFiles/Desk.glb" id="6_adcc6"]
+[ext_resource type="AudioStream" uid="uid://dxv1myvgy71pe" path="res://resources/sound/book-click.wav" id="6_sv3c1"]
 [ext_resource type="Texture2D" uid="uid://vj4wbsvb1c2j" path="res://resources/graphics/map.jpg" id="6_v3p2l"]
 [ext_resource type="PackedScene" uid="uid://btgyfhlhfoe5x" path="res://resources/models/Alchemy Models/HolderFiles/Holder.gltf" id="7_i782a"]
 [ext_resource type="Texture2D" uid="uid://d05u6a3fk4pc4" path="res://resources/graphics/cards/mapCardButton.png" id="7_ihuqv"]
 [ext_resource type="PackedScene" uid="uid://p2wed88y6i20" path="res://scenes/card/eventCardTemplate.tscn" id="7_mt5a5"]
+[ext_resource type="AudioStream" uid="uid://c4p442ove03nj" path="res://resources/sound/ui-click.wav" id="7_vc511"]
 [ext_resource type="PackedScene" uid="uid://triwej8ik7hv" path="res://resources/models/Alchemy Models/ScrollFiles/Scroll.gltf" id="8_41w0w"]
+[ext_resource type="AudioStream" uid="uid://bma77erasw2xb" path="res://resources/sound/Combing Ingredents.wav" id="8_c85ln"]
 [ext_resource type="PackedScene" uid="uid://de1lghsrvyx13" path="res://resources/models/Alchemy Models/BookFiles/BookAndHolder.gltf" id="9_rpieh"]
 [ext_resource type="Script" path="res://scripts/cardSlot.gd" id="11_yctxp"]
 [ext_resource type="Material" uid="uid://4xvciyc8vanh" path="res://resources/graphics/cardSlotMaterial.tres" id="12_ij207"]
@@ -21,6 +28,12 @@
 ambient_light_source = 3
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_energy = 0.2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j5p1k"]
+size = Vector3(4, 1, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d7x5a"]
+size = Vector3(0.7, 0.6, 0.7)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_74yme"]
 material = ExtResource("12_ij207")
@@ -32,20 +45,13 @@ size = Vector2(0.9, 1.6)
 
 [node name="Gameplay" type="Node3D"]
 script = ExtResource("1_yv17x")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
-visible = false
-input_ray_pickable = false
-
-[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="StaticBody3D"]
-depth = 0.001
-polygon = PackedVector2Array(10, 10, 10, -10, -10, -10, -10, 10)
-
-[node name="Sprite3D" type="Sprite3D" parent="StaticBody3D"]
-transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 1, 0, 0, 0)
-flip_v = true
-texture = ExtResource("2_vrsh7")
+deskClickSound = ExtResource("2_unxqf")
+scrollClickSound = ExtResource("3_5soud")
+furnaceClickSound = ExtResource("4_6d27q")
+glassClickSound = ExtResource("5_3wk6w")
+bookClickSound = ExtResource("6_sv3c1")
+UIClickSound = ExtResource("7_vc511")
+brewSound = ExtResource("8_c85ln")
 
 [node name="DraggingBoundsArea" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.65, 0)
@@ -178,7 +184,7 @@ offset_right = 282.0
 offset_bottom = 204.0
 texture_normal = ExtResource("7_ihuqv")
 
-[node name="EventCard" parent="Control" node_paths=PackedStringArray("options") instance=ExtResource("7_mt5a5")]
+[node name="EventCard" parent="Control" instance=ExtResource("7_mt5a5")]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -192,7 +198,6 @@ offset_right = -400.0
 offset_bottom = -316.0
 grow_horizontal = 2
 grow_vertical = 2
-options = []
 
 [node name="PauseMenu" parent="Control" instance=ExtResource("5_xpxku")]
 visible = false
@@ -224,6 +229,12 @@ polygon = PackedVector2Array(2.5, 4, 2.5, 8, -5, 8, -5, 4)
 [node name="Desk" parent="." instance=ExtResource("6_adcc6")]
 transform = Transform3D(-1.5299e-07, 0, 3.5, 0, 3.5, 0, -3.5, 0, -1.5299e-07, 0, -2.1, 5)
 
+[node name="StaticBody3D" type="StaticBody3D" parent="Desk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Desk/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0704478, 0)
+shape = SubResource("BoxShape3D_j5p1k")
+
 [node name="Holder" parent="." instance=ExtResource("7_i782a")]
 transform = Transform3D(-1.5299e-07, 0, 3.5, 0, 3.5, 0, -3.5, 0, -1.5299e-07, 0.735, -1.875, 5.115)
 
@@ -240,6 +251,21 @@ polygon = PackedVector2Array(0.55, 0.1, 0.55, -0.1, -0.55, -0.1, -0.55, 0.1)
 
 [node name="Alchemyset" parent="." instance=ExtResource("5_8exo6")]
 transform = Transform3D(-1.5299e-07, 0, 3.5, 0, 3.5, 0, -3.5, 0, -1.5299e-07, 0, -2.139, 5.365)
+
+[node name="FurnaceBody" type="StaticBody3D" parent="Alchemyset"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.570146, 1.34952, -1.37293)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Alchemyset/FurnaceBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0704478, 0.0271776)
+shape = SubResource("BoxShape3D_d7x5a")
+
+[node name="GlassStuffs" type="StaticBody3D" parent="Alchemyset"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.738238, 1.34952, -1.42915)
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Alchemyset/GlassStuffs"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.0260748, 0.0336812, 0.030133)
+depth = 0.2
+polygon = PackedVector2Array(0.290881, 1.04087, 0.0682724, 1.1488, -0.0912467, 1.09689, -0.457159, 1.21247, -0.579704, 1.01163, -0.567732, 0.902998, -0.263467, 0.521964, -0.738449, 0.209522, -0.848018, 0.0732629, -0.740005, 0.38835, -0.90115, 0.556457, -1.15476, 0.347591, -1.16922, 0.707216, -1.33492, 0.704877, -1.36727, 0.315393, -1.49899, -0.219064, -1.32571, -0.484971, -1.0661, -0.394992, -0.603126, -0.475887, -0.547915, -0.454927, -0.370664, -0.146762, -0.530501, 0.122581, -0.286223, 0.305074, -0.145083, 0.551821, -0.506845, 0.951005, -0.39465, 1.02768, -0.226889, 0.936777, -0.182748, 0.752601, -0.03342, 0.646044, 0.174369, 0.750775)
 
 [node name="BookAndHolder" parent="." instance=ExtResource("9_rpieh")]
 transform = Transform3D(-1.5299e-07, 0, 3.5, 0, 3.5, 0, -3.5, 0, -1.5299e-07, 0.0838073, -2.08174, 5.29178)
@@ -303,5 +329,8 @@ mesh = SubResource("PlaneMesh_uwddj")
 [connection signal="button_up" from="Control/MapMenu/MapContainer/TextureRect/MountainsButton" to="." method="_on_mountains_button_button_up"]
 [connection signal="button_up" from="Control/MapMenu/MapContainer/TextureRect/MarshButton" to="." method="_on_marsh_button_button_up"]
 [connection signal="timeout" from="CardDisappearTimer" to="." method="_on_card_disappear_timer_timeout"]
+[connection signal="input_event" from="Desk/StaticBody3D" to="." method="_on_static_body_3d_input_event"]
 [connection signal="input_event" from="Scroll/ScrollCollider" to="." method="_on_scroll_collider_input_event"]
+[connection signal="input_event" from="Alchemyset/FurnaceBody" to="." method="_on_furnace_body_input_event"]
+[connection signal="input_event" from="Alchemyset/GlassStuffs" to="." method="_on_glass_stuffs_input_event"]
 [connection signal="input_event" from="BookAndHolder/NotebookCollider" to="." method="_on_notebook_collider_input_event"]

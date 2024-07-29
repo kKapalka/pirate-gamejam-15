@@ -1,0 +1,14 @@
+[gd_resource type="Texture2D" script_class="ResourceCard" load_steps=3 format=3 uid="uid://p2hi0pd53fen"]
+
+[ext_resource type="Script" path="res://scripts/card/cardResource.gd" id="1_i3qwy"]
+[ext_resource type="Texture2D" uid="uid://xst6gpihg837" path="res://resources/graphics/cards/resized/life.png" id="2_gr0nn"]
+
+[resource]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("1_i3qwy")
+texture = ExtResource("2_gr0nn")
+name = "Life"
+id = "life"
+consumable = true
+discardStrength = 0.25

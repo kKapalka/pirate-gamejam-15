@@ -25,8 +25,17 @@ var resultSlotMaterial: StandardMaterial3D
 @onready var labelCardStrength = $"Control/ActiveMenu/CandleStrength"
 @onready var labelTurnsLeft = $"Control/ActiveMenu/TurnsLeft"
 
+@export var deskClickSound: AudioStream
+@export var scrollClickSound: AudioStream
+@export var furnaceClickSound: AudioStream
+@export var glassClickSound: AudioStream
+@export var bookClickSound: AudioStream
+@export var UIClickSound: AudioStream
+@export var brewSound: AudioStream
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	AudioManager.setMusicTrack(1)
 	CursorHandler.camera = camera
 	CursorHandler.draggingBoundsArea = draggingBoundsArea
 	CursorHandler.cardSlots = cardSlots
@@ -59,7 +68,8 @@ func _input(_event):
 			get_viewport().set_input_as_handled()
 			if CursorHandler.dragging:
 				CursorHandler.onDropTriggered()
-			CursorHandler.canInteractWithBoard = false
+			CursorHandler.canInteractWithBoard = false			
+			AudioManager.playSFXAtDefaultPosition(UIClickSound)
 
 func onReturn():
 	get_viewport().set_input_as_handled()
@@ -68,6 +78,8 @@ func onReturn():
 	CursorHandler.canInteractWithBoard = true
 	
 func onMainMenu():
+	
+	AudioManager.setMusicTrack(0)
 	saveRoutine()
 	get_tree().change_scene_to_file("res://scenes/menus/mainmenu.tscn")
 
@@ -94,36 +106,17 @@ func _on_dragging_bounds_area_input_event(_camera, event: InputEvent, position, 
 		var dragPosition = Vector3(max(minV.x,min(maxV.x,position.x)), position.y, max(minV.y, min(maxV.y, position.z)))
 		CursorHandler.onDraggingMouseMotion(dragPosition)
 
-func _on_end_turn_button_button_up():
-	var card = resourceCardPool.getRandomCard()
-	if card != null:
-		cardDisappearTimer.start()
-		resourceCardPool.markAsHidden(card.get_instance_id())
-		card.disappear()
-		broodButton.disabled = true
-		brewButton.disabled = true
 
-func _on_card_disappear_timer_timeout():
-	broodButton.disabled = false
-	brewButton.disabled = false
-
-func _on_spawn_random_card_button_up():
-	resourceCardPool.spawnRandomCard()
-
-
-func _on_notebook_collider_input_event(_camera, _event, _position, _normal, _shape_idx):
+func _on_scroll_collider_input_event(_camera, _event, position, _normal, _shape_idx):
 	if Input.is_action_just_pressed("select") and CursorHandler.cursorLagTimer.is_stopped() and CursorHandler.canInteractWithBoard:
-		CursorHandler.cursorLagTimer.start()
-		CursorHandler.canInteractWithBoard = false
-		print("Alchemist's Notebook Open")
-
-
-func _on_scroll_collider_input_event(_camera, _event, _position, _normal, _shape_idx):
-	if Input.is_action_just_pressed("select") and CursorHandler.cursorLagTimer.is_stopped() and CursorHandler.canInteractWithBoard:
-		CursorHandler.canInteractWithBoard = false
-		CursorHandler.cursorLagTimer.start()
-		activeMenu.visible = false
-		mapMenu.visible = true
+		if TimeHandler.time > 3:
+			print("cannot travel")
+		else:
+			AudioManager.playSFX(scrollClickSound, position)
+			CursorHandler.canInteractWithBoard = false
+			CursorHandler.cursorLagTimer.start()
+			activeMenu.visible = false
+			mapMenu.visible = true
 
 func _on_turn_ended():
 	CandleHandler.reduceStrengthBy(1)
@@ -150,6 +143,7 @@ func start_brew():
 			resourceCardPool.spawnOneCard(CardHandler.loadResourceCard(recipe.resultId), resultSlot.global_position)
 		resourceCardPool.deckSaveRoutine()
 		#advance time
+		AudioManager.playSFXAtDefaultPosition(brewSound)
 		TimeHandler.advanceTime()
 	else:
 		onRecipeFailure()
@@ -157,6 +151,7 @@ func start_brew():
 func onRecipeFailure():	
 	var tween = create_tween()
 	tween.tween_method(flashResultSlot, 0.0, 1.0, 0.5)
+	AudioManager.playSFXAtDefaultPosition(UIClickSound)
 	cardDisappearTimer.start()
 	broodButton.disabled = true
 	brewButton.disabled = true
@@ -173,6 +168,7 @@ func _on_brew_button_button_up():
 	start_brew()
 
 func _on_brood_button_up():
+	AudioManager.playSFXAtDefaultPosition(UIClickSound)
 	TimeHandler.advanceTime()
 
 
@@ -184,16 +180,10 @@ func _on_close_map_button_up():
 
 func _on_forest_button_button_up():
 	openEventCard(CardHandler.getRandomEventCardFromPool("forest"))
-
-
 func _on_city_button_button_up():
 	openEventCard(CardHandler.getRandomEventCardFromPool("city"))
-
-
 func _on_mountains_button_button_up():
 	openEventCard(CardHandler.getRandomEventCardFromPool("mountains"))
-
-
 func _on_marsh_button_button_up():
 	openEventCard(CardHandler.getRandomEventCardFromPool("marsh"))
 
@@ -212,12 +202,13 @@ func hideEventCard():
 	eventCard.visible = false
 	activeMenu.visible = true
 	CursorHandler.canInteractWithBoard = true
+	TimeHandler.advanceTime()
 	SaveHandler.player.currentEvent = ''
 	SaveHandler.saveGame()
 
 func _on_candle_reached_limit():
 	update_candle_label()
-	print("player lost") #TODO game over
+	openEventCardById("ending_shadows")
 
 func _on_candle_value_changed():
 	update_candle_label()
@@ -230,3 +221,32 @@ func _on_time_value_changed():
 
 func update_time_label():
 	labelTurnsLeft.text = "Turns until darkness attacks: " + str(7 - TimeHandler.time)
+
+
+func _on_static_body_3d_input_event(camera, event, position, normal, shape_idx):
+	if Input.is_action_just_pressed("select") and CursorHandler.cursorLagTimer.is_stopped() and CursorHandler.canInteractWithBoard:
+		AudioManager.playSFX(deskClickSound, position)
+		CursorHandler.cursorLagTimer.start()
+
+
+func _on_furnace_body_input_event(camera, event, position, normal, shape_idx):
+	if Input.is_action_just_pressed("select") and CursorHandler.cursorLagTimer.is_stopped() and CursorHandler.canInteractWithBoard:
+		AudioManager.playSFX(furnaceClickSound, position)
+		CursorHandler.cursorLagTimer.start()
+
+
+func _on_glass_stuffs_input_event(camera, event, position, normal, shape_idx):
+	if Input.is_action_just_pressed("select") and CursorHandler.cursorLagTimer.is_stopped() and CursorHandler.canInteractWithBoard:
+		AudioManager.playSFX(glassClickSound, position)
+		CursorHandler.cursorLagTimer.start()
+
+
+func _on_notebook_collider_input_event(camera, event, position, normal, shape_idx):
+	if Input.is_action_just_pressed("select") and CursorHandler.cursorLagTimer.is_stopped() and CursorHandler.canInteractWithBoard:
+		AudioManager.playSFX(bookClickSound, position)
+		CursorHandler.cursorLagTimer.start()
+
+
+func _on_card_disappear_timer_timeout():
+	broodButton.disabled = false
+	brewButton.disabled = false

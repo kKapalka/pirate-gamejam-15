@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://n3xusws47tcp"]
 
 [ext_resource type="Script" path="res://scripts/menus/mainmenu.gd" id="1_1taa0"]
-[ext_resource type="Texture2D" uid="uid://dhuwsepdg2bl0" path="res://resources/menus/Logo placeholder.png" id="1_6hoxf"]
+[ext_resource type="Texture2D" uid="uid://cvnoiuatx7qcf" path="res://resources/graphics/Title.png" id="2_wqo12"]
 [ext_resource type="PackedScene" uid="uid://daqlbvtppcfs" path="res://scenes/menus/settingsMenu.tscn" id="3_0tlnm"]
 
 [node name="Mainmenu" type="MarginContainer"]
@@ -45,7 +45,9 @@ size_flags_horizontal = 3
 
 [node name="Logo" type="TextureRect" parent="HBoxContainer/VSplitContainer"]
 layout_mode = 2
-texture = ExtResource("1_6hoxf")
+texture = ExtResource("2_wqo12")
+expand_mode = 4
+stretch_mode = 6
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/VSplitContainer"]
 layout_mode = 2

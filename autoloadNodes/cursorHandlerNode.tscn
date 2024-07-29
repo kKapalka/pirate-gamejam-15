@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://bf1hxrw051lnm"]
+[gd_scene load_steps=4 format=3 uid="uid://bf1hxrw051lnm"]
 
 [ext_resource type="Script" path="res://scripts/utils/cursorHandler.gd" id="1_t1icr"]
-[ext_resource type="AudioStream" uid="uid://csvnm6xnfys5u" path="res://resources/sfx/click.wav" id="2_wc340"]
+[ext_resource type="AudioStream" uid="uid://c4p442ove03nj" path="res://resources/sound/ui-click.wav" id="2_nhja4"]
+[ext_resource type="AudioStream" uid="uid://cmobged3otqqe" path="res://resources/sound/Card pick up.wav" id="3_tcpxk"]
 
 [node name="CursorHandlerNode" type="Node"]
 script = ExtResource("1_t1icr")
-clickSound = ExtResource("2_wc340")
+clickSound = ExtResource("2_nhja4")
+cardClickSound = ExtResource("3_tcpxk")
 
 [node name="CursorLagTimer" type="Timer" parent="."]
 wait_time = 0.2

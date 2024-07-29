@@ -14,6 +14,7 @@ var focusedButtonIndex = 0
 var minFocusedButtonIndex = 0
 
 func _ready():
+	AudioManager.setMusicTrack(0)
 	settingsContainer.returnCallback = onReturn
 	if SaveHandler.player == {
 		"deck": {},
@@ -48,11 +49,13 @@ func _input(_event):
 
 func new_game():
 	focusedButtonIndex = 1
+	AudioManager.setMusicTrack(1)
 	SaveHandler.clearGame()
 	get_tree().change_scene_to_file("res://scenes/gameplay.tscn")
 
 func continue_():
 	focusedButtonIndex = 0
+	AudioManager.setMusicTrack(1)
 	get_tree().change_scene_to_file("res://scenes/gameplay.tscn")
 
 func options():

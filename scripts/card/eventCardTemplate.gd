@@ -18,11 +18,7 @@ var updateCardContents = false
 var gameplayNode: GameplayNode
 
 func ready():
-	if len(options) == 0:
-		options = [
-			$Art/VBoxContainer/Option1, $Art/VBoxContainer/Option2, $Art/VBoxContainer/Option3
-		]
-		onCardModified()
+	onCardModified()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -37,12 +33,16 @@ func onCardModified():
 	nameLabel.onTextChanged()
 	updateCardContents = false
 	card.modified = false
+	if len(options) == 0:
+		options = [
+			$Art/VBoxContainer/Option1, $Art/VBoxContainer/Option2, $Art/VBoxContainer/Option3
+		]
 	if len(options) > 0:
 		for optionNode in options:
 			optionNode.visible = false
 		for i in len(card.options):
-			options[i].visible = true
 			options[i].get_child(0).text = card.options[i].text
+			options[i].visible = true
 
 
 func _on_option_3_button_up():

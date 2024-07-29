@@ -4,6 +4,7 @@ extends Node
 #if we want different cursors for different actions, this is the way to go
 #@export var defaultCursor: Texture2D
 @export var clickSound: AudioStream
+@export var cardClickSound: AudioStream
 
 var resourceCardsInArea: Array[ResourceCardNode] = []
 
@@ -14,6 +15,7 @@ var camera: Camera3D
 var draggingBoundsArea: Area3D
 var canInteractWithBoard = true
 var cardSlots: Array[CardSlot]
+var uiActive: bool = true
 
 @onready var cursorLagTimer: Timer = $CursorLagTimer
 
@@ -23,17 +25,35 @@ func _ready():
 #play click sound at event's position on mouse click
 func _input(_event):
 	if Input.is_action_just_pressed("select") and cursorLagTimer.is_stopped():
-		
 		if camera != null:
 			if draggedCard == null:
 				var card = detectCardByMouseRaycast()
 				if card != null and canInteractWithBoard:
+					cursorLagTimer.start()
 					draggedCard = card
 					draggingBoundsArea.visible = true
-					cursorLagTimer.start()
 					canInteractWithBoard = false
+				else:
+					if !canInteractWithBoard:
+						on2DClick()
 			else:
+				AudioManager.playSFX(cardClickSound, draggedCard.position)
 				onDropTriggered()
+		else:			
+			on2DClick()
+
+func on2DClick():
+	cursorLagTimer.start()
+	AudioManager.playSFXAtDefaultPosition(clickSound)
+	
+func on3DClick():
+	var mouse = get_viewport().get_mouse_position()
+	var from = camera.project_ray_origin(mouse)
+	var to = from + camera.project_ray_normal(mouse) * 100
+	var cast = camera.get_world_3d().direct_space_state.intersect_ray(PhysicsRayQueryParameters3D.create(from, to,
+	0b00000000_00000000_00000000_00000111)
+	)
+	print(cast)
 				
 func onDropTriggered():
 	draggingBoundsArea.visible = false
@@ -45,6 +65,7 @@ func onDropTriggered():
 	
 func onDraggingMouseMotion(position: Vector3):
 	if !dragging:
+		AudioManager.playSFX(cardClickSound, position)
 		draggedCard.onPickUp(position)
 		dragging = true
 	draggedCard.onDraggingMouseMotion(position)
