@@ -13,7 +13,6 @@ func _ready():
 				file_name = file_name.trim_suffix('.remap')
 			var recipe = ResourceLoader.load(path+"/"+file_name) as ResourceRecipe
 			resourceRecipeArray.append(recipe)
-			print(file_name)
 			file_name = dir.get_next()
 
 func loadResourceRecipe(id: String) -> ResourceRecipe:
