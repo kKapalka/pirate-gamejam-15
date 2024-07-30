@@ -5,7 +5,7 @@ const SETTINGS_FILE_NAME = "user://settings.save"
 
 var player = {
 	"deck": {},
-	"currentEvent": '',
+	"currentEvent": 'assessment1',
 	"time": 1,
 	"candle": 5.0
 }
@@ -30,7 +30,7 @@ func load():
 func clearGame():
 	player = {
 		"deck": {},
-		"currentEvent": '',
+		"currentEvent": 'assessment1',
 		"time": 1,
 		"candle":5.0
 	}

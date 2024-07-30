@@ -1,0 +1,31 @@
+[gd_resource type="Texture2D" script_class="EventCardResource" load_steps=5 format=3 uid="uid://bd1megvtm7rk2"]
+
+[ext_resource type="Script" path="res://scripts/card/eventCardOption.gd" id="1_wslrw"]
+[ext_resource type="Script" path="res://scripts/card/eventCardResource.gd" id="2_873jj"]
+[ext_resource type="Texture2D" uid="uid://51jxdg4vyhfu" path="res://resources/graphics/image.jpg" id="3_htom5"]
+
+[sub_resource type="Resource" id="Resource_60642"]
+script = ExtResource("1_wslrw")
+text = "Get to work"
+eventCardOpenedId = ""
+cardsGranted = Array[String]([])
+gameOver = false
+
+[resource]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("2_873jj")
+texture = ExtResource("3_htom5")
+title = "Assessment"
+description = "You flip through the pages, and discover a handful of useful notes left behind by the person who worked on this station before you.
+
+\"Water, when exposed to Fire, leaves behind Salt.\"
+\"Mixing Earth into Water produces Clay.\"
+\"Air passed through Earth turns it into Sand.\"
+\"Combining Water and Air conjures an aspect of Rain.\"
+\"When Clay absorbs Water, a Plant overtakes it.\"
+
+There is no more notes to be found..."
+options = Array[ExtResource("1_wslrw")]([SubResource("Resource_60642")])
+id = "assessment2"
+consumable = false

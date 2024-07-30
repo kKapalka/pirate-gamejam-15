@@ -81,8 +81,7 @@ func onReturn():
 	activeMenu.visible = true
 	CursorHandler.canInteractWithBoard = true
 	
-func onMainMenu():
-	
+func onMainMenu():	
 	AudioManager.setMusicTrack(0)
 	saveRoutine()
 	get_tree().change_scene_to_file("res://scenes/menus/mainmenu.tscn")
@@ -208,7 +207,8 @@ func hideEventCard():
 	eventCard.visible = false
 	activeMenu.visible = true
 	CursorHandler.canInteractWithBoard = true
-	TimeHandler.advanceTime()
+	if SaveHandler.player.currentEvent != 'assessment2':
+		TimeHandler.advanceTime()
 	SaveHandler.player.currentEvent = ''
 	SaveHandler.saveGame()
 
@@ -229,25 +229,25 @@ func update_time_label():
 	labelTurnsLeft.text = "Turns until darkness attacks: " + str(7 - TimeHandler.time)
 
 
-func _on_static_body_3d_input_event(camera, event, position, normal, shape_idx):
+func _on_static_body_3d_input_event(_camera, _event, position, _normal, _shape_idx):
 	if Input.is_action_just_pressed("select") and CursorHandler.cursorLagTimer.is_stopped() and CursorHandler.canInteractWithBoard:
 		AudioManager.playSFX(deskClickSound, position)
 		CursorHandler.cursorLagTimer.start()
 
 
-func _on_furnace_body_input_event(camera, event, position, normal, shape_idx):
+func _on_furnace_body_input_event(_camera, _event, position, _normal, _shape_idx):
 	if Input.is_action_just_pressed("select") and CursorHandler.cursorLagTimer.is_stopped() and CursorHandler.canInteractWithBoard:
 		AudioManager.playSFX(furnaceClickSound, position)
 		CursorHandler.cursorLagTimer.start()
 
 
-func _on_glass_stuffs_input_event(camera, event, position, normal, shape_idx):
+func _on_glass_stuffs_input_event(_camera, _event, position, _normal, _shape_idx):
 	if Input.is_action_just_pressed("select") and CursorHandler.cursorLagTimer.is_stopped() and CursorHandler.canInteractWithBoard:
 		AudioManager.playSFX(glassClickSound, position)
 		CursorHandler.cursorLagTimer.start()
 
 
-func _on_notebook_collider_input_event(camera, event, position, normal, shape_idx):
+func _on_notebook_collider_input_event(_camera, _event, position, _normal, _shape_idx):
 	if Input.is_action_just_pressed("select") and CursorHandler.cursorLagTimer.is_stopped() and CursorHandler.canInteractWithBoard:
 		AudioManager.playSFX(bookClickSound, position)
 		CursorHandler.cursorLagTimer.start()
