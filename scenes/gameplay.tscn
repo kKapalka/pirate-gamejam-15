@@ -289,9 +289,11 @@ polygon = PackedVector2Array(0.5, 0.3, 0.5, -0.3, -0.5, -0.3, -0.5, 0.3)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.395095, -0.440338, 0.806227, -0.185839, 0.897797, 0.39928, -0.899647, 0.00792454, -0.436547, 5.97596, 6.70141, 6.22891)
+light_energy = 0.3
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.700266, 0.406072, -0.58714, -0.233067, 0.907439, 0.349621, 0.674764, -0.107985, 0.730091, -7.38689, 5.93705, 6.22891)
+light_energy = 0.4
 
 [node name="CardSlot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -4.40241, 0, 4.76744)
