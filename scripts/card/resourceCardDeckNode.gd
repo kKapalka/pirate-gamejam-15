@@ -110,7 +110,9 @@ func spawnRandomCard():
 	spawn(cards)
 
 func spawnCardsByIds(ids: Array[String]):
-	spawn(ids.map(func(x): return CardHandler.loadResourceCard(x)))
+	var resourceCards: Array[ResourceCard] = []
+	resourceCards.assign(ids.map(func(x: String) -> ResourceCard: return CardHandler.loadResourceCard(x)))
+	spawn(resourceCards)
 	
 func spawn(cards: Array[ResourceCard]):
 	var finalCard = null
@@ -124,6 +126,8 @@ func spawn(cards: Array[ResourceCard]):
 			add_child(card)
 			card.global_rotation = tableCardSpawnPoint.global_rotation
 		card.visible = true
+		
+		move_child(card, 0)	
 		card.changePropertyCard(cards[i].id)
 		var pos = tableCardSpawnPoint.position + (tableCardSpawnOffset * (i + len(cardsAtSpawn)))
 		card.position = pos

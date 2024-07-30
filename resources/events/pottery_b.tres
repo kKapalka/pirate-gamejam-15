@@ -1,0 +1,27 @@
+[gd_resource type="Texture2D" script_class="EventCardResource" load_steps=5 format=3 uid="uid://cxjm43665feij"]
+
+[ext_resource type="Script" path="res://scripts/card/eventCardOption.gd" id="1_0vura"]
+[ext_resource type="Script" path="res://scripts/card/eventCardResource.gd" id="2_yibud"]
+[ext_resource type="Texture2D" uid="uid://51jxdg4vyhfu" path="res://resources/graphics/image.jpg" id="3_2dj26"]
+
+[sub_resource type="Resource" id="Resource_22clw"]
+script = ExtResource("1_0vura")
+text = "Leave"
+eventCardOpenedId = ""
+cardsGranted = Array[String](["steel"])
+gameOver = false
+
+[resource]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("2_yibud")
+texture = ExtResource("3_2dj26")
+title = "Pottery Shards"
+description = "You isolate one of the jars, and examine the elements plating its interior.
+You sense the essence of Iron, Brass, and Sulfur, coalescing into Steel.
+On the remaining parts, you can sense traces of Lava, Mercury, Lead and Ego. You can infer that they relate to transformations utilising Steel, but can't figure out the exact formulas.
+
+You collect the essence of Steel and return home."
+options = Array[ExtResource("1_0vura")]([SubResource("Resource_22clw")])
+id = "pottery_b"
+consumable = false

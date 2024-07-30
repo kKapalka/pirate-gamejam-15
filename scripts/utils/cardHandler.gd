@@ -47,4 +47,5 @@ func getRandomEventCardFromPool(pool: String) -> EventCardResource:
 			return eventCardArray.pick_random()
 
 func getEventCard(id: String)-> EventCardResource:
+	print(id)
 	return eventCardArray.filter(func(card: EventCardResource): return card.id == id)[0]

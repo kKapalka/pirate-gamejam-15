@@ -1,0 +1,25 @@
+[gd_resource type="Texture2D" script_class="EventCardResource" load_steps=5 format=3 uid="uid://b8l38sykmeqmo"]
+
+[ext_resource type="Script" path="res://scripts/card/eventCardOption.gd" id="1_hy6nq"]
+[ext_resource type="Script" path="res://scripts/card/eventCardResource.gd" id="2_n7m8m"]
+[ext_resource type="Texture2D" uid="uid://51jxdg4vyhfu" path="res://resources/graphics/image.jpg" id="3_67xfw"]
+
+[sub_resource type="Resource" id="Resource_60642"]
+script = ExtResource("1_hy6nq")
+text = "Return home"
+eventCardOpenedId = ""
+cardsGranted = Array[String](["magnesium"])
+gameOver = false
+
+[resource]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("2_n7m8m")
+texture = ExtResource("3_67xfw")
+title = "The Sparkshrub"
+description = "You collect the Magnesium, trying to understand the alchemical processes that went into synthesis of this element.
+
+Clay, tempered with Fire, acting as a soil for the Plant, which was fed with Rain."
+options = Array[ExtResource("1_hy6nq")]([SubResource("Resource_60642")])
+id = "shrub_a"
+consumable = false

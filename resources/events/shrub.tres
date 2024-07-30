@@ -1,0 +1,31 @@
+[gd_resource type="Texture2D" script_class="EventCardResource" load_steps=6 format=3 uid="uid://ih5prxulefep"]
+
+[ext_resource type="Script" path="res://scripts/card/eventCardOption.gd" id="1_b35tg"]
+[ext_resource type="Script" path="res://scripts/card/eventCardResource.gd" id="2_n5llu"]
+[ext_resource type="Texture2D" uid="uid://51jxdg4vyhfu" path="res://resources/graphics/image.jpg" id="3_tbbts"]
+
+[sub_resource type="Resource" id="Resource_60642"]
+script = ExtResource("1_b35tg")
+text = "Collect the Magnesium before it catches fire"
+eventCardOpenedId = "shrub_a"
+cardsGranted = Array[String]([])
+gameOver = false
+
+[sub_resource type="Resource" id="Resource_g1umh"]
+script = ExtResource("1_b35tg")
+text = "Try covering the shrub"
+eventCardOpenedId = "shrub_b"
+cardsGranted = Array[String]([])
+gameOver = false
+
+[resource]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("2_n5llu")
+texture = ExtResource("3_tbbts")
+title = "The Sparkshrub"
+description = "As you travel through the forest, you encounter a peculiar shrub. The soil around it is devoid of nutrients and strangely warm to the touch, as if infused with elemental Fire.
+As droplets of rain hit its leaves, its surface becomes momentarily silvery, then it briefly ignites, burning with characteristic bright light. You recognise it as elemental Magnesium."
+options = Array[ExtResource("1_b35tg")]([SubResource("Resource_60642"), SubResource("Resource_g1umh")])
+id = "shrub"
+consumable = false

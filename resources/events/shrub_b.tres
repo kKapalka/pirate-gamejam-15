@@ -1,0 +1,24 @@
+[gd_resource type="Texture2D" script_class="EventCardResource" load_steps=5 format=3 uid="uid://dn8bo1d2g41dt"]
+
+[ext_resource type="Script" path="res://scripts/card/eventCardOption.gd" id="1_pfowo"]
+[ext_resource type="Script" path="res://scripts/card/eventCardResource.gd" id="2_io8f7"]
+[ext_resource type="Texture2D" uid="uid://51jxdg4vyhfu" path="res://resources/graphics/image.jpg" id="3_yp8h5"]
+
+[sub_resource type="Resource" id="Resource_60642"]
+script = ExtResource("1_pfowo")
+text = "Return home"
+eventCardOpenedId = ""
+cardsGranted = Array[String](["quicklime"])
+gameOver = false
+
+[resource]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("2_io8f7")
+texture = ExtResource("3_yp8h5")
+title = "The Sparkshrub"
+description = "You collect the Magnesium into an Iron receptacle. Trace elements of Stone react with the duo, producing a highly reactive substance.
+You decide not to tamper with it until you arrive back home."
+options = Array[ExtResource("1_pfowo")]([SubResource("Resource_60642")])
+id = "shrub_b"
+consumable = false

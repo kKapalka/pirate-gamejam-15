@@ -1,0 +1,27 @@
+[gd_resource type="Texture2D" script_class="EventCardResource" load_steps=5 format=3 uid="uid://bg88vanxq8frt"]
+
+[ext_resource type="Script" path="res://scripts/card/eventCardOption.gd" id="1_h0b0s"]
+[ext_resource type="Script" path="res://scripts/card/eventCardResource.gd" id="2_arxwr"]
+[ext_resource type="Texture2D" uid="uid://51jxdg4vyhfu" path="res://resources/graphics/image.jpg" id="3_vu8nv"]
+
+[sub_resource type="Resource" id="Resource_22clw"]
+script = ExtResource("1_h0b0s")
+text = "Leave"
+eventCardOpenedId = ""
+cardsGranted = Array[String](["verdigris", "brass"])
+gameOver = false
+
+[resource]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("2_arxwr")
+texture = ExtResource("3_vu8nv")
+title = "Pottery Shards"
+description = "While performing synthesis on the pottery shards, you arrived at a method to synthesize Brass and Verdigris.
+
+Both require some Copper to get things started, but Verdigris requires Brass, and Brass requires Zinc for the process to be successful.
+
+You collect some a bit of both and return home."
+options = Array[ExtResource("1_h0b0s")]([SubResource("Resource_22clw")])
+id = "pottery_a"
+consumable = false

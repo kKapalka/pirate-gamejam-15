@@ -1,0 +1,30 @@
+[gd_resource type="Texture2D" script_class="EventCardResource" load_steps=6 format=3 uid="uid://be678pb85nrfe"]
+
+[ext_resource type="Script" path="res://scripts/card/eventCardOption.gd" id="1_swl6o"]
+[ext_resource type="Script" path="res://scripts/card/eventCardResource.gd" id="2_dap1m"]
+[ext_resource type="Texture2D" uid="uid://51jxdg4vyhfu" path="res://resources/graphics/image.jpg" id="3_el11n"]
+
+[sub_resource type="Resource" id="Resource_60642"]
+script = ExtResource("1_swl6o")
+text = "Investigate the source of the glow"
+eventCardOpenedId = "pool_a"
+cardsGranted = Array[String]([])
+gameOver = false
+
+[sub_resource type="Resource" id="Resource_phlik"]
+script = ExtResource("1_swl6o")
+text = "Collect the strange water"
+eventCardOpenedId = "pool_b"
+cardsGranted = Array[String]([])
+gameOver = false
+
+[resource]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("2_dap1m")
+texture = ExtResource("3_el11n")
+title = "Shimmering Pool"
+description = "You find yourself next to a sizable body of water, surrounded by lush flora and all manner of plants. Specks of light dance across the surface."
+options = Array[ExtResource("1_swl6o")]([SubResource("Resource_60642"), SubResource("Resource_phlik")])
+id = "pool"
+consumable = false

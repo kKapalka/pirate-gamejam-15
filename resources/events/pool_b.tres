@@ -1,0 +1,25 @@
+[gd_resource type="Texture2D" script_class="EventCardResource" load_steps=5 format=3 uid="uid://borfx1stbgog7"]
+
+[ext_resource type="Script" path="res://scripts/card/eventCardOption.gd" id="1_xjucr"]
+[ext_resource type="Script" path="res://scripts/card/eventCardResource.gd" id="2_rt4yi"]
+[ext_resource type="Texture2D" uid="uid://51jxdg4vyhfu" path="res://resources/graphics/image.jpg" id="3_yg813"]
+
+[sub_resource type="Resource" id="Resource_60642"]
+script = ExtResource("1_xjucr")
+text = "Leave"
+eventCardOpenedId = ""
+cardsGranted = Array[String](["tin", "glass"])
+gameOver = false
+
+[resource]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("2_rt4yi")
+texture = ExtResource("3_yg813")
+title = "Shimmering Pool"
+description = "The water is full of elemental Tin and Glass - likely reason for the shimmering residue at the bottom of the pool, produced through exposure to Rain.
+
+You bring it back home."
+options = Array[ExtResource("1_xjucr")]([SubResource("Resource_60642")])
+id = "pool_b"
+consumable = false

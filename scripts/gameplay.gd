@@ -191,7 +191,7 @@ func _on_forest_button_button_up():
 func _on_city_button_button_up():
 	openEventCard(CardHandler.getRandomEventCardFromPool("city"))
 func _on_mountains_button_button_up():
-	openEventCard(CardHandler.getRandomEventCardFromPool("mountains"))
+	openEventCard(CardHandler.getRandomEventCardFromPool("mountain"))
 func _on_marsh_button_button_up():
 	openEventCard(CardHandler.getRandomEventCardFromPool("marsh"))
 

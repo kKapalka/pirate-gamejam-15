@@ -1,0 +1,30 @@
+[gd_resource type="Texture2D" script_class="EventCardResource" load_steps=5 format=3 uid="uid://h2a4k2pq87op"]
+
+[ext_resource type="Script" path="res://scripts/card/eventCardOption.gd" id="1_nvy84"]
+[ext_resource type="Script" path="res://scripts/card/eventCardResource.gd" id="2_arwnt"]
+[ext_resource type="Texture2D" uid="uid://51jxdg4vyhfu" path="res://resources/graphics/image.jpg" id="3_tbku8"]
+
+[sub_resource type="Resource" id="Resource_60642"]
+script = ExtResource("1_nvy84")
+text = "Return home"
+eventCardOpenedId = ""
+cardsGranted = Array[String]([])
+gameOver = false
+
+[resource]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("2_arwnt")
+texture = ExtResource("3_tbku8")
+title = "Mineshaft"
+description = "As you approach the source of the light, the environment grows warmer and warmer. Eventually, you hit a critical point where you can go no further. Essence of the Volcano - Earth tempered with Fire, then further reinforced with Earth - stops you from going deeper.
+
+On the rocky floor, you notice a piece of parchment, with two sentences:
+
+\"Steel, absorbed by Mercury, treated by Lava.\"
+\"Iron, infused into Stone, mixed with Magnesium.\"
+
+You wonder what it means... "
+options = Array[ExtResource("1_nvy84")]([SubResource("Resource_60642")])
+id = "mineshaft_a"
+consumable = false

@@ -1,0 +1,33 @@
+[gd_resource type="Texture2D" script_class="EventCardResource" load_steps=5 format=3 uid="uid://c7rqgk4v4k7uj"]
+
+[ext_resource type="Script" path="res://scripts/card/eventCardOption.gd" id="1_buhj7"]
+[ext_resource type="Script" path="res://scripts/card/eventCardResource.gd" id="2_yy2s8"]
+[ext_resource type="Texture2D" uid="uid://51jxdg4vyhfu" path="res://resources/graphics/image.jpg" id="3_67h35"]
+
+[sub_resource type="Resource" id="Resource_60642"]
+script = ExtResource("1_buhj7")
+text = "Leave"
+eventCardOpenedId = ""
+cardsGranted = Array[String](["bismuth"])
+gameOver = false
+
+[resource]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("2_yy2s8")
+texture = ExtResource("3_67h35")
+title = "Mineshaft"
+description = "As you go back to the surface, you stumble on a piece of rock protruding from the floor.
+Your toe hurts.
+You kick it in anger and send it flying towards the opening.
+
+As it flies, you recognize its characteristic shape and color. It is elemental Bismuth, comprised of Copper and Nickel, and treated with Embers.
+
+However, as Light hits the piece of Bismuth, it began to dissolve into a strange, shadowy vapor.
+
+You recognize it as elemental Darkness, but you can't collect it as is, without proper apparature.
+
+Hastily, you collect what remained of the piece of Bismuth, and return home."
+options = Array[ExtResource("1_buhj7")]([SubResource("Resource_60642")])
+id = "mineshaft_b"
+consumable = false
