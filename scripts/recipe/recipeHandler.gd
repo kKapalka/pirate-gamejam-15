@@ -26,6 +26,10 @@ func findCombination(ingredients : Array[String]) -> ResourceRecipe:
 	recipes = filterArrayByIngredient(recipes, ingredients[1])
 	recipes = filterArrayByIngredient(recipes, ingredients[2])
 	if recipes.size() == 1:
+		if ingredients.any(func(ingredient : String): return ingredient == "blank"):
+			if recipes[0].ingredientsId.size() == 2:
+				return recipes[0]
+			return null
 		return recipes[0]
 	return null
 
