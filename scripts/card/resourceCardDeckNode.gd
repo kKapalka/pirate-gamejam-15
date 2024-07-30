@@ -127,7 +127,7 @@ func spawn(cards: Array[ResourceCard]):
 			card.global_rotation = tableCardSpawnPoint.global_rotation
 		card.visible = true
 		
-		move_child(card, 0)	
+		move_child(card, 0)
 		card.changePropertyCard(cards[i].id)
 		var pos = tableCardSpawnPoint.position + (tableCardSpawnOffset * (i + len(cardsAtSpawn)))
 		card.position = pos

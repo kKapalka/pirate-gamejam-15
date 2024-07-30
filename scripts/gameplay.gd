@@ -112,8 +112,9 @@ func _on_dragging_bounds_area_input_event(_camera, event: InputEvent, position, 
 
 func _on_scroll_collider_input_event(_camera, _event, position, _normal, _shape_idx):
 	if Input.is_action_just_pressed("select") and CursorHandler.cursorLagTimer.is_stopped() and CursorHandler.canInteractWithBoard:
-		if TimeHandler.time > 3:
-			print("cannot travel")
+		if TimeHandler.time > 3:			
+			AudioManager.playSFXAtDefaultPosition(UIClickSound)
+			openEventCardById("cant_travel")
 		else:
 			AudioManager.playSFX(scrollClickSound, position)
 			CursorHandler.canInteractWithBoard = false
@@ -201,6 +202,7 @@ func openEventCardById(id: String):
 func openEventCard(card: EventCardResource):
 	SaveHandler.player.currentEvent = card.id
 	SaveHandler.saveGame()
+	CursorHandler.canInteractWithBoard = false
 	mapMenu.visible = false
 	activeMenu.visible = false
 	eventCard.visible = true
@@ -210,7 +212,7 @@ func hideEventCard():
 	eventCard.visible = false
 	activeMenu.visible = true
 	CursorHandler.canInteractWithBoard = true
-	if SaveHandler.player.currentEvent != 'assessment2':
+	if !(SaveHandler.player.currentEvent in ['assessment2', 'cant_travel']):
 		TimeHandler.advanceTime()
 	SaveHandler.player.currentEvent = ''
 	SaveHandler.saveGame()

@@ -1,0 +1,25 @@
+[gd_resource type="Texture2D" script_class="EventCardResource" load_steps=5 format=3 uid="uid://vuvbrxmiotup"]
+
+[ext_resource type="Script" path="res://scripts/card/eventCardOption.gd" id="1_8wqkb"]
+[ext_resource type="Script" path="res://scripts/card/eventCardResource.gd" id="2_y47ck"]
+[ext_resource type="Texture2D" uid="uid://c7ofru6y3y34l" path="res://resources/graphics/cards/shadows.jpg" id="3_dsdlj"]
+
+[sub_resource type="Resource" id="Resource_60642"]
+script = ExtResource("1_8wqkb")
+text = "Return to the workstation"
+eventCardOpenedId = ""
+cardsGranted = Array[String]([])
+gameOver = false
+
+[resource]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("2_y47ck")
+texture = ExtResource("3_dsdlj")
+title = "Looming Shadows"
+description = "You lift your head up towards the exit.
+As you do, you feel as if a tide of shadowy mass just shifted, as to elude your field of view.
+You don't feel safe traveling at this moment. Maybe it's for the best to stay indoors this time. Brace oneself for what the time will bring. Tomorrow is another day."
+options = Array[ExtResource("1_8wqkb")]([SubResource("Resource_60642")])
+id = "cant_travel"
+consumable = false
