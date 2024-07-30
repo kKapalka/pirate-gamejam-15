@@ -135,16 +135,19 @@ func start_brew():
 	ingredientsId.assign(cardSlots.map(func(cardslot : CardSlot) : return mapCardSlotToCardId(cardslot)))
 	var recipe : ResourceRecipe = RecipeHandler.findCombination(ingredientsId)
 	if recipe != null:
-		#delete all consumable cards
-		for cardSlot in filteredCardSlots:
-			deleteCard(cardSlot.card)
-		#create cards
-		for i in recipe.resultCount:
-			resourceCardPool.spawnOneCard(CardHandler.loadResourceCard(recipe.resultId), resultSlot.global_position)
-		resourceCardPool.deckSaveRoutine()
-		#advance time
-		AudioManager.playSFXAtDefaultPosition(brewSound)
-		TimeHandler.advanceTime()
+		if recipe.resultId == 'philosophersstone':
+			openEventCardById("ending_stone")
+		else:
+			#delete all consumable cards
+			for cardSlot in filteredCardSlots:
+				deleteCard(cardSlot.card)
+			#create cards
+			for i in recipe.resultCount:
+				resourceCardPool.spawnOneCard(CardHandler.loadResourceCard(recipe.resultId), resultSlot.global_position)
+			resourceCardPool.deckSaveRoutine()
+			#advance time
+			AudioManager.playSFXAtDefaultPosition(brewSound)
+			TimeHandler.advanceTime()
 	else:
 		onRecipeFailure()
 

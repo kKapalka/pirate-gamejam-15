@@ -1,0 +1,27 @@
+[gd_resource type="Texture2D" script_class="EventCardResource" load_steps=5 format=3 uid="uid://do0i3rjf76uv5"]
+
+[ext_resource type="Script" path="res://scripts/card/eventCardOption.gd" id="1_pkkk1"]
+[ext_resource type="Script" path="res://scripts/card/eventCardResource.gd" id="2_4o87w"]
+[ext_resource type="Texture2D" uid="uid://51jxdg4vyhfu" path="res://resources/graphics/image.jpg" id="3_ft00e"]
+
+[sub_resource type="Resource" id="Resource_60642"]
+script = ExtResource("1_pkkk1")
+text = "Leave the workshop and venture forth"
+eventCardOpenedId = ""
+cardsGranted = Array[String]([])
+gameOver = true
+
+[resource]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("2_4o87w")
+texture = ExtResource("3_ft00e")
+title = "Grand Work"
+description = "It is complete. The prima materia has passed through all the necessary stages, and became the tincture sought by many before you. 
+The catalyst of transformation. The elixir of immortality. The symbol of illumination.
+The Philosopher's Stone.
+As you clutch the mysterious substance, you sense the ephemereal foe retreat deep into the soil, scurrying away from the illuminating influence of the stone. It will no longer touch you.
+With newfound sense of safety and assurance, you leave the hut which served as your stronghold up until this moment. You don't concern yourself with the direction of your travels - that which you seek, you shall find regardless of any setback."
+options = Array[ExtResource("1_pkkk1")]([SubResource("Resource_60642")])
+id = "ending_stone"
+consumable = false
