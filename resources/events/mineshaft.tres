@@ -23,8 +23,8 @@ resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("2_4rmnw")
 texture = ExtResource("3_dqx2w")
-title = "Mineshaft"
-description = "You explore an abandoned mineshaft. Your trusty candle lights your way as you venture deep into the mountain.
+title = "Abandoned Cave"
+description = "You explore an abandoned cave. Your trusty candle lights your way as you venture deep into the mountain.
 
 Along the way, you notice a strong glow emanating from within."
 options = Array[ExtResource("1_k43qv")]([SubResource("Resource_60642"), SubResource("Resource_r1n6k")])

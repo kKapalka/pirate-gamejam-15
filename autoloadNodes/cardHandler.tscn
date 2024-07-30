@@ -4,7 +4,7 @@
 
 [node name="CardHandlerNode" type="Node"]
 script = ExtResource("1_stjpp")
-cityEventPool = Array[String](["pottery"])
-forestEventPool = Array[String](["sparkshrub"])
-marshEventPool = Array[String](["pool"])
-mountainEventPool = Array[String](["mineshaft"])
+cityEventPool = Array[String](["pottery", "gutters", "familiar_face", "intrusive_a", "intrusive_b", "intrusive_c"])
+forestEventPool = Array[String](["sparkshrub", "royal_garden", "intrusive_a", "intrusive_b", "intrusive_c"])
+marshEventPool = Array[String](["pool", "sulphur_vents", "intrusive_a", "intrusive_b", "intrusive_c"])
+mountainEventPool = Array[String](["mineshaft", "cobalt_vein", "harder_than_steel", "intrusive_a", "intrusive_b", "intrusive_c"])

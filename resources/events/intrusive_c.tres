@@ -1,0 +1,27 @@
+[gd_resource type="Texture2D" script_class="EventCardResource" load_steps=5 format=3 uid="uid://ci683coakuf3b"]
+
+[ext_resource type="Script" path="res://scripts/card/eventCardOption.gd" id="1_exehg"]
+[ext_resource type="Script" path="res://scripts/card/eventCardResource.gd" id="2_srfnj"]
+[ext_resource type="Texture2D" uid="uid://51jxdg4vyhfu" path="res://resources/graphics/image.jpg" id="3_0tusp"]
+
+[sub_resource type="Resource" id="Resource_60642"]
+script = ExtResource("1_exehg")
+text = "Collect your thoughts back at home"
+eventCardOpenedId = ""
+cardsGranted = Array[String]([])
+gameOver = false
+
+[resource]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("2_srfnj")
+texture = ExtResource("3_0tusp")
+title = "Intrusive Thoughts"
+description = "Your musings are stopped by a sudden string of words flooding your consciousness.
+
+\"First, a Raven, representing this which we reject. Then, a Dove, representing this which we aspire to. Now, a Phoenix, representing this which we are. Aspirations, tempered by Ego. The poison of Verdigris, which grounds us. This is the final stage of the grand work.\"
+
+The meaning of those words is unclear to you."
+options = Array[ExtResource("1_exehg")]([SubResource("Resource_60642")])
+id = "intrusive_c"
+consumable = false

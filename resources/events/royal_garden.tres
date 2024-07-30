@@ -1,0 +1,26 @@
+[gd_resource type="Texture2D" script_class="EventCardResource" load_steps=5 format=3 uid="uid://daymelv1w078t"]
+
+[ext_resource type="Script" path="res://scripts/card/eventCardOption.gd" id="1_pksts"]
+[ext_resource type="Script" path="res://scripts/card/eventCardResource.gd" id="2_px4bo"]
+[ext_resource type="Texture2D" uid="uid://51jxdg4vyhfu" path="res://resources/graphics/image.jpg" id="3_5o6wq"]
+
+[sub_resource type="Resource" id="Resource_60642"]
+script = ExtResource("1_pksts")
+text = "Collect the Potassium and return"
+eventCardOpenedId = ""
+cardsGranted = Array[String](["potassium"])
+gameOver = false
+
+[resource]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("2_px4bo")
+texture = ExtResource("3_5o6wq")
+title = "Royal Orchard"
+description = "You find your way into rows and rows of fruit-bearing trees, as far as your eye can see. Apples, pears, plums and cherries as far as your eye can see.
+This does not interest you, however. Instead, your attention turns to the peculiar fertilizer right under the trees. You identify it as a result of synthesis of Salt and the essence of Life - essence of Potassium.
+
+Surely, noone will notice if you collect some of it..."
+options = Array[ExtResource("1_pksts")]([SubResource("Resource_60642")])
+id = "royal_garden"
+consumable = false

@@ -1,0 +1,27 @@
+[gd_resource type="Texture2D" script_class="EventCardResource" load_steps=5 format=3 uid="uid://bvqh5qux7a4rs"]
+
+[ext_resource type="Script" path="res://scripts/card/eventCardOption.gd" id="1_j06ad"]
+[ext_resource type="Script" path="res://scripts/card/eventCardResource.gd" id="2_wmaeb"]
+[ext_resource type="Texture2D" uid="uid://51jxdg4vyhfu" path="res://resources/graphics/image.jpg" id="3_ju8yi"]
+
+[sub_resource type="Resource" id="Resource_60642"]
+script = ExtResource("1_j06ad")
+text = "Return home"
+eventCardOpenedId = ""
+cardsGranted = Array[String]([])
+gameOver = false
+
+[resource]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("2_wmaeb")
+texture = ExtResource("3_ju8yi")
+title = "Gutters"
+description = "You pass by the city sewers. The pungent smell hits your nose almost immediately.
+The gutters are filled with waste, yet you notice something different within its bowels. An act of transformation.
+As fats and oily substances seep into the waste, they intermingle with noble ores found there in trace amounts. They break down, ferment and dissolve. They become an embodiment of decay.
+
+Perhaps this process can be reproduced at your alchemical station..."
+options = Array[ExtResource("1_j06ad")]([SubResource("Resource_60642")])
+id = "gutters"
+consumable = false

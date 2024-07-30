@@ -1,0 +1,27 @@
+[gd_resource type="Texture2D" script_class="EventCardResource" load_steps=5 format=3 uid="uid://cs2p3ag51hpub"]
+
+[ext_resource type="Script" path="res://scripts/card/eventCardOption.gd" id="1_vyjk3"]
+[ext_resource type="Script" path="res://scripts/card/eventCardResource.gd" id="2_is86t"]
+[ext_resource type="Texture2D" uid="uid://51jxdg4vyhfu" path="res://resources/graphics/image.jpg" id="3_a1ach"]
+
+[sub_resource type="Resource" id="Resource_60642"]
+script = ExtResource("1_vyjk3")
+text = "Just leave"
+eventCardOpenedId = ""
+cardsGranted = Array[String]([])
+gameOver = false
+
+[resource]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("2_is86t")
+texture = ExtResource("3_a1ach")
+title = "Sulphur Vents"
+description = "You walk deeper into the marsh and become acutely aware of the characteristic smell invading your nostrils. The stench is supremely unpleasant.
+However, as it merges with the essence of Life surrounding you, and the fertilising essence of Potassium in the soil, you become aware...
+
+You become aware. The elemental Ego comes into being.
+And that elemental Ego implores you to get out of this place."
+options = Array[ExtResource("1_vyjk3")]([SubResource("Resource_60642")])
+id = "sulphur_vents"
+consumable = false

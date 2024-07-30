@@ -1,0 +1,30 @@
+[gd_resource type="Texture2D" script_class="EventCardResource" load_steps=5 format=3 uid="uid://bok2nxjb7kijm"]
+
+[ext_resource type="Script" path="res://scripts/card/eventCardOption.gd" id="1_gnapi"]
+[ext_resource type="Script" path="res://scripts/card/eventCardResource.gd" id="2_2xoeg"]
+[ext_resource type="Texture2D" uid="uid://51jxdg4vyhfu" path="res://resources/graphics/image.jpg" id="3_auc1v"]
+
+[sub_resource type="Resource" id="Resource_60642"]
+script = ExtResource("1_gnapi")
+text = "Return home"
+eventCardOpenedId = ""
+cardsGranted = Array[String]([])
+gameOver = false
+
+[resource]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("2_2xoeg")
+texture = ExtResource("3_auc1v")
+title = "Cobalt Vein"
+description = "You venture into the mines and arrive at a small vein of Iron and Nickel.
+You decide to mine some of it. You take a pickaxe laying nearby, and chip away at the rock.
+From time to time, sparks are flying as you strike the metal embedded within the rock.
+
+After a minute or two, you try and collect the material, but you find out that it has changed into something different.
+Altered by the essence of Embers, the Iron and Nickel have melded together into Cobalt, but the resulting substance is too impure to be useful for anything.
+
+You leave the place, disappointed."
+options = Array[ExtResource("1_gnapi")]([SubResource("Resource_60642")])
+id = "cobalt_vein"
+consumable = false

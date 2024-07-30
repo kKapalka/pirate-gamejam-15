@@ -1,0 +1,27 @@
+[gd_resource type="Texture2D" script_class="EventCardResource" load_steps=5 format=3 uid="uid://cwmckuhdaim3p"]
+
+[ext_resource type="Script" path="res://scripts/card/eventCardOption.gd" id="1_66hn4"]
+[ext_resource type="Script" path="res://scripts/card/eventCardResource.gd" id="2_ecdbu"]
+[ext_resource type="Texture2D" uid="uid://51jxdg4vyhfu" path="res://resources/graphics/image.jpg" id="3_x6flt"]
+
+[sub_resource type="Resource" id="Resource_60642"]
+script = ExtResource("1_66hn4")
+text = "Collect your thoughts back at home"
+eventCardOpenedId = ""
+cardsGranted = Array[String]([])
+gameOver = false
+
+[resource]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("2_ecdbu")
+texture = ExtResource("3_x6flt")
+title = "Intrusive Thoughts"
+description = "Your travels are interrupted by an umprompted thought that you can't seem to shake away.
+
+\"The antithesis of existence and flourishing shall be brought out from its domain. The Light shall lead its way back to us. It shall discard its putrid form, and bathe in Purity itself, so that it can shine on us from above.\"
+
+You're not sure what that means."
+options = Array[ExtResource("1_66hn4")]([SubResource("Resource_60642")])
+id = "intrusive_b"
+consumable = false

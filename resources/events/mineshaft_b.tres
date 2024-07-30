@@ -16,7 +16,7 @@ resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("2_yy2s8")
 texture = ExtResource("3_67h35")
-title = "Mineshaft"
+title = "Abandoned Cave"
 description = "As you go back to the surface, you stumble on a piece of rock protruding from the floor.
 Your toe hurts.
 You kick it in anger and send it flying towards the opening.

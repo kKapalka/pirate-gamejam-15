@@ -1,0 +1,29 @@
+[gd_resource type="Texture2D" script_class="EventCardResource" load_steps=5 format=3 uid="uid://dwcbdtimkhj5e"]
+
+[ext_resource type="Script" path="res://scripts/card/eventCardOption.gd" id="1_dsv3e"]
+[ext_resource type="Script" path="res://scripts/card/eventCardResource.gd" id="2_6cwe2"]
+[ext_resource type="Texture2D" uid="uid://51jxdg4vyhfu" path="res://resources/graphics/image.jpg" id="3_cm1u3"]
+
+[sub_resource type="Resource" id="Resource_60642"]
+script = ExtResource("1_dsv3e")
+text = "...Thank you?"
+eventCardOpenedId = ""
+cardsGranted = Array[String](["wood"])
+gameOver = false
+
+[resource]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("2_6cwe2")
+texture = ExtResource("3_cm1u3")
+title = "Friendly Colleague"
+description = "As you explore the city, you notice a robed person walking in your direction.
+For a moment, you were unsure of their intentions, however you notice the symbol on their necklace. The Squared Circle.
+They are a fellow alchemist, and have recognized you as one of their kind.
+\"I haven't seen you set up your station within the city,\" they say. \"You must live outside the city, no? I pity you - The surroundings might be abundant in resources, but the Shadows pose too much danger for me to bear.
+Do you at least maintain your light? I hope I don't repeat myself too much, but you know you can feed your light source with your elemental essence, right?\"
+They continue.
+\"Here, grab this. Some sources of fuel are better than others. Hope that helps!\""
+options = Array[ExtResource("1_dsv3e")]([SubResource("Resource_60642")])
+id = "familiar_face"
+consumable = false

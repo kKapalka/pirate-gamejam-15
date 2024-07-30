@@ -1,0 +1,29 @@
+[gd_resource type="Texture2D" script_class="EventCardResource" load_steps=5 format=3 uid="uid://ckcamtsctjr5f"]
+
+[ext_resource type="Script" path="res://scripts/card/eventCardOption.gd" id="1_tk3j2"]
+[ext_resource type="Script" path="res://scripts/card/eventCardResource.gd" id="2_a2px3"]
+[ext_resource type="Texture2D" uid="uid://51jxdg4vyhfu" path="res://resources/graphics/image.jpg" id="3_wlqkv"]
+
+[sub_resource type="Resource" id="Resource_60642"]
+script = ExtResource("1_tk3j2")
+text = "Return home"
+eventCardOpenedId = ""
+cardsGranted = Array[String]([])
+gameOver = false
+
+[resource]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("2_a2px3")
+texture = ExtResource("3_wlqkv")
+title = "Harder than Steel"
+description = "You decide to explore the side of the mountain where the lava has solidified.
+
+You quickly figure out that it must have pushed a sizable amount of Silver and Cobalt from the depths of the earth, but you also notice something else.
+
+In spots where the  two essences combined while being ejected by the Volcano, small blobs of elemental Platinum have formed.
+
+Mayhaps you can replicate this effect in the safety of your workshop..."
+options = Array[ExtResource("1_tk3j2")]([SubResource("Resource_60642")])
+id = "harder_than_steel"
+consumable = false

@@ -16,7 +16,7 @@ resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("2_arwnt")
 texture = ExtResource("3_tbku8")
-title = "Mineshaft"
+title = "Abandoned Cave"
 description = "As you approach the source of the light, the environment grows warmer and warmer. Eventually, you hit a critical point where you can go no further. Essence of the Volcano - Earth tempered with Fire, then further reinforced with Earth - stops you from going deeper.
 
 On the rocky floor, you notice a piece of parchment, with two sentences:

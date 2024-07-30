@@ -1,0 +1,27 @@
+[gd_resource type="Texture2D" script_class="EventCardResource" load_steps=5 format=3 uid="uid://bubn3h7phhnkj"]
+
+[ext_resource type="Script" path="res://scripts/card/eventCardOption.gd" id="1_g4uo4"]
+[ext_resource type="Script" path="res://scripts/card/eventCardResource.gd" id="2_48eu3"]
+[ext_resource type="Texture2D" uid="uid://51jxdg4vyhfu" path="res://resources/graphics/image.jpg" id="3_mtyvi"]
+
+[sub_resource type="Resource" id="Resource_60642"]
+script = ExtResource("1_g4uo4")
+text = "Collect your thoughts back at home"
+eventCardOpenedId = ""
+cardsGranted = Array[String]([])
+gameOver = false
+
+[resource]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("2_48eu3")
+texture = ExtResource("3_mtyvi")
+title = "Intrusive Thoughts"
+description = "Your exploration is cut short by a thought that invades your mind seemingly out of nowhere.
+
+\"Negation of life, negation of being, negation of light... These three brought together shall become the nothing-night itself. The tenebrous aspect, the concept of despair given form.\"
+
+You wonder what that means."
+options = Array[ExtResource("1_g4uo4")]([SubResource("Resource_60642")])
+id = "intrusive_a"
+consumable = false
