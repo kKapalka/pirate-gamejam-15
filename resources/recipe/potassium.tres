@@ -7,4 +7,4 @@ script = ExtResource("1_kxr30")
 id = "potassium"
 ingredientsId = Array[String](["life", "salt"])
 resultId = "potassium"
-resultCount = 0
+resultCount = 1

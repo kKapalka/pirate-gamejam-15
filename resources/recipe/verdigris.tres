@@ -7,4 +7,4 @@ script = ExtResource("1_1qwm8")
 id = "verdigris"
 ingredientsId = Array[String](["copper", "brass"])
 resultId = "verdigris"
-resultCount = 0
+resultCount = 1
