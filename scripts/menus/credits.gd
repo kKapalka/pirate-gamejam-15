@@ -47,6 +47,11 @@ var credits = [
 		"Baelex",
 		"https://baelex.itch.io"
 	],[
+		"QA Support",
+		"David Parks",
+		"",
+		"Evan Vaughn"
+	],[
 		"Tools used",
 		"Developed with Godot Engine",
 		"https://godotengine.org/license"
