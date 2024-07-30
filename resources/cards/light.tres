@@ -11,3 +11,4 @@ texture = ExtResource("2_if6y3")
 name = "Light"
 id = "light"
 consumable = true
+discardStrength = 0.5

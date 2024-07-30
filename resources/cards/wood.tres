@@ -11,3 +11,4 @@ texture = ExtResource("2_wfmvv")
 name = "Wood"
 id = "wood"
 consumable = true
+discardStrength = 0.5

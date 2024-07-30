@@ -143,8 +143,8 @@ func start_brew():
 			for cardSlot in filteredCardSlots:
 				deleteCard(cardSlot.card)
 			#create cards
-			for i in recipe.resultCount:
-				resourceCardPool.spawnOneCard(CardHandler.loadResourceCard(recipe.resultId), resultSlot.global_position)
+			resourceCardPool.spawnOneCard(CardHandler.loadResourceCard(recipe.resultId), resultSlot.global_position)
+
 			resourceCardPool.deckSaveRoutine()
 			#advance time
 			AudioManager.playSFXAtDefaultPosition(brewSound)

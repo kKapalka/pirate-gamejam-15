@@ -11,3 +11,4 @@ texture = ExtResource("2_5ltyw")
 name = "Oil"
 id = "oil"
 consumable = true
+discardStrength = 0.5
