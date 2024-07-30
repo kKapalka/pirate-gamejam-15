@@ -19,6 +19,8 @@ var dragging: bool = false
 @onready var cardSlots: Array[CardSlot] = [$CardSlot, $CardSlot2, $CardSlot3]
 @onready var resultSlot : Node3D = $ResultSlot
 const blankCardId : String = "blank"
+@onready var discardSlot: CardSlot = $DiscardSlot
+var allSlots : Array[CardSlot]
 
 var resultSlotMaterial: StandardMaterial3D
 
@@ -38,7 +40,9 @@ func _ready():
 	AudioManager.setMusicTrack(1)
 	CursorHandler.camera = camera
 	CursorHandler.draggingBoundsArea = draggingBoundsArea
-	CursorHandler.cardSlots = cardSlots
+	allSlots = cardSlots.duplicate()
+	allSlots.append(discardSlot)
+	CursorHandler.cardSlots = allSlots
 	draggingBoundsArea.visible = false
 	pauseMenu.returnCallback = onReturn
 	pauseMenu.mainMenuCallback = onMainMenu
@@ -57,7 +61,7 @@ func _ready():
 		openEventCardById(SaveHandler.player.currentEvent)
 
 func afterReady():
-	resourceCardPool.triggerSlotDetection(cardSlots)
+	resourceCardPool.triggerSlotDetection(allSlots)
 
 func _input(_event):
 	if Input.is_action_just_pressed("ui_cancel"):
@@ -134,10 +138,7 @@ func start_brew():
 	if recipe != null:
 		#delete all consumable cards
 		for cardSlot in filteredCardSlots:
-			var card = cardSlot.card
-			if card.cardTemplate.card.consumable :
-				resourceCardPool.markAsHidden(card.get_instance_id())
-				card.disappear()
+			deleteCard(cardSlot.card)
 		#create cards
 		for i in recipe.resultCount:
 			resourceCardPool.spawnOneCard(CardHandler.loadResourceCard(recipe.resultId), resultSlot.global_position)
@@ -147,6 +148,11 @@ func start_brew():
 		TimeHandler.advanceTime()
 	else:
 		onRecipeFailure()
+
+func deleteCard(card : ResourceCardNode):
+	if card.cardTemplate.card.consumable :
+		resourceCardPool.markAsHidden(card.get_instance_id())
+		card.disappear()
 
 func onRecipeFailure():	
 	var tween = create_tween()
@@ -250,3 +256,9 @@ func _on_notebook_collider_input_event(camera, event, position, normal, shape_id
 func _on_card_disappear_timer_timeout():
 	broodButton.disabled = false
 	brewButton.disabled = false
+
+
+func _on_discard_button_button_up():
+	if discardSlot.card != null and discardSlot.card.cardTemplate.card.consumable:
+		CandleHandler.addStrengthBy(discardSlot.card.cardTemplate.card.discardStrength)
+		deleteCard(discardSlot.card)

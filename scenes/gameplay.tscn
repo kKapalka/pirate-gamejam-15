@@ -120,6 +120,15 @@ offset_right = 972.0
 offset_bottom = 109.0
 text = "Turns until darkness attacks: 6"
 
+[node name="DiscardButton" type="Button" parent="Control/ActiveMenu"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 0
+offset_left = 707.0
+offset_top = 237.0
+offset_right = 774.0
+offset_bottom = 268.0
+text = "Discard"
+
 [node name="MapMenu" type="MarginContainer" parent="Control"]
 visible = false
 layout_mode = 1
@@ -319,10 +328,20 @@ transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74
 sorting_offset = -5.0
 mesh = SubResource("PlaneMesh_uwddj")
 
+[node name="DiscardSlot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 2.1, 0, 4.791)
+script = ExtResource("11_yctxp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DiscardSlot"]
+transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 0, 0, 0.01)
+sorting_offset = -5.0
+mesh = SubResource("PlaneMesh_74yme")
+
 [connection signal="input_event" from="DraggingBoundsArea" to="." method="_on_dragging_bounds_area_input_event"]
 [connection signal="mouse_entered" from="DraggingBoundsArea" to="." method="_on_dragging_bounds_area_mouse_entered"]
 [connection signal="button_up" from="Control/ActiveMenu/Brood" to="." method="_on_brood_button_up"]
 [connection signal="button_up" from="Control/ActiveMenu/BrewButton" to="." method="_on_brew_button_button_up"]
+[connection signal="button_up" from="Control/ActiveMenu/DiscardButton" to="." method="_on_discard_button_button_up"]
 [connection signal="button_up" from="Control/MapMenu/MapContainer/TextureRect/CloseMap" to="." method="_on_close_map_button_up"]
 [connection signal="button_up" from="Control/MapMenu/MapContainer/TextureRect/ForestButton" to="." method="_on_forest_button_button_up"]
 [connection signal="button_up" from="Control/MapMenu/MapContainer/TextureRect/CityButton" to="." method="_on_city_button_button_up"]
