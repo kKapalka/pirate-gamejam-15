@@ -1,7 +1,7 @@
 [gd_resource type="Texture2D" script_class="ResourceCard" load_steps=3 format=3 uid="uid://ty4vaboyvjfw"]
 
 [ext_resource type="Script" path="res://scripts/card/cardResource.gd" id="1_wweph"]
-[ext_resource type="Texture2D" uid="uid://c31hxhljgno4b" path="res://resources/graphics/cards/resized/zinc.png" id="2_jwuqk"]
+[ext_resource type="Texture2D" uid="uid://ba2vulig02dpt" path="res://resources/graphics/cards/resized/zinc.png" id="2_jwuqk"]
 
 [resource]
 resource_local_to_scene = false

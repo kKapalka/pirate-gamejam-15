@@ -1,12 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://p2wed88y6i20"]
+[gd_scene load_steps=7 format=3 uid="uid://p2wed88y6i20"]
 
 [ext_resource type="Script" path="res://scripts/card/eventCardTemplate.gd" id="1_7nebk"]
 [ext_resource type="Texture2D" uid="uid://mpvfkjrk7uy2" path="res://resources/events/testEventCard.tres" id="2_2pldd"]
 [ext_resource type="Texture2D" uid="uid://blqsw43fi455v" path="res://resources/graphics/cards/eventCardBackground.png" id="3_8npka"]
 [ext_resource type="Script" path="res://scripts/utils/autoResizeLabel.gd" id="4_0fio1"]
 [ext_resource type="Texture2D" uid="uid://51jxdg4vyhfu" path="res://resources/graphics/image.jpg" id="4_h070b"]
+[ext_resource type="SpriteFrames" uid="uid://cfk7kj2hfjogq" path="res://resources/graphics/Stone/frames/stone_frames.tres" id="6_1duvi"]
 
-[node name="Cardtemplate" type="Control" node_paths=PackedStringArray("nameLabel", "descriptionLabel", "options", "artworkRect")]
+[node name="Cardtemplate" type="Control" node_paths=PackedStringArray("nameLabel", "descriptionLabel", "options", "artworkRect", "philoStoneOverride")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 800.0
@@ -16,6 +17,7 @@ nameLabel = NodePath("Art/Name")
 descriptionLabel = NodePath("Description")
 options = [NodePath("Art/VBoxContainer/Option1"), NodePath("Art/VBoxContainer/Option2"), NodePath("Art/VBoxContainer/Option3")]
 artworkRect = NodePath("Art")
+philoStoneOverride = NodePath("PhiloStoneOverride")
 card = ExtResource("2_2pldd")
 
 [node name="Background" type="TextureRect" parent="."]
@@ -108,6 +110,12 @@ script = ExtResource("4_0fio1")
 minFontSize = 12
 currentFontSize = 32
 maxFontSize = 32
+
+[node name="PhiloStoneOverride" type="AnimatedSprite2D" parent="."]
+position = Vector2(155, 251)
+scale = Vector2(0.245, 0.33)
+sprite_frames = ExtResource("6_1duvi")
+autoplay = "default"
 
 [node name="Description" type="Label" parent="."]
 custom_minimum_size = Vector2(400, 300)

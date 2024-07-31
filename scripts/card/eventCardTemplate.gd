@@ -7,6 +7,7 @@ class_name EventCardTemplate
 @export var descriptionLabel: Label
 @export var options: Array[Button]
 @export var artworkRect: TextureRect
+@export var philoStoneOverride: AnimatedSprite2D
 @export var card: EventCardResource:
 	get:
 		return card
@@ -27,6 +28,7 @@ func _process(_delta):
 
 
 func onCardModified():
+	philoStoneOverride.visible = card.id == 'ending_stone'
 	nameLabel.text = card.title
 	descriptionLabel.text = card.description
 	artworkRect.texture = card.texture

@@ -50,7 +50,8 @@ var credits = [
 		"QA Support",
 		"David Parks",
 		"",
-		"Evan Vaughn"
+		"Evan Vaughn",
+		"Ads MacDonald"
 	],[
 		"Tools used",
 		"Developed with Godot Engine",

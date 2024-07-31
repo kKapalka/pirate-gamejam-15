@@ -31,7 +31,10 @@ var resultSlotMaterial: StandardMaterial3D
 @onready var backwallturn23 = $"BackWallTurn23"
 @onready var backwallturn45 = $"BackWallTurn45"
 @onready var backwallturn6 = $"BackWallTurn6"
-@onready var candleLight = $Lantern/OmniLight3D
+@onready var candleLight = $NewLantern/OmniLight3D
+@onready var turnProgressBar = $Control/ActiveMenu/TurnProgressBar
+@onready var candleStrengthLabel = $Control/ActiveMenu/TurnProgressBar/TextureRect/Label
+@onready var candleStrengthProgressBar = $Control/ActiveMenu/TurnProgressBar/TextureRect/CandleStrengthProgressBar
 
 @export var deskClickSound: AudioStream
 @export var scrollClickSound: AudioStream
@@ -70,6 +73,7 @@ func _ready():
 	if SaveHandler.player.currentEvent != null and SaveHandler.player.currentEvent != '':
 		CursorHandler.canInteractWithBoard = false
 		openEventCardById(SaveHandler.player.currentEvent)
+	
 
 func afterReady():
 	resourceCardPool.triggerSlotDetection(allSlots)
@@ -238,7 +242,8 @@ func _on_candle_value_changed():
 	saveRoutine()
 
 func update_candle_label():
-	labelCardStrength.text = "Light Strength: " + str(CandleHandler.candleStrengthInInt())
+	candleStrengthLabel.text = str(CandleHandler.candleStrengthInInt())
+	candleStrengthProgressBar.value = CandleHandler.candleStrength - CandleHandler.candleStrengthInInt()
 
 func _on_time_value_changed():
 	update_time_label()
@@ -246,7 +251,7 @@ func _on_time_value_changed():
 	saveRoutine()
 
 func update_time_label():
-	labelTurnsLeft.text = "Turns until darkness attacks: " + str(7 - TimeHandler.time)
+	turnProgressBar.value = 7 - TimeHandler.time
 
 
 func _on_static_body_3d_input_event(_camera, _event, position, _normal, _shape_idx):

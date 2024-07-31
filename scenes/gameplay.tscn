@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://c0b3rjfuqloa1"]
+[gd_scene load_steps=62 format=3 uid="uid://c0b3rjfuqloa1"]
 
 [ext_resource type="Script" path="res://scripts/gameplay.gd" id="1_yv17x"]
 [ext_resource type="AudioStream" uid="uid://csvnm6xnfys5u" path="res://resources/sound/click.wav" id="2_unxqf"]
@@ -27,23 +27,30 @@
 [ext_resource type="Texture2D" uid="uid://cbl7ohn70c50k" path="res://resources/graphics/scroll2.svg" id="12_37fdb"]
 [ext_resource type="Material" uid="uid://4xvciyc8vanh" path="res://resources/graphics/cardSlotMaterial.tres" id="12_ij207"]
 [ext_resource type="Material" uid="uid://bg28v2iya6eeb" path="res://resources/graphics/resultSlotMaterial.tres" id="13_l5b3l"]
+[ext_resource type="Texture2D" uid="uid://v0wy1odqj1hp" path="res://resources/graphics/shadowsProgress.png" id="15_o4fu7"]
 [ext_resource type="Script" path="res://scripts/utils/autoResizeLabel.gd" id="15_q8uak"]
 [ext_resource type="Texture2D" uid="uid://dm4hhdf4tqs04" path="res://resources/graphics/forest.png" id="16_0b3xo"]
-[ext_resource type="Texture2D" uid="uid://ci886hacu1e60" path="res://resources/graphics/cards/resized/lead2.png" id="17_ulssu"]
+[ext_resource type="Texture2D" uid="uid://dmghyxhg36q0q" path="res://resources/graphics/whitebox.png" id="16_82iot"]
 [ext_resource type="Texture2D" uid="uid://bccr3ot6pgyuq" path="res://resources/graphics/mountain.png" id="18_lgvfn"]
 [ext_resource type="Texture2D" uid="uid://4dxx5kb75b8o" path="res://resources/graphics/swamp.png" id="19_i1a7k"]
-[ext_resource type="PackedScene" uid="uid://biri2pif18pw2" path="res://resources/models/Alchemy Models/Lantern Files/Lantern.glb" id="24_c6wqj"]
+[ext_resource type="Texture2D" uid="uid://daldu6uxlsu1" path="res://resources/graphics/castle.png" id="20_kgw3r"]
 [ext_resource type="Texture2D" uid="uid://cs5j7uwikjsj4" path="res://resources/Walls Floor/Floor.png" id="25_6emqe"]
 [ext_resource type="Texture2D" uid="uid://c0bdxn4r2d1jp" path="res://resources/Walls Floor/Window.png" id="25_mmico"]
 [ext_resource type="Texture2D" uid="uid://1o1hcec3dd0g" path="res://resources/Walls Floor/WindowDim.png" id="27_s5u0t"]
 [ext_resource type="Texture2D" uid="uid://c213x861cx3ux" path="res://resources/Walls Floor/WindowDimmer.png" id="28_8nude"]
 [ext_resource type="Texture2D" uid="uid://djpuffb6s6jsq" path="res://resources/Walls Floor/Wall.png" id="28_j4c7i"]
 [ext_resource type="Texture2D" uid="uid://cjfwqihvlgt22" path="res://resources/Walls Floor/WindowDark.png" id="29_ili2x"]
+[ext_resource type="PackedScene" uid="uid://crpkg30a4gqbk" path="res://resources/models/Alchemy Models/NewLantern/NewLantern.glb" id="35_e38xn"]
 [ext_resource type="AudioStream" uid="uid://qjhf2o7edjs5" path="res://resources/sound/636178__jamesdrake89__fire-crackling-spitting-roaring.mp3" id="40_5kjdt"]
 [ext_resource type="AudioStream" uid="uid://b3gjghbeiy1rd" path="res://resources/sound/Shadows Attack (1).mp3" id="41_iy2qv"]
 
 [sub_resource type="Environment" id="Environment_vtgdd"]
 ambient_light_color = Color(1, 1, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_vkvyq"]
+font_size = 108
+outline_size = 20
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_j5p1k"]
 size = Vector3(4, 1, 5)
@@ -144,6 +151,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="CandleStrength" type="Label" parent="Control/ActiveMenu"]
+visible = false
 layout_mode = 0
 offset_left = 687.0
 offset_top = 138.0
@@ -152,6 +160,7 @@ offset_bottom = 161.0
 text = "Light Strength: 5"
 
 [node name="TurnsLeft" type="Label" parent="Control/ActiveMenu"]
+visible = false
 layout_mode = 0
 offset_left = 853.0
 offset_top = 54.0
@@ -161,10 +170,10 @@ text = "Turns until darkness attacks: 6"
 
 [node name="BroodTextureButton" type="TextureButton" parent="Control/ActiveMenu"]
 layout_mode = 0
-offset_left = 57.0
-offset_top = 36.0
-offset_right = 1737.0
-offset_bottom = 1331.0
+offset_left = 1032.0
+offset_top = 149.0
+offset_right = 2712.0
+offset_bottom = 1444.0
 scale = Vector2(0.05, 0.05)
 texture_normal = ExtResource("11_gk2ns")
 
@@ -190,10 +199,10 @@ vertical_alignment = 1
 
 [node name="DiscardTextureButton" type="TextureButton" parent="Control/ActiveMenu"]
 layout_mode = 0
-offset_left = 621.0
-offset_top = 309.0
-offset_right = 2301.0
-offset_bottom = 1604.0
+offset_left = 684.0
+offset_top = 313.0
+offset_right = 2364.0
+offset_bottom = 1608.0
 scale = Vector2(0.06, 0.06)
 texture_normal = ExtResource("11_gk2ns")
 
@@ -212,14 +221,17 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 320
-text = "Discard"
+text = "Burn
+"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="BrewTextureButton" type="TextureButton" parent="Control/ActiveMenu"]
 layout_mode = 0
-offset_left = 346.0
-offset_top = 73.0
-offset_right = 1526.0
-offset_bottom = 997.0
+offset_left = 326.0
+offset_top = 252.0
+offset_right = 1506.0
+offset_bottom = 1176.0
 scale = Vector2(0.1, 0.1)
 texture_normal = ExtResource("12_37fdb")
 
@@ -239,6 +251,53 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 280
 text = "Brew"
+
+[node name="TurnProgressBar" type="TextureProgressBar" parent="Control/ActiveMenu"]
+z_index = 2
+layout_mode = 0
+offset_left = 1000.0
+offset_top = 2.0
+offset_right = 1300.0
+offset_bottom = 302.0
+scale = Vector2(0.5, 0.5)
+max_value = 6.0
+value = 6.0
+fill_mode = 5
+texture_under = ExtResource("15_o4fu7")
+texture_progress = ExtResource("15_o4fu7")
+tint_under = Color(0.231373, 0.231373, 0.231373, 1)
+radial_initial_angle = 270.0
+
+[node name="TextureRect" type="TextureRect" parent="Control/ActiveMenu/TurnProgressBar"]
+self_modulate = Color(0.862745, 0.705882, 0, 1)
+z_index = -1
+layout_mode = 0
+offset_left = 75.0
+offset_top = 75.0
+offset_right = 225.0
+offset_bottom = 225.0
+texture = ExtResource("16_82iot")
+
+[node name="CandleStrengthProgressBar" type="TextureProgressBar" parent="Control/ActiveMenu/TurnProgressBar/TextureRect"]
+layout_mode = 0
+offset_right = 150.0
+offset_bottom = 150.0
+max_value = 1.0
+step = 0.25
+fill_mode = 3
+texture_under = ExtResource("16_82iot")
+texture_progress = ExtResource("16_82iot")
+tint_under = Color(1, 1, 1, 0)
+tint_progress = Color(1, 1, 1, 0.501961)
+
+[node name="Label" type="Label" parent="Control/ActiveMenu/TurnProgressBar/TextureRect"]
+layout_mode = 0
+offset_right = 150.0
+offset_bottom = 150.0
+text = "5"
+label_settings = SubResource("LabelSettings_vkvyq")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="MapMenu" type="MarginContainer" parent="Control"]
 visible = false
@@ -349,7 +408,7 @@ currentFontSize = 64
 layout_mode = 0
 offset_right = 360.0
 offset_bottom = 640.0
-texture = ExtResource("17_ulssu")
+texture = ExtResource("20_kgw3r")
 expand_mode = 3
 stretch_mode = 6
 
@@ -475,7 +534,7 @@ texture = ExtResource("2_vrsh7")
 [node name="DraggingPolygon" type="CollisionPolygon3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 depth = 0.001
-polygon = PackedVector2Array(2.5, 4, 2.5, 8, -5, 8, -5, 4)
+polygon = PackedVector2Array(3.5, 4, 3.5, 8, -5, 8, -5, 4)
 
 [node name="Desk" parent="." instance=ExtResource("6_adcc6")]
 transform = Transform3D(-1.5299e-07, 0, 3.5, 0, 3.5, 0, -3.5, 0, -1.5299e-07, 0, -2.1, 5)
@@ -519,7 +578,7 @@ depth = 0.2
 polygon = PackedVector2Array(0.290881, 1.04087, 0.0682724, 1.1488, -0.0912467, 1.09689, -0.457159, 1.21247, -0.579704, 1.01163, -0.567732, 0.902998, -0.263467, 0.521964, -0.738449, 0.209522, -0.848018, 0.0732629, -0.740005, 0.38835, -0.90115, 0.556457, -1.15476, 0.347591, -1.16922, 0.707216, -1.33492, 0.704877, -1.36727, 0.315393, -1.49899, -0.219064, -1.32571, -0.484971, -1.0661, -0.394992, -0.603126, -0.475887, -0.547915, -0.454927, -0.370664, -0.146762, -0.530501, 0.122581, -0.286223, 0.305074, -0.145083, 0.551821, -0.506845, 0.951005, -0.39465, 1.02768, -0.226889, 0.936777, -0.182748, 0.752601, -0.03342, 0.646044, 0.174369, 0.750775)
 
 [node name="BookAndHolder" parent="." instance=ExtResource("9_rpieh")]
-transform = Transform3D(-1.5299e-07, 0, 3.5, 0, 3.5, 0, -3.5, 0, -1.5299e-07, 0.0838073, -2.08174, 5.29178)
+transform = Transform3D(-1.09278e-07, 0, 2.5, 0, 2.5, 0, -2.5, 0, -1.09278e-07, 1.69481, -1.512, 5.292)
 
 [node name="NotebookCollider" type="StaticBody3D" parent="BookAndHolder"]
 transform = Transform3D(0.91602, 0, 0.401133, 0, 1, 0, -0.401133, 0, 0.91602, -0.317435, 1.12572, 1.53111)
@@ -573,7 +632,7 @@ sorting_offset = -5.0
 mesh = SubResource("PlaneMesh_uwddj")
 
 [node name="DiscardSlot" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 2.1, 0, 4.791)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 3.0921, 0, 4.791)
 script = ExtResource("11_yctxp")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="DiscardSlot"]
@@ -581,27 +640,28 @@ transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74
 sorting_offset = -5.0
 mesh = SubResource("PlaneMesh_74yme")
 
-[node name="Lantern" parent="." instance=ExtResource("24_c6wqj")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 3.62192, 1.32448, 3.0151)
+[node name="NewLantern" parent="." instance=ExtResource("35_e38xn")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 3.622, 1.324, 3.015)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Lantern"]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.538376, 0)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NewLantern"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -3.99351e-05, 0.538616, 4.99487e-05)
 mesh = SubResource("CapsuleMesh_ih5lq")
+skeleton = NodePath("")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Lantern"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.313181, 0.350775, 0.758467)
+[node name="OmniLight3D" type="OmniLight3D" parent="NewLantern"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.318, 0.193596, 0.814)
 light_color = Color(1, 0.690196, 0.207843, 1)
 light_energy = 8.0
 
-[node name="CandleSound" type="AudioStreamPlayer3D" parent="Lantern"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.715, 0)
+[node name="CandleSound" type="AudioStreamPlayer3D" parent="NewLantern"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -3.99351e-05, 0.71524, 4.99487e-05)
 stream = ExtResource("40_5kjdt")
 autoplay = true
 
-[node name="GlassStuffs" type="StaticBody3D" parent="Lantern"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.536953, 0)
+[node name="GlassStuffs" type="StaticBody3D" parent="NewLantern"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.99351e-05, 0.537193, 4.99487e-05)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Lantern/GlassStuffs"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NewLantern/GlassStuffs"]
 shape = SubResource("BoxShape3D_wqgqp")
 
 [node name="BackWallTurn1" type="MeshInstance3D" parent="."]
@@ -661,4 +721,4 @@ stream = ExtResource("41_iy2qv")
 [connection signal="input_event" from="Alchemyset/FurnaceBody" to="." method="_on_furnace_body_input_event"]
 [connection signal="input_event" from="Alchemyset/GlassStuffs" to="." method="_on_glass_stuffs_input_event"]
 [connection signal="input_event" from="BookAndHolder/NotebookCollider" to="." method="_on_notebook_collider_input_event"]
-[connection signal="input_event" from="Lantern/GlassStuffs" to="." method="_on_glass_stuffs_input_event"]
+[connection signal="input_event" from="NewLantern/GlassStuffs" to="." method="_on_glass_stuffs_input_event"]
