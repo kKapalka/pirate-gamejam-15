@@ -13,8 +13,8 @@ class_name GameplayNode
 
 var dragging: bool = false
 @onready var resourceCardPool: ResourceCardDeckNode = $ResourceCardPool
-@onready var broodButton: Button = $Control/ActiveMenu/Brood
-@onready var brewButton: Button = $Control/ActiveMenu/BrewButton
+@onready var broodButton: TextureButton = $Control/ActiveMenu/BroodTextureButton
+@onready var brewButton: TextureButton = $Control/ActiveMenu/BrewTextureButton
 
 @onready var cardSlots: Array[CardSlot] = [$CardSlot, $CardSlot2, $CardSlot3]
 @onready var resultSlot : Node3D = $ResultSlot
@@ -26,6 +26,11 @@ var resultSlotMaterial: StandardMaterial3D
 
 @onready var labelCardStrength = $"Control/ActiveMenu/CandleStrength"
 @onready var labelTurnsLeft = $"Control/ActiveMenu/TurnsLeft"
+
+@onready var backwallturn1 = $"BackWallTurn1"
+@onready var backwallturn23 = $"BackWallTurn23"
+@onready var backwallturn45 = $"BackWallTurn45"
+@onready var backwallturn6 = $"BackWallTurn6"
 
 @export var deskClickSound: AudioStream
 @export var scrollClickSound: AudioStream
@@ -96,6 +101,7 @@ func loadRutine():
 	CandleHandler.candleStrength = SaveHandler.player.candle
 	update_candle_label()
 	update_time_label()
+	change_wall_according_to_time()
 
 func saveRoutine():
 	SaveHandler.player.time = TimeHandler.time
@@ -176,11 +182,6 @@ func mapCardSlotToCardId(cardslot : CardSlot) -> String:
 func _on_brew_button_button_up():
 	start_brew()
 
-func _on_brood_button_up():
-	AudioManager.playSFXAtDefaultPosition(UIClickSound)
-	TimeHandler.advanceTime()
-
-
 func _on_close_map_button_up():
 	activeMenu.visible = true
 	mapMenu.visible = false
@@ -225,10 +226,11 @@ func _on_candle_value_changed():
 	update_candle_label()
 
 func update_candle_label():
-	labelCardStrength.text = "Candle Strength: " + str(CandleHandler.candleStrengthInInt())
+	labelCardStrength.text = "Light Strength: " + str(CandleHandler.candleStrengthInInt())
 
 func _on_time_value_changed():
 	update_time_label()
+	change_wall_according_to_time()
 
 func update_time_label():
 	labelTurnsLeft.text = "Turns until darkness attacks: " + str(7 - TimeHandler.time)
@@ -262,8 +264,35 @@ func _on_card_disappear_timer_timeout():
 	broodButton.disabled = false
 	brewButton.disabled = false
 
+func change_wall_according_to_time():
+	set_all_walls_invisible()
+	match TimeHandler.time:
+		1:
+			backwallturn1.visible = true
+		2, 3:
+			backwallturn23.visible = true
+		4, 5:
+			backwallturn45.visible = true
+		6:
+			backwallturn6.visible = true
 
-func _on_discard_button_button_up():
+func set_all_walls_invisible():
+	backwallturn1.visible = false
+	backwallturn23.visible = false
+	backwallturn45.visible = false
+	backwallturn6.visible = false
+
+
+func _on_brood_texture_button_button_up():
+	AudioManager.playSFXAtDefaultPosition(UIClickSound)
+	TimeHandler.advanceTime()
+
+
+func _on_discard_texture_button_button_up():
 	if discardSlot.card != null and discardSlot.card.cardTemplate.card.consumable:
 		CandleHandler.addStrengthBy(discardSlot.card.cardTemplate.card.discardStrength)
 		deleteCard(discardSlot.card)
+
+
+func _on_brew_texture_button_button_up():
+	start_brew()
