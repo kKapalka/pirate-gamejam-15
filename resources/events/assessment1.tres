@@ -24,12 +24,11 @@ resource_name = ""
 script = ExtResource("2_am2x7")
 texture = ExtResource("3_ye0pw")
 title = "Assessment"
-description = "The alchemical apparata lie neatly placed along the desk.
-Below them, three chambers, for three essences of creation.
+description = "The alchemical apparata lie neatly placed along the desk. Below them, three chambers, for three essences of creation.
 On the right - the four elements. Fire, Earth, Air, and Water. All else that came to be, did so through a union of these fundamental aspects.
-The secrets of synthesis are yours to uncover. They hold the key to creating the Philosopher's Stone, a long-sought substance capable of turning base metals into gold and granting immortality.
-But be wary - your time is short. Limited by a foe one can't grasp, yet alone fight. The candle that illuminates your station will hold it at bay for as long as you let it, while you complete your Grand Work.
-To your left is a map of the land. You may venture forth, and explore in search of something useful to further your aim, but be sure to stay indoors as the night falls. The shadows lie in wait for the unwary.
+The secrets of synthesis are yours to uncover. Remember to document your discoveries. They hold the key to creating the Philosopher's Stone, a long-sought substance capable of turning base metals into gold and granting immortality.
+But be wary - your time is limited by a foe one can't grasp, yet alone fight. The candle that illuminates your station will hold it at bay while you complete your Grand Work.
+To your left is a map of the land. You may venture forth in search of something useful to further your aim, but be sure to stay indoors as the night falls.
 
 You may get to work right away, or take a look at the book to the left."
 options = Array[ExtResource("1_osxbx")]([SubResource("Resource_60642"), SubResource("Resource_bmid8")])
