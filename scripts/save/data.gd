@@ -10,9 +10,9 @@ var player = {
 	"candle": 5.0
 }
 var settings = {
-	"master": 10,
-	"music": 10,
-	"sfx": 10
+	"master": 5,
+	"music": 5,
+	"sfx": 5
 }
 
 func saveGame():
