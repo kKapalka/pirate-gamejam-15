@@ -605,6 +605,11 @@ transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74
 sorting_offset = -5.0
 mesh = SubResource("PlaneMesh_74yme")
 
+[node name="OmniLight3D" type="OmniLight3D" parent="CardSlot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.464302, -0.1)
+light_color = Color(0, 0.866667, 0.882353, 1)
+light_energy = 0.5
+
 [node name="CardSlot2" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -3.29185, 0, 4.78359)
 script = ExtResource("11_yctxp")
@@ -614,6 +619,11 @@ transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74
 sorting_offset = -5.0
 mesh = SubResource("PlaneMesh_74yme")
 
+[node name="OmniLight3D" type="OmniLight3D" parent="CardSlot2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.464302, -0.1)
+light_color = Color(0, 0.866667, 0.882353, 1)
+light_energy = 0.5
+
 [node name="CardSlot3" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -2.1306, 0, 4.79077)
 script = ExtResource("11_yctxp")
@@ -622,6 +632,11 @@ script = ExtResource("11_yctxp")
 transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 0, 0, 0.01)
 sorting_offset = -5.0
 mesh = SubResource("PlaneMesh_74yme")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="CardSlot3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.464302, -0.1)
+light_color = Color(0, 0.866667, 0.882353, 1)
+light_energy = 0.5
 
 [node name="ResultSlot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.685978, 0, 4.80469)
