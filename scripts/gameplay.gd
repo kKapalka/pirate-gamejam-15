@@ -31,6 +31,7 @@ var resultSlotMaterial: StandardMaterial3D
 @onready var backwallturn23 = $"BackWallTurn23"
 @onready var backwallturn45 = $"BackWallTurn45"
 @onready var backwallturn6 = $"BackWallTurn6"
+@onready var candleLight = $Lantern/OmniLight3D
 
 @export var deskClickSound: AudioStream
 @export var scrollClickSound: AudioStream
@@ -39,6 +40,11 @@ var resultSlotMaterial: StandardMaterial3D
 @export var bookClickSound: AudioStream
 @export var UIClickSound: AudioStream
 @export var brewSound: AudioStream
+@export var discardSound: AudioStream
+
+@export var mysterySound: AudioStream
+
+@onready var shadowsStreamPlayer = $ShadowsSound
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -121,6 +127,7 @@ func _on_scroll_collider_input_event(_camera, _event, position, _normal, _shape_
 		if TimeHandler.time > 3:			
 			AudioManager.playSFXAtDefaultPosition(UIClickSound)
 			openEventCardById("cant_travel")
+			AudioManager.playSFXAtDefaultPosition(mysterySound)
 		else:
 			AudioManager.playSFX(scrollClickSound, position)
 			CursorHandler.canInteractWithBoard = false
@@ -213,7 +220,7 @@ func hideEventCard():
 	eventCard.visible = false
 	activeMenu.visible = true
 	CursorHandler.canInteractWithBoard = true
-	if !(SaveHandler.player.currentEvent in ['assessment2', 'cant_travel']):
+	if !(SaveHandler.player.currentEvent in ['assessment1', 'assessment2', 'cant_travel']):
 		TimeHandler.advanceTime()
 	SaveHandler.player.currentEvent = ''
 	SaveHandler.saveGame()
@@ -221,9 +228,14 @@ func hideEventCard():
 func _on_candle_reached_limit():
 	update_candle_label()
 	openEventCardById("ending_shadows")
+	AudioManager.playSFXAtDefaultPosition(mysterySound)
+	candleLight.visible = false
+	shadowsStreamPlayer.play()
+	
 
 func _on_candle_value_changed():
 	update_candle_label()
+	saveRoutine()
 
 func update_candle_label():
 	labelCardStrength.text = "Light Strength: " + str(CandleHandler.candleStrengthInInt())
@@ -231,6 +243,7 @@ func update_candle_label():
 func _on_time_value_changed():
 	update_time_label()
 	change_wall_according_to_time()
+	saveRoutine()
 
 func update_time_label():
 	labelTurnsLeft.text = "Turns until darkness attacks: " + str(7 - TimeHandler.time)
@@ -275,6 +288,11 @@ func change_wall_according_to_time():
 			backwallturn45.visible = true
 		6:
 			backwallturn6.visible = true
+	if TimeHandler.time > 3:
+		if !shadowsStreamPlayer.playing:
+			shadowsStreamPlayer.play()
+	else:
+		shadowsStreamPlayer.stop()
 
 func set_all_walls_invisible():
 	backwallturn1.visible = false
@@ -292,6 +310,8 @@ func _on_discard_texture_button_button_up():
 	if discardSlot.card != null and discardSlot.card.cardTemplate.card.consumable:
 		CandleHandler.addStrengthBy(discardSlot.card.cardTemplate.card.discardStrength)
 		deleteCard(discardSlot.card)
+		AudioManager.playSFXAtDefaultPosition(discardSound)
+		
 
 
 func _on_brew_texture_button_button_up():

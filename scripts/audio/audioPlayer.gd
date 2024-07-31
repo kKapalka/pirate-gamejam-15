@@ -10,7 +10,8 @@ class_name AudioPlayer
 @onready var staticSFXPlayerPool: Array[AudioStreamPlayer] = [
 	$Node/AudioStreamPlayer,
 	$Node/AudioStreamPlayer2,
-	$Node/AudioStreamPlayer3
+	$Node/AudioStreamPlayer3,
+	$Node/AudioStreamPlayer4
 ]
 @export var musicTracks: Array[AudioStream]
 
@@ -26,19 +27,17 @@ func setMusicTrack(index: int):
 	if nextTrack != musicTracks[index]:
 		if nextTrack == null:
 			nextTrack = musicTracks[index]
-			var previousColume = $MusicPlayer.volume_db
 			$MusicPlayer.volume_db = linear_to_db(0.1)
 			on_fade()
 			var tween = get_tree().create_tween()
-			tween.tween_property($MusicPlayer, "volume_db", previousColume, FADE_IN_DURATION_IN_SECONDS)
+			tween.tween_property($MusicPlayer, "volume_db", linear_to_db(1.0), FADE_IN_DURATION_IN_SECONDS)
 			
 		else:
 			nextTrack = musicTracks[index]
-			var previousColume = $MusicPlayer.volume_db
 			var tween = get_tree().create_tween()
 			tween.tween_property($MusicPlayer, "volume_db", linear_to_db(0.1), FADE_OUT_DURATION_IN_SECONDS)
 			tween.tween_callback(Callable(self, "on_fade"))
-			tween.tween_property($MusicPlayer, "volume_db", previousColume, FADE_IN_DURATION_IN_SECONDS)
+			tween.tween_property($MusicPlayer, "volume_db", linear_to_db(1.0), FADE_IN_DURATION_IN_SECONDS)
 
 func on_fade():
 	$MusicPlayer.stream = nextTrack

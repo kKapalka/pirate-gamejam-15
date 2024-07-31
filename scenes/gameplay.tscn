@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://c0b3rjfuqloa1"]
+[gd_scene load_steps=59 format=3 uid="uid://c0b3rjfuqloa1"]
 
 [ext_resource type="Script" path="res://scripts/gameplay.gd" id="1_yv17x"]
 [ext_resource type="AudioStream" uid="uid://csvnm6xnfys5u" path="res://resources/sound/click.wav" id="2_unxqf"]
@@ -19,23 +19,31 @@
 [ext_resource type="AudioStream" uid="uid://c4p442ove03nj" path="res://resources/sound/ui-click.wav" id="7_vc511"]
 [ext_resource type="PackedScene" uid="uid://triwej8ik7hv" path="res://resources/models/Alchemy Models/ScrollFiles/Scroll.gltf" id="8_41w0w"]
 [ext_resource type="AudioStream" uid="uid://bma77erasw2xb" path="res://resources/sound/Combing Ingredents.wav" id="8_c85ln"]
+[ext_resource type="AudioStream" uid="uid://dv4embc8ovc5l" path="res://resources/sound/Crumpling paper.mp3" id="9_givdu"]
 [ext_resource type="PackedScene" uid="uid://de1lghsrvyx13" path="res://resources/models/Alchemy Models/BookFiles/BookAndHolder.gltf" id="9_rpieh"]
+[ext_resource type="AudioStream" uid="uid://8ofl4jmi8krg" path="res://resources/sound/mystery1.mp3" id="10_ixkse"]
 [ext_resource type="Texture2D" uid="uid://pgi7dqqkak3k" path="res://resources/graphics/scroll1.svg" id="11_gk2ns"]
 [ext_resource type="Script" path="res://scripts/cardSlot.gd" id="11_yctxp"]
 [ext_resource type="Texture2D" uid="uid://cbl7ohn70c50k" path="res://resources/graphics/scroll2.svg" id="12_37fdb"]
 [ext_resource type="Material" uid="uid://4xvciyc8vanh" path="res://resources/graphics/cardSlotMaterial.tres" id="12_ij207"]
 [ext_resource type="Material" uid="uid://bg28v2iya6eeb" path="res://resources/graphics/resultSlotMaterial.tres" id="13_l5b3l"]
+[ext_resource type="Script" path="res://scripts/utils/autoResizeLabel.gd" id="15_q8uak"]
+[ext_resource type="Texture2D" uid="uid://dm4hhdf4tqs04" path="res://resources/graphics/forest.png" id="16_0b3xo"]
+[ext_resource type="Texture2D" uid="uid://ci886hacu1e60" path="res://resources/graphics/cards/resized/lead2.png" id="17_ulssu"]
+[ext_resource type="Texture2D" uid="uid://bccr3ot6pgyuq" path="res://resources/graphics/mountain.png" id="18_lgvfn"]
+[ext_resource type="Texture2D" uid="uid://4dxx5kb75b8o" path="res://resources/graphics/swamp.png" id="19_i1a7k"]
 [ext_resource type="PackedScene" uid="uid://biri2pif18pw2" path="res://resources/models/Alchemy Models/Lantern Files/Lantern.glb" id="24_c6wqj"]
 [ext_resource type="Texture2D" uid="uid://cs5j7uwikjsj4" path="res://resources/Walls Floor/Floor.png" id="25_6emqe"]
 [ext_resource type="Texture2D" uid="uid://c0bdxn4r2d1jp" path="res://resources/Walls Floor/Window.png" id="25_mmico"]
 [ext_resource type="Texture2D" uid="uid://1o1hcec3dd0g" path="res://resources/Walls Floor/WindowDim.png" id="27_s5u0t"]
 [ext_resource type="Texture2D" uid="uid://c213x861cx3ux" path="res://resources/Walls Floor/WindowDimmer.png" id="28_8nude"]
+[ext_resource type="Texture2D" uid="uid://djpuffb6s6jsq" path="res://resources/Walls Floor/Wall.png" id="28_j4c7i"]
 [ext_resource type="Texture2D" uid="uid://cjfwqihvlgt22" path="res://resources/Walls Floor/WindowDark.png" id="29_ili2x"]
+[ext_resource type="AudioStream" uid="uid://qjhf2o7edjs5" path="res://resources/sound/636178__jamesdrake89__fire-crackling-spitting-roaring.mp3" id="40_5kjdt"]
+[ext_resource type="AudioStream" uid="uid://b3gjghbeiy1rd" path="res://resources/sound/Shadows Attack (1).mp3" id="41_iy2qv"]
 
 [sub_resource type="Environment" id="Environment_vtgdd"]
-ambient_light_source = 3
 ambient_light_color = Color(1, 1, 1, 1)
-ambient_light_energy = 0.2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_j5p1k"]
 size = Vector3(4, 1, 5)
@@ -51,7 +59,12 @@ size = Vector2(0.8, 1.424)
 material = ExtResource("13_l5b3l")
 size = Vector2(0.9, 1.6)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vfmm0"]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ih5lq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wqgqp"]
+size = Vector3(0.8, 0.8, 0.8)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e2aef"]
 albedo_texture = ExtResource("25_mmico")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_fnod1"]
@@ -59,7 +72,12 @@ size = Vector2(50, 25)
 orientation = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tvsq1"]
-albedo_texture = ExtResource("25_mmico")
+albedo_texture = ExtResource("28_j4c7i")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_725ym"]
+flip_faces = true
+size = Vector2(50, 25)
+orientation = 0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_yj2s2"]
 size = Vector2(50, 25)
@@ -89,6 +107,8 @@ glassClickSound = ExtResource("5_3wk6w")
 bookClickSound = ExtResource("6_sv3c1")
 UIClickSound = ExtResource("7_vc511")
 brewSound = ExtResource("8_c85ln")
+discardSound = ExtResource("9_givdu")
+mysterySound = ExtResource("10_ixkse")
 
 [node name="DraggingBoundsArea" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.65, 0)
@@ -260,6 +280,38 @@ offset_right = 795.0
 offset_bottom = 346.0
 texture_normal = ExtResource("7_ihuqv")
 
+[node name="Control" type="Control" parent="Control/MapMenu/MapContainer/TextureRect/ForestButton"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.2, 0.2)
+mouse_filter = 2
+
+[node name="Name" type="Label" parent="Control/MapMenu/MapContainer/TextureRect/ForestButton/Control"]
+z_index = 1
+layout_mode = 0
+offset_left = 10.0
+offset_top = 480.0
+offset_right = 350.0
+offset_bottom = 580.0
+scale = Vector2(1, 1.4)
+theme_override_font_sizes/font_size = 64
+text = "Forest"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+clip_text = true
+script = ExtResource("15_q8uak")
+currentFontSize = 64
+
+[node name="Art" type="TextureRect" parent="Control/MapMenu/MapContainer/TextureRect/ForestButton/Control"]
+layout_mode = 0
+offset_right = 360.0
+offset_bottom = 640.0
+texture = ExtResource("16_0b3xo")
+expand_mode = 3
+stretch_mode = 6
+
 [node name="CityButton" type="TextureButton" parent="Control/MapMenu/MapContainer/TextureRect"]
 layout_mode = 0
 offset_left = 522.0
@@ -267,6 +319,39 @@ offset_top = 10.0
 offset_right = 594.0
 offset_bottom = 138.0
 texture_normal = ExtResource("7_ihuqv")
+
+[node name="Control" type="Control" parent="Control/MapMenu/MapContainer/TextureRect/CityButton"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.2, 0.2)
+mouse_filter = 2
+
+[node name="Name" type="Label" parent="Control/MapMenu/MapContainer/TextureRect/CityButton/Control"]
+z_index = 1
+layout_mode = 0
+offset_left = 10.0
+offset_top = 480.0
+offset_right = 350.0
+offset_bottom = 580.0
+scale = Vector2(1, 1.4)
+theme_override_font_sizes/font_size = 64
+text = "City"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+clip_text = true
+script = ExtResource("15_q8uak")
+currentFontSize = 64
+
+[node name="Art" type="TextureRect" parent="Control/MapMenu/MapContainer/TextureRect/CityButton/Control"]
+layout_mode = 0
+offset_right = 360.0
+offset_bottom = 640.0
+texture = ExtResource("17_ulssu")
+expand_mode = 3
+stretch_mode = 6
 
 [node name="MountainsButton" type="TextureButton" parent="Control/MapMenu/MapContainer/TextureRect"]
 layout_mode = 0
@@ -276,6 +361,39 @@ offset_right = 146.0
 offset_bottom = 385.0
 texture_normal = ExtResource("7_ihuqv")
 
+[node name="Control" type="Control" parent="Control/MapMenu/MapContainer/TextureRect/MountainsButton"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.2, 0.2)
+mouse_filter = 2
+
+[node name="Name" type="Label" parent="Control/MapMenu/MapContainer/TextureRect/MountainsButton/Control"]
+z_index = 1
+layout_mode = 0
+offset_left = 10.0
+offset_top = 480.0
+offset_right = 350.0
+offset_bottom = 580.0
+scale = Vector2(1, 1.4)
+theme_override_font_sizes/font_size = 64
+text = "Mountain"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+clip_text = true
+script = ExtResource("15_q8uak")
+currentFontSize = 64
+
+[node name="Art" type="TextureRect" parent="Control/MapMenu/MapContainer/TextureRect/MountainsButton/Control"]
+layout_mode = 0
+offset_right = 360.0
+offset_bottom = 640.0
+texture = ExtResource("18_lgvfn")
+expand_mode = 3
+stretch_mode = 6
+
 [node name="MarshButton" type="TextureButton" parent="Control/MapMenu/MapContainer/TextureRect"]
 layout_mode = 0
 offset_left = 210.0
@@ -283,6 +401,39 @@ offset_top = 76.0
 offset_right = 282.0
 offset_bottom = 204.0
 texture_normal = ExtResource("7_ihuqv")
+
+[node name="Control" type="Control" parent="Control/MapMenu/MapContainer/TextureRect/MarshButton"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.2, 0.2)
+mouse_filter = 2
+
+[node name="Name" type="Label" parent="Control/MapMenu/MapContainer/TextureRect/MarshButton/Control"]
+z_index = 1
+layout_mode = 0
+offset_left = 10.0
+offset_top = 480.0
+offset_right = 350.0
+offset_bottom = 580.0
+scale = Vector2(1, 1.4)
+theme_override_font_sizes/font_size = 64
+text = "Marsh"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+clip_text = true
+script = ExtResource("15_q8uak")
+currentFontSize = 64
+
+[node name="Art" type="TextureRect" parent="Control/MapMenu/MapContainer/TextureRect/MarshButton/Control"]
+layout_mode = 0
+offset_right = 360.0
+offset_bottom = 640.0
+texture = ExtResource("19_i1a7k")
+expand_mode = 3
+stretch_mode = 6
 
 [node name="EventCard" parent="Control" instance=ExtResource("7_mt5a5")]
 visible = false
@@ -380,11 +531,11 @@ polygon = PackedVector2Array(0.5, 0.3, 0.5, -0.3, -0.5, -0.3, -0.5, 0.3)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.395095, -0.440338, 0.806227, -0.185839, 0.897797, 0.39928, -0.899647, 0.00792454, -0.436547, 5.97596, 6.70141, 6.22891)
-light_energy = 0.3
+light_energy = 0.25
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.700266, 0.406072, -0.58714, -0.233067, 0.907439, 0.349621, 0.674764, -0.107985, 0.730091, -7.38689, 5.93705, 6.22891)
-light_energy = 0.4
+light_energy = 0.25
 
 [node name="CardSlot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -4.40241, 0, 4.76744)
@@ -433,15 +584,35 @@ mesh = SubResource("PlaneMesh_74yme")
 [node name="Lantern" parent="." instance=ExtResource("24_c6wqj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 3.62192, 1.32448, 3.0151)
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Lantern"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.538376, 0)
+mesh = SubResource("CapsuleMesh_ih5lq")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Lantern"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.313181, 0.350775, 0.758467)
+light_color = Color(1, 0.690196, 0.207843, 1)
+light_energy = 8.0
+
+[node name="CandleSound" type="AudioStreamPlayer3D" parent="Lantern"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.715, 0)
+stream = ExtResource("40_5kjdt")
+autoplay = true
+
+[node name="GlassStuffs" type="StaticBody3D" parent="Lantern"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.536953, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Lantern/GlassStuffs"]
+shape = SubResource("BoxShape3D_wqgqp")
+
 [node name="BackWallTurn1" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.24498, -17.4618)
-material_override = SubResource("StandardMaterial3D_vfmm0")
+material_override = SubResource("StandardMaterial3D_e2aef")
 mesh = SubResource("PlaneMesh_fnod1")
 
 [node name="SideWallRight" type="MeshInstance3D" parent="."]
-transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 24.9782, 4.29855, 7.53526)
+transform = Transform3D(1, -1.50996e-07, 0, 1.50996e-07, 1, 0, 0, 0, -1, 24.9782, 4.29855, 7.53526)
 material_override = SubResource("StandardMaterial3D_tvsq1")
-mesh = SubResource("PlaneMesh_yj2s2")
+mesh = SubResource("PlaneMesh_725ym")
 
 [node name="SideWallLeft" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.978, 4.299, 7.535)
@@ -471,6 +642,9 @@ visible = false
 material_override = SubResource("StandardMaterial3D_ofrnt")
 mesh = SubResource("PlaneMesh_fnod1")
 
+[node name="ShadowsSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("41_iy2qv")
+
 [connection signal="input_event" from="DraggingBoundsArea" to="." method="_on_dragging_bounds_area_input_event"]
 [connection signal="mouse_entered" from="DraggingBoundsArea" to="." method="_on_dragging_bounds_area_mouse_entered"]
 [connection signal="button_up" from="Control/ActiveMenu/BroodTextureButton" to="." method="_on_brood_texture_button_button_up"]
@@ -487,3 +661,4 @@ mesh = SubResource("PlaneMesh_fnod1")
 [connection signal="input_event" from="Alchemyset/FurnaceBody" to="." method="_on_furnace_body_input_event"]
 [connection signal="input_event" from="Alchemyset/GlassStuffs" to="." method="_on_glass_stuffs_input_event"]
 [connection signal="input_event" from="BookAndHolder/NotebookCollider" to="." method="_on_notebook_collider_input_event"]
+[connection signal="input_event" from="Lantern/GlassStuffs" to="." method="_on_glass_stuffs_input_event"]

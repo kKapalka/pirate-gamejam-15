@@ -5,6 +5,6 @@
 [resource]
 script = ExtResource("1_1pcxq")
 id = "platinum"
-ingredientsId = Array[String](["silver", "cobalt", "potassium"])
+ingredientsId = Array[String](["silver", "cobalt", "volcano"])
 resultId = "platinum"
 resultCount = 1
